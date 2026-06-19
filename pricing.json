@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "siteName": "Thịnh Vượng Luật",
+    "tagline": "Đại lý dịch vụ SDS chính thức",
+    "badge": "Đại lý uỷ quyền chính thức · SDS Vietnam",
+    "heroTitle": "Thịnh Vượng Luật",
+    "heroSpan": "Giải pháp số cho doanh nghiệp",
+    "heroDesc": "Đại lý ủy quyền phần mềm SDS – hóa đơn điện tử, chữ ký số, kế toán và cả hệ sinh thái quản trị doanh nghiệp. Tư vấn miễn phí, hỗ trợ trọn đời.",
+    "stats": [
+      { "num": "350K+", "label": "Doanh nghiệp tin dùng SDS" },
+      { "num": "13+",   "label": "Năm kinh nghiệm SDS" },
+      { "num": "12+",   "label": "Sản phẩm hệ sinh thái" },
+      { "num": "24/7",  "label": "Hỗ trợ kỹ thuật" }
+    ],
+    "contact": {
+      "hotline": { "display": "0986 633 426", "href": "tel:0986633426" },
+      "zalo":    { "display": "Nhắn Zalo ngay", "href": "#" },
+      "email":   { "display": "info@thinhvuongluat.vn", "href": "mailto:info@thinhvuongluat.vn" },
+      "hours":   "T2 – T7: 8:00 – 17:30"
+    },
+    "footerYear": "2024",
+    "sdsHotline": { "display": "1900 33 69", "href": "tel:190033369" }
+  },
+
+  "products": [
+    {
+      "icon": "🧾",
+      "iconBg": "linear-gradient(135deg,#e8f4fd,#c5e3f9)",
+      "name": "EasyInvoice",
+      "desc": "Phần mềm hóa đơn điện tử theo TT78, ký số HSM, lưu trữ 10 năm."
+    },
+    {
+      "icon": "🔏",
+      "iconBg": "linear-gradient(135deg,#fff8e8,#fde68a)",
+      "name": "EasyCA",
+      "desc": "Chữ ký số cá nhân & doanh nghiệp – USB Token và ký số từ xa."
+    },
+    {
+      "icon": "📊",
+      "iconBg": "linear-gradient(135deg,#eef9f0,#a7f3d0)",
+      "name": "EasyBooks",
+      "desc": "Phần mềm kế toán online theo TT99, TT133, TT152 – không giới hạn user."
+    },
+    {
+      "icon": "👥",
+      "iconBg": "linear-gradient(135deg,#fdf2ff,#e9d5ff)",
+      "name": "EasyHRM",
+      "desc": "Quản lý nhân sự, chấm công, tính lương tự động."
+    },
+    {
+      "icon": "🏪",
+      "iconBg": "linear-gradient(135deg,#fff1f0,#fecaca)",
+      "name": "EasyPOS",
+      "desc": "Phần mềm bán hàng tại điểm bán – tích hợp hóa đơn điện tử."
+    },
+    {
+      "icon": "📄",
+      "iconBg": "linear-gradient(135deg,#f0f9ff,#bae6fd)",
+      "name": "EasyDocs",
+      "desc": "Hợp đồng điện tử có giá trị pháp lý – ký số, lưu trữ, tra cứu."
+    }
+  ],
+
+  "easyinvoice": {
+    "eyebrow": "🧾 EasyInvoice",
+    "title": "Bảng giá Hóa đơn điện tử",
+    "desc": "Phần mềm hóa đơn điện tử tuân thủ Thông tư 78, kết nối cơ quan thuế, ký số HSM.",
+    "setupFee": "500.000đ",
+    "setupFeeLabel": "Phí khởi tạo",
+    "setupFeeSuffix": "/ đơn vị / 1 lần duy nhất",
+    "disclaimer": "* Giá hóa đơn theo gói phụ thuộc vào số lượng – liên hệ để nhận báo giá tốt nhất từ đại lý.",
+    "gridClass": "pricing-grid-2",
+    "plans": [
+      {
+        "planName": "Gói Gold",
+        "label": "Gold",
+        "price": "Liên hệ",
+        "unit": "",
+        "note": "Giá theo gói hóa đơn · Phù hợp hộ kinh doanh & DN nhỏ",
+        "features": [
+          "Tặng 100 hóa đơn đầu",
+          "App mobile phát hành HĐ",
+          "Cổng tra cứu hóa đơn miễn phí",
+          "Chuyển đổi HĐ TT32 → TT78",
+          "Lưu trữ dữ liệu 10 năm",
+          "Hỗ trợ hotline 24/7"
+        ],
+        "variant": "",
+        "cta": { "text": "Đăng ký gói Gold", "style": "outline" }
+      },
+      {
+        "planName": "Gói Diamond",
+        "label": "Diamond",
+        "price": "Liên hệ",
+        "unit": "",
+        "note": "Gói cao cấp · HSM sẵn sàng · DN vừa và lớn",
+        "features": [
+          "Tặng <strong>300 hóa đơn</strong> mỗi năm",
+          "Chữ ký số HSM miễn phí",
+          "App mobile phát hành HĐ",
+          "Cổng tra cứu hóa đơn miễn phí",
+          "Hỗ trợ chuyển đổi HĐ cũ",
+          "Lưu trữ dữ liệu 10 năm",
+          "Hỗ trợ hotline 24/7 ưu tiên"
+        ],
+        "variant": "featured",
+        "cta": { "text": "Đăng ký gói Diamond", "style": "gold" }
+      }
+    ]
+  },
+
+  "easyca": {
+    "eyebrow": "🔏 EasyCA",
+    "title": "Bảng giá Chữ ký số",
+    "desc": "Chữ ký số cá nhân & tổ chức – USB Token vật lý hoặc ký số từ xa qua điện toán đám mây.",
+    "yearOptions": [1, 2, 3],
+    "gridClass": "pricing-grid-3",
+    "plans": [
+      {
+        "planName": "USB Token Cơ bản",
+        "label": "Cá nhân – Basic",
+        "prices": ["486.000đ", "810.000đ", "885.600đ"],
+        "note": "Ký điện tử các văn bản, hợp đồng, tờ khai thuế",
+        "features": [
+          "Chứng thư số cá nhân cơ bản",
+          "USB Token vật lý (FIDO2)",
+          "Ký văn bản PDF, Word, Excel",
+          "Nộp thuế điện tử ETAX",
+          "Hỗ trợ cài đặt từ xa"
+        ],
+        "variant": "",
+        "cta": { "text": "Đăng ký ngay", "style": "outline" }
+      },
+      {
+        "planName": "USB Token Nâng cao",
+        "label": "Cá nhân – Advanced",
+        "prices": ["777.600đ", "1.209.600đ", "1.533.600đ"],
+        "note": "Đầy đủ quyền ký số – phù hợp chủ DN, kế toán trưởng",
+        "features": [
+          "Mọi tính năng USB Basic",
+          "Ký hóa đơn điện tử",
+          "Ký hợp đồng điện tử pháp lý",
+          "Cổng dịch vụ công trực tuyến",
+          "Giao dịch ngân hàng số",
+          "Hỗ trợ ưu tiên 24/7"
+        ],
+        "variant": "featured",
+        "cta": { "text": "Đăng ký ngay", "style": "gold" }
+      },
+      {
+        "planName": "Remote Signing",
+        "label": "Ký số từ xa",
+        "prices": ["147.273đ", "265.092đ", "373.092đ"],
+        "note": "Ký mọi lúc, mọi nơi – không cần USB, không cần cài driver",
+        "features": [
+          "Ký số 100% trên đám mây",
+          "Không cần thiết bị vật lý",
+          "Xác thực OTP/SmartOTP",
+          "Tích hợp EasyInvoice sẵn",
+          "Phù hợp làm việc từ xa"
+        ],
+        "variant": "navy",
+        "cta": { "text": "Đăng ký ngay", "style": "white" }
+      }
+    ]
+  },
+
+  "easybooks": {
+    "eyebrow": "📊 EasyBooks",
+    "title": "Bảng giá Phần mềm Kế toán",
+    "desc": "Kế toán online không giới hạn user, không giới hạn chứng từ – cập nhật tự động theo thông tư mới nhất.",
+    "setupFee": "1.000.000đ",
+    "setupFeeLabel": "Phí khởi tạo & bản quyền",
+    "setupFeeSuffix": "/ đơn vị / 1 lần duy nhất · Tặng 6 tháng EasyBooks + 300 hóa đơn",
+    "gridClass": "pricing-grid-3",
+    "plans": [
+      {
+        "planName": "Thông tư 152",
+        "label": "Hộ kinh doanh",
+        "price": "1.000.000đ",
+        "unit": "/ năm",
+        "note": "~83.333đ/tháng · Không giới hạn người dùng · Không giới hạn chứng từ",
+        "features": [
+          "Kế toán theo TT152",
+          "Quản lý tiền mặt, ngân hàng",
+          "Mua hàng, bán hàng, kho",
+          "Tích hợp hóa đơn điện tử",
+          "Đồng bộ dữ liệu thuế",
+          "Kế toán tổng hợp, lương"
+        ],
+        "variant": "",
+        "cta": { "text": "Đăng ký gói này", "style": "outline" }
+      },
+      {
+        "planName": "Thông tư 99 & 133 · STARTER",
+        "label": "Doanh nghiệp nhỏ",
+        "price": "2.000.000đ",
+        "unit": "/ năm",
+        "note": "~167.000đ/tháng · Dưới 5.000 chứng từ/năm · Không giới hạn user",
+        "features": [
+          "Tất cả tính năng TT152",
+          "Kế toán theo TT99 & 133",
+          "Kế toán giá thành sản xuất",
+          "Quản lý hóa đơn nâng cao",
+          "Tài sản cố định, hợp đồng",
+          "Ngân hàng điện tử tích hợp",
+          "Vay nợ, khế ước"
+        ],
+        "variant": "featured",
+        "cta": { "text": "Đăng ký gói Starter", "style": "gold" }
+      },
+      {
+        "planName": "Thông tư 99 & 133 · PRO",
+        "label": "Doanh nghiệp vừa",
+        "price": "2.500.000đ",
+        "unit": "/ năm",
+        "note": "~208.000đ/tháng · 5.000+ chứng từ/năm · Không giới hạn user",
+        "features": [
+          "Toàn bộ tính năng Starter",
+          "Không giới hạn chứng từ",
+          "Báo cáo quản trị nâng cao",
+          "Phân tích tài chính chuyên sâu",
+          "Ưu tiên hỗ trợ kỹ thuật",
+          "Cập nhật tự động quy định mới"
+        ],
+        "variant": "navy",
+        "cta": { "text": "Đăng ký gói Pro", "style": "white" }
+      }
+    ]
+  },
+
+  "ecosystem": [
+    { "icon": "👥", "name": "EasyHRM",       "desc": "Quản lý nhân sự, chấm công, lương thưởng tự động",       "badge": "Liên hệ báo giá" },
+    { "icon": "🏪", "name": "EasyPOS",       "desc": "Phần mềm bán hàng tại điểm – tích hợp HĐ điện tử",       "badge": "Liên hệ báo giá" },
+    { "icon": "📑", "name": "EasyDocs",      "desc": "Hợp đồng điện tử có giá trị pháp lý",                     "badge": "Liên hệ báo giá" },
+    { "icon": "🤝", "name": "EasyCRM",       "desc": "Quản lý quan hệ khách hàng toàn diện",                    "badge": "Liên hệ báo giá" },
+    { "icon": "💰", "name": "EasyPIT",       "desc": "Quản lý thuế thu nhập cá nhân khấu trừ",                  "badge": "Liên hệ báo giá" },
+    { "icon": "🎫", "name": "EasyTicket",    "desc": "Vé điện tử – sự kiện, vận tải, giải trí",                 "badge": "Liên hệ báo giá" },
+    { "icon": "🔐", "name": "Easy SmartOTP", "desc": "Giải pháp xác thực OTP thông minh",                       "badge": "Liên hệ báo giá" },
+    { "icon": "🪪", "name": "EasyKYC",       "desc": "Xác thực danh tính khách hàng trực tuyến",                "badge": "Liên hệ báo giá" }
+  ]
+}
