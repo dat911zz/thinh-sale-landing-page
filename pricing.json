@@ -26,36 +26,42 @@
     {
       "icon": "🧾",
       "iconBg": "linear-gradient(135deg,#e8f4fd,#c5e3f9)",
+      "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easyinvoice.png",
       "name": "EasyInvoice",
       "desc": "Phần mềm hóa đơn điện tử theo TT78, ký số HSM, lưu trữ 10 năm."
     },
     {
       "icon": "🔏",
       "iconBg": "linear-gradient(135deg,#fff8e8,#fde68a)",
+      "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easyca.png",
       "name": "EasyCA",
       "desc": "Chữ ký số cá nhân & doanh nghiệp – USB Token và ký số từ xa."
     },
     {
       "icon": "📊",
       "iconBg": "linear-gradient(135deg,#eef9f0,#a7f3d0)",
+      "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easybooks.png",
       "name": "EasyBooks",
       "desc": "Phần mềm kế toán online theo TT99, TT133, TT152 – không giới hạn user."
     },
     {
       "icon": "👥",
       "iconBg": "linear-gradient(135deg,#fdf2ff,#e9d5ff)",
+      "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easyhrm.png",
       "name": "EasyHRM",
       "desc": "Quản lý nhân sự, chấm công, tính lương tự động."
     },
     {
       "icon": "🏪",
       "iconBg": "linear-gradient(135deg,#fff1f0,#fecaca)",
+      "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easypos.png",
       "name": "EasyPOS",
       "desc": "Phần mềm bán hàng tại điểm bán – tích hợp hóa đơn điện tử."
     },
     {
       "icon": "📄",
       "iconBg": "linear-gradient(135deg,#f0f9ff,#bae6fd)",
+      "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easydocs.png",
       "name": "EasyDocs",
       "desc": "Hợp đồng điện tử có giá trị pháp lý – ký số, lưu trữ, tra cứu."
     }
@@ -230,13 +236,13 @@
   },
 
   "ecosystem": [
-    { "icon": "👥", "name": "EasyHRM",       "desc": "Quản lý nhân sự, chấm công, lương thưởng tự động",       "badge": "Liên hệ báo giá" },
-    { "icon": "🏪", "name": "EasyPOS",       "desc": "Phần mềm bán hàng tại điểm – tích hợp HĐ điện tử",       "badge": "Liên hệ báo giá" },
-    { "icon": "📑", "name": "EasyDocs",      "desc": "Hợp đồng điện tử có giá trị pháp lý",                     "badge": "Liên hệ báo giá" },
-    { "icon": "🤝", "name": "EasyCRM",       "desc": "Quản lý quan hệ khách hàng toàn diện",                    "badge": "Liên hệ báo giá" },
-    { "icon": "💰", "name": "EasyPIT",       "desc": "Quản lý thuế thu nhập cá nhân khấu trừ",                  "badge": "Liên hệ báo giá" },
-    { "icon": "🎫", "name": "EasyTicket",    "desc": "Vé điện tử – sự kiện, vận tải, giải trí",                 "badge": "Liên hệ báo giá" },
-    { "icon": "🔐", "name": "Easy SmartOTP", "desc": "Giải pháp xác thực OTP thông minh",                       "badge": "Liên hệ báo giá" },
-    { "icon": "🪪", "name": "EasyKYC",       "desc": "Xác thực danh tính khách hàng trực tuyến",                "badge": "Liên hệ báo giá" }
+    { "icon": "👥", "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easyhrm.png",    "name": "EasyHRM",       "desc": "Quản lý nhân sự, chấm công, lương thưởng tự động",       "badge": "Liên hệ báo giá" },
+    { "icon": "🏪", "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easypos.png",    "name": "EasyPOS",       "desc": "Phần mềm bán hàng tại điểm – tích hợp HĐ điện tử",       "badge": "Liên hệ báo giá" },
+    { "icon": "📑", "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easydocs.png",   "name": "EasyDocs",      "desc": "Hợp đồng điện tử có giá trị pháp lý",                     "badge": "Liên hệ báo giá" },
+    { "icon": "🤝", "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easycrm.png",    "name": "EasyCRM",       "desc": "Quản lý quan hệ khách hàng toàn diện",                    "badge": "Liên hệ báo giá" },
+    { "icon": "💰", "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easypit.png",    "name": "EasyPIT",       "desc": "Quản lý thuế thu nhập cá nhân khấu trừ",                  "badge": "Liên hệ báo giá" },
+    { "icon": "🎫", "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easyticket.png", "name": "EasyTicket",    "desc": "Vé điện tử – sự kiện, vận tải, giải trí",                 "badge": "Liên hệ báo giá" },
+    { "icon": "🔐", "logo": "https://softdreams.vn/wp-content/uploads/2023/10/logosds.png",    "name": "Easy SmartOTP", "desc": "Giải pháp xác thực OTP thông minh",                       "badge": "Liên hệ báo giá" },
+    { "icon": "🪪", "logo": "https://softdreams.vn/wp-content/uploads/2024/07/easykyc.png",    "name": "EasyKYC",       "desc": "Xác thực danh tính khách hàng trực tuyến",                "badge": "Liên hệ báo giá" }
   ]
 }
