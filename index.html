@@ -939,7 +939,7 @@ function setYear(yr, tabEl) {
 function logoImg(logo, name, fallbackEmoji, bgStyle) {
   if (logo) {
     return `<div class="product-logo-wrap" style="background:${bgStyle}">
-      <img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.style.opacity=0">
+      <img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.parentNode.innerHTML='<span class=\\"product-logo-fallback\\">${fallbackEmoji}</span>'">
     </div>`;
   }
   return `<div class="product-logo-wrap" style="background:${bgStyle}">
@@ -950,7 +950,7 @@ function logoImg(logo, name, fallbackEmoji, bgStyle) {
 function ecoLogoImg(logo, name, fallbackEmoji) {
   return `<div class="eco-logo-wrap">
     ${logo
-      ? `<img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.style.opacity=0">`
+      ? `<img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.parentNode.innerHTML='<span class=\\"eco-logo-fallback\\">${fallbackEmoji}</span>'">`
       : `<span class="eco-logo-fallback">${fallbackEmoji}</span>`}
   </div>`;
 }
