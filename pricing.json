@@ -23,48 +23,12 @@
   },
 
   "products": [
-    {
-      "icon": "🧾",
-      "iconBg": "linear-gradient(135deg,#e8f4fd,#c5e3f9)",
-      "logo": "logos/easyinvoice.png",
-      "name": "EasyInvoice",
-      "desc": "Phần mềm hóa đơn điện tử theo TT78, ký số HSM, lưu trữ 10 năm."
-    },
-    {
-      "icon": "🔏",
-      "iconBg": "linear-gradient(135deg,#fff8e8,#fde68a)",
-      "logo": "logos/easyca.png",
-      "name": "EasyCA",
-      "desc": "Chữ ký số cá nhân & doanh nghiệp – USB Token và ký số từ xa."
-    },
-    {
-      "icon": "📊",
-      "iconBg": "linear-gradient(135deg,#eef9f0,#a7f3d0)",
-      "logo": "logos/easybooks.png",
-      "name": "EasyBooks",
-      "desc": "Phần mềm kế toán online theo TT99, TT133, TT152 – không giới hạn user."
-    },
-    {
-      "icon": "👥",
-      "iconBg": "linear-gradient(135deg,#fdf2ff,#e9d5ff)",
-      "logo": "logos/easyhrm.png",
-      "name": "EasyHRM",
-      "desc": "Quản lý nhân sự, chấm công, tính lương tự động."
-    },
-    {
-      "icon": "🏪",
-      "iconBg": "linear-gradient(135deg,#fff1f0,#fecaca)",
-      "logo": "logos/easypos.png",
-      "name": "EasyPOS",
-      "desc": "Phần mềm bán hàng tại điểm bán – tích hợp hóa đơn điện tử."
-    },
-    {
-      "icon": "📄",
-      "iconBg": "linear-gradient(135deg,#f0f9ff,#bae6fd)",
-      "logo": "logos/easydocs.png",
-      "name": "EasyDocs",
-      "desc": "Hợp đồng điện tử có giá trị pháp lý – ký số, lưu trữ, tra cứu."
-    }
+    { "icon": "🧾", "logo": "logos/wordmarks/easyinvoice.png", "name": "EasyInvoice", "desc": "Phần mềm hóa đơn điện tử theo TT78, ký số HSM, lưu trữ 10 năm." },
+    { "icon": "🔏", "logo": "logos/wordmarks/easyca.png",      "name": "EasyCA",      "desc": "Chữ ký số cá nhân & doanh nghiệp – USB Token và ký số từ xa." },
+    { "icon": "📊", "logo": "logos/wordmarks/easybooks.png",   "name": "EasyBooks",   "desc": "Phần mềm kế toán online theo TT99, TT133, TT152 – không giới hạn user." },
+    { "icon": "👥", "logo": "logos/wordmarks/easyhrm.png",     "name": "EasyHRM",     "desc": "Quản lý nhân sự, chấm công, tính lương tự động." },
+    { "icon": "🏪", "logo": "logos/wordmarks/easypos.png",     "name": "EasyPOS",     "desc": "Phần mềm bán hàng tại điểm bán – tích hợp hóa đơn điện tử." },
+    { "icon": "📄", "logo": "logos/wordmarks/easydocs.png",    "name": "EasyDocs",    "desc": "Hợp đồng điện tử có giá trị pháp lý – ký số, lưu trữ, tra cứu." }
   ],
 
   "easyinvoice": {
@@ -236,13 +200,13 @@
   },
 
   "ecosystem": [
-    { "icon": "👥", "logo": "logos/easyhrm.png",       "name": "EasyHRM",       "desc": "Quản lý nhân sự, chấm công, lương thưởng tự động",       "badge": "Liên hệ báo giá" },
-    { "icon": "🏪", "logo": "logos/easypos.png",       "name": "EasyPOS",       "desc": "Phần mềm bán hàng tại điểm – tích hợp HĐ điện tử",       "badge": "Liên hệ báo giá" },
-    { "icon": "📑", "logo": "logos/easydocs.png",      "name": "EasyDocs",      "desc": "Hợp đồng điện tử có giá trị pháp lý",                     "badge": "Liên hệ báo giá" },
-    { "icon": "🤝", "logo": "logos/easycrm.png",       "name": "EasyCRM",       "desc": "Quản lý quan hệ khách hàng toàn diện",                    "badge": "Liên hệ báo giá" },
-    { "icon": "💰", "logo": "logos/easypit.png",       "name": "EasyPIT",       "desc": "Quản lý thuế thu nhập cá nhân khấu trừ",                  "badge": "Liên hệ báo giá" },
-    { "icon": "🎫", "logo": "logos/easyticket.png",    "name": "EasyTicket",    "desc": "Vé điện tử – sự kiện, vận tải, giải trí",                 "badge": "Liên hệ báo giá" },
-    { "icon": "🔐", "logo": "logos/easysmartotp.png",  "name": "Easy SmartOTP", "desc": "Giải pháp xác thực OTP thông minh",                       "badge": "Liên hệ báo giá" },
-    { "icon": "🪪", "logo": "logos/easykyc.png",       "name": "EasyKYC",       "desc": "Xác thực danh tính khách hàng trực tuyến",                "badge": "Liên hệ báo giá" }
+    { "icon": "👥", "logo": "logos/wordmarks/easyhrm.png",     "name": "EasyHRM",       "desc": "Quản lý nhân sự, chấm công, lương thưởng tự động",    "badge": "Liên hệ báo giá" },
+    { "icon": "🏪", "logo": "logos/wordmarks/easypos.png",     "name": "EasyPOS",       "desc": "Phần mềm bán hàng tại điểm – tích hợp HĐ điện tử",   "badge": "Liên hệ báo giá" },
+    { "icon": "📑", "logo": "logos/wordmarks/easydocs.png",    "name": "EasyDocs",      "desc": "Hợp đồng điện tử có giá trị pháp lý",                 "badge": "Liên hệ báo giá" },
+    { "icon": "🤝", "logo": "logos/wordmarks/easycrm.png",     "name": "EasyCRM",       "desc": "Quản lý quan hệ khách hàng toàn diện",                "badge": "Liên hệ báo giá" },
+    { "icon": "💰", "logo": "logos/wordmarks/easypit.png",     "name": "EasyPIT",       "desc": "Quản lý thuế thu nhập cá nhân khấu trừ",              "badge": "Liên hệ báo giá" },
+    { "icon": "🎫", "logo": "logos/wordmarks/easyticket.png",  "name": "EasyTicket",    "desc": "Vé điện tử – sự kiện, vận tải, giải trí",             "badge": "Liên hệ báo giá" },
+    { "icon": "🔐", "logo": "logos/easysmartotp.png",          "name": "Easy SmartOTP", "desc": "Giải pháp xác thực OTP thông minh",                   "badge": "Liên hệ báo giá" },
+    { "icon": "🪪", "logo": "logos/wordmarks/easykyc.png",     "name": "EasyKYC",       "desc": "Xác thực danh tính khách hàng trực tuyến",            "badge": "Liên hệ báo giá" }
   ]
 }

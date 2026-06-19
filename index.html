@@ -357,16 +357,22 @@
     .product-card:hover { border-color: var(--mid); box-shadow: var(--shadow); transform: translateY(-4px); }
 
     .product-logo-wrap {
-      width: 56px; height: 56px; border-radius: 14px; overflow: hidden;
-      margin-bottom: 16px; display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+      height: 48px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
     }
     .product-logo-wrap img {
-      width: 100%; height: 100%; object-fit: contain;
-      transition: transform .3s;
+      height: 100%; width: auto; max-width: 85%;
+      object-fit: contain;
+      transition: opacity .2s;
     }
-    .product-card:hover .product-logo-wrap img { transform: scale(1.08); }
-    .product-logo-fallback { font-size: 26px; }
+    .product-card:hover .product-logo-wrap img { opacity: .85; }
+    .product-logo-fallback {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 26px;
+    }
+    .product-logo-fallback strong { font-size: 1rem; color: var(--navy); }
 
     .product-name { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .product-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
@@ -473,11 +479,11 @@
     .eco-card:hover { border-color: var(--mid); box-shadow: var(--shadow); transform: translateY(-3px); }
 
     .eco-logo-wrap {
-      width: 44px; height: 44px; border-radius: 10px; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--off);
+      height: 32px;
+      display: flex; align-items: center;
+      margin-bottom: 2px;
     }
-    .eco-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .eco-logo-wrap img { height: 100%; width: auto; max-width: 90%; object-fit: contain; }
     .eco-logo-fallback { font-size: 22px; }
 
     .eco-name  { font-size: .9rem; font-weight: 700; color: var(--navy); }
@@ -936,14 +942,14 @@ function setYear(yr, tabEl) {
 }
 
 /* ── RENDER HELPERS ───────────────────────────── */
-function logoImg(logo, name, fallbackEmoji, bgStyle) {
+function logoImg(logo, name, fallbackEmoji) {
   if (logo) {
-    return `<div class="product-logo-wrap" style="background:${bgStyle}">
-      <img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.parentNode.innerHTML='<span class=\\"product-logo-fallback\\">${fallbackEmoji}</span>'">
+    return `<div class="product-logo-wrap">
+      <img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\\"product-logo-fallback\\"><span>${fallbackEmoji}</span><strong>${name}</strong></div>'">
     </div>`;
   }
-  return `<div class="product-logo-wrap" style="background:${bgStyle}">
-    <span class="product-logo-fallback">${fallbackEmoji}</span>
+  return `<div class="product-logo-wrap">
+    <div class="product-logo-fallback"><span>${fallbackEmoji}</span><strong>${name}</strong></div>
   </div>`;
 }
 
@@ -1004,8 +1010,7 @@ function render(data) {
   document.getElementById('products-grid').innerHTML =
     products.map(p => `
       <div class="product-card fade-up">
-        ${logoImg(p.logo, p.name, p.icon, p.iconBg)}
-        <h3 class="product-name">${p.name}</h3>
+        ${logoImg(p.logo, p.name, p.icon)}
         <p class="product-desc">${p.desc}</p>
       </div>`).join('');
 
