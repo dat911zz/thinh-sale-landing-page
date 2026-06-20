@@ -142,20 +142,80 @@
   <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
   <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
   <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
   <div class="hero-grid" aria-hidden="true"></div>
 
-  <div class="hero-content" id="hero-content">
-    <div class="hero-badge" id="hero-badge">
-      <div class="hero-badge-dot"></div>
-      Đại lý uỷ quyền chính thức · SDS Vietnam
+  <div class="hero-inner">
+    <div class="hero-content" id="hero-content">
+      <div class="hero-badge" id="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Đại lý uỷ quyền chính thức · SDS Vietnam
+      </div>
+      <h1 id="hero-title">Số hoá doanh nghiệp<br /><em>trọn gói, một đầu mối</em></h1>
+      <p class="hero-sub" id="hero-desc">Hoá đơn điện tử, chữ ký số, kế toán, nhân sự, bán hàng – toàn bộ hệ sinh thái phần mềm SDS trong một nơi. Tư vấn miễn phí, kích hoạt trong ngày, hỗ trợ trọn đời.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Nhận tư vấn miễn phí →</a>
+        <a href="#products" class="btn-ghost">Khám phá sản phẩm</a>
+      </div>
+      <div class="hero-stats" id="hero-stats"><!-- from JSON --></div>
     </div>
-    <h1 id="hero-title">Thịnh Vượng Luật<br /><em>Giải pháp số cho doanh nghiệp</em></h1>
-    <p class="hero-sub" id="hero-desc">Đại lý ủy quyền phần mềm SDS – hóa đơn điện tử, chữ ký số, kế toán và cả hệ sinh thái quản trị doanh nghiệp. Tư vấn miễn phí, hỗ trợ trọn đời.</p>
-    <div class="hero-stats" id="hero-stats"><!-- from JSON --></div>
-    <div class="hero-btns">
-      <a href="#contact" class="btn-primary">Tư vấn miễn phí →</a>
-      <a href="#easyinvoice" class="btn-ghost">Xem bảng giá</a>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="app-window-wrap">
+        <div class="app-window">
+          <div class="app-topbar">
+            <div class="app-dots"><span></span><span></span><span></span></div>
+            <div class="app-url-bar">app.thinhvuongluat.vn · Tổng quan hệ sinh thái</div>
+          </div>
+          <div class="app-body">
+            <div class="app-sidebar-mock">
+              <div class="app-nav-dot active"></div>
+              <div class="app-nav-dot"></div>
+              <div class="app-nav-dot"></div>
+              <div class="app-nav-dot"></div>
+            </div>
+            <div class="app-main-mock">
+              <div class="app-stat-row">
+                <div class="app-stat-card">
+                  <div class="asc-label">Hoá đơn tháng này</div>
+                  <div class="asc-value">12.480</div>
+                  <div class="asc-trend">▲ 14%</div>
+                </div>
+                <div class="app-stat-card">
+                  <div class="asc-label">Chữ ký số</div>
+                  <div class="asc-value">3.205</div>
+                  <div class="asc-trend">▲ 9%</div>
+                </div>
+                <div class="app-stat-card">
+                  <div class="asc-label">Hợp đồng</div>
+                  <div class="asc-value">486</div>
+                  <div class="asc-trend">✓ Đã ký</div>
+                </div>
+              </div>
+              <div class="app-chart-mock">
+                <div class="app-bar" style="height:46%"></div>
+                <div class="app-bar" style="height:62%"></div>
+                <div class="app-bar" style="height:50%"></div>
+                <div class="app-bar hi" style="height:90%"></div>
+                <div class="app-bar" style="height:70%"></div>
+                <div class="app-bar" style="height:58%"></div>
+                <div class="app-bar au" style="height:96%"></div>
+              </div>
+              <div class="app-table-mock">
+                <div class="app-row"><div class="app-row-dot g"></div><div class="app-row-name">EasyInvoice · Hoá đơn điện tử</div><div class="app-row-val">Hoạt động</div></div>
+                <div class="app-row"><div class="app-row-dot b"></div><div class="app-row-name">EasyCA · Chữ ký số</div><div class="app-row-val">Hoạt động</div></div>
+                <div class="app-row"><div class="app-row-dot o"></div><div class="app-row-name">EasyBooks · Kế toán</div><div class="app-row-val">Đồng bộ</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float-card">
+        <div class="sfc-icon">⚡</div>
+        <div>
+          <div class="sfc-label">Kích hoạt trong ngày</div>
+          <div class="sfc-value">6 phần mềm · 1 đầu mối</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -446,8 +506,9 @@ function render(data) {
     'EasyPOS': 'easypos.html', 'EasyDocs': 'easydocs.html'
   };
   document.getElementById('products-grid').innerHTML =
-    products.map(p => `
-      <a href="${productLinks[p.name] || '#'}" class="product-card fade-up">
+    products.map((p, i) => `
+      <a href="${productLinks[p.name] || '#'}" class="product-card fade-up${i === 0 ? ' product-card--flagship' : ''}">
+        ${i === 0 ? '<span class="product-flagship-badge">Sản phẩm chủ lực</span>' : ''}
         ${logoImg(p.logo, p.name, p.icon)}
         <p class="product-desc">${p.desc}</p>
         <span class="product-card-cta">Tìm hiểu thêm →</span>
