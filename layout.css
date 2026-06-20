@@ -97,6 +97,15 @@ body.menu-open { overflow: hidden; }
   font-size: .62rem; font-weight: 700; letter-spacing: .09em;
   text-transform: uppercase; color: rgba(255,255,255,.28);
 }
+.mobile-dd-logo-link {
+  display: flex; align-items: center; padding: 3px 0;
+}
+.mobile-dd-logo {
+  height: 22px; width: auto; max-width: 120px;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: .8;
+}
 
 .mobile-menu-divider {
   width: 60px; height: 1px; background: rgba(255,255,255,.12);
@@ -197,6 +206,18 @@ nav.scrolled { background: rgba(10,22,50,.99); box-shadow: 0 2px 20px rgba(0,0,0
   text-transform: uppercase; color: rgba(255,255,255,.3);
   cursor: default; user-select: none;
 }
+.nav-dd-logo-link {
+  display: flex; align-items: center;
+  padding: 5px 14px 9px;
+}
+.nav-dd-logo {
+  height: 28px; width: auto; max-width: 140px;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: .7;
+  transition: opacity .18s;
+}
+.nav-dd-logo-link:hover .nav-dd-logo { opacity: 1; }
 
 /* Hamburger */
 .nav-hamburger {
