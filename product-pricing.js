@@ -154,7 +154,7 @@ fetch('pricing.json')
     var eyebrow = document.getElementById('pp-eyebrow');
     var title   = document.getElementById('pp-title');
     var desc    = document.getElementById('pp-desc');
-    if (eyebrow) eyebrow.textContent = pd.title;
+    if (eyebrow) eyebrow.textContent = pd.eyebrow || pd.title;
     if (title)   title.textContent   = pd.title;
     if (desc)    desc.textContent    = pd.desc;
 
@@ -169,11 +169,11 @@ fetch('pricing.json')
       }).join('');
     }
 
-    /* Plan carousel */
+    /* Plan carousel — defer init one frame so layout is painted before measuring offsetWidth */
     var cardsHTML = pd.plans.map(function(p) { return ppCardHTML(p, isCA, 0); }).join('');
     grid.className = 'plan-carousel';
     grid.innerHTML = ppCarouselHTML(cardsHTML, pd.plans.length, slug);
-    ppInitCarousel(grid);
+    requestAnimationFrame(function() { ppInitCarousel(grid); });
 
     /* Setup fee */
     var setupEl = document.getElementById('pp-setup-fee');
