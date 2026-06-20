@@ -450,7 +450,7 @@ section { padding: 88px 24px; }
   transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
   transition: transform .5s cubic-bezier(.4,0,.2,1);
 }
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 769px) {
   .showcase-visual:hover .app-window-wrap {
     transform: perspective(1200px) rotateY(-2deg) rotateX(0);
   }
@@ -540,7 +540,8 @@ section { padding: 88px 24px; }
   animation-play-state: running;
 }
 @media (prefers-reduced-motion: reduce) {
-  .showcase-float-card { animation: none; }
+  .showcase-float-card,
+  .showcase-visual.visible .showcase-float-card { animation: none !important; }
 }
 @keyframes floatCard {
   0%,100% { transform: translateY(0); }
@@ -846,12 +847,21 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-.stagger-children > *:nth-child(1) { transition-delay: .05s; }
-.stagger-children > *:nth-child(2) { transition-delay: .12s; }
-.stagger-children > *:nth-child(3) { transition-delay: .19s; }
-.stagger-children > *:nth-child(4) { transition-delay: .26s; }
-.stagger-children > *:nth-child(5) { transition-delay: .33s; }
-.stagger-children > *:nth-child(6) { transition-delay: .40s; }
+.stagger-children > *:nth-child(1)  { transition-delay: .05s; }
+.stagger-children > *:nth-child(2)  { transition-delay: .12s; }
+.stagger-children > *:nth-child(3)  { transition-delay: .19s; }
+.stagger-children > *:nth-child(4)  { transition-delay: .26s; }
+.stagger-children > *:nth-child(5)  { transition-delay: .33s; }
+.stagger-children > *:nth-child(6)  { transition-delay: .40s; }
+.stagger-children > *:nth-child(7)  { transition-delay: .47s; }
+.stagger-children > *:nth-child(8)  { transition-delay: .54s; }
+.stagger-children > *:nth-child(9)  { transition-delay: .61s; }
+.stagger-children > *:nth-child(10) { transition-delay: .68s; }
+.stagger-children > *:nth-child(11) { transition-delay: .75s; }
+.stagger-children > *:nth-child(12) { transition-delay: .82s; }
+.stagger-children > *:nth-child(13) { transition-delay: .89s; }
+.stagger-children > *:nth-child(14) { transition-delay: .96s; }
+.stagger-children > *:nth-child(15) { transition-delay: 1.03s; }
 
 /* ══════════════════════════════════════════
    PRODUCT PAGE SECTIONS
@@ -1018,9 +1028,11 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
   font-size: .84rem; font-weight: 600; color: var(--navy);
   transition: border-color .18s, box-shadow .18s;
 }
-.int-badge:hover {
-  border-color: rgba(201,162,39,.5);
-  box-shadow: 0 4px 16px rgba(201,162,39,.12);
+@media (hover: hover) {
+  .int-badge:hover {
+    border-color: rgba(201,162,39,.5);
+    box-shadow: 0 4px 16px rgba(201,162,39,.12);
+  }
 }
 .int-badge-icon { font-size: 1.15rem; }
 
@@ -1036,7 +1048,9 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
   font-size: .82rem; font-weight: 600; color: var(--navy);
   transition: border-color .18s;
 }
-.hrm-module-item:hover { border-color: rgba(201,162,39,.5); }
+@media (hover: hover) {
+  .hrm-module-item:hover { border-color: rgba(201,162,39,.5); }
+}
 .hrm-module-icon { font-size: 1.05rem; flex-shrink: 0; }
 @media (max-width: 480px) {
   .hrm-modules-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
