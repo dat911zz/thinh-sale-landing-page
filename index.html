@@ -475,7 +475,6 @@
     }
     .plan-outer {
       overflow: hidden;
-      padding-top: 14px; /* room for .featured::before badge */
     }
     .plan-track {
       display: flex;
@@ -485,6 +484,17 @@
     .plan-track .pricing-card {
       min-width: 100%;
       flex-shrink: 0;
+    }
+    /* Suppress the absolute-positioned ::before badge & hover lift inside carousel */
+    .plan-carousel .pricing-card.featured::before { display: none; }
+    .plan-carousel .pricing-card:hover { transform: none; }
+    /* In-card featured badge (replaces ::before in carousel context) */
+    .plan-featured-badge {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: var(--navy); font-size: .7rem; font-weight: 800;
+      padding: 4px 18px; border-radius: 0 0 10px 10px;
+      letter-spacing: .06em; white-space: nowrap; z-index: 1;
     }
 
     .plan-arrow {
@@ -635,6 +645,30 @@
     .footer-sds { font-size: .8rem; color: rgba(255,255,255,.3); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
     .footer-sds a { color: var(--gold2); text-decoration: none; }
     .footer-sds a:hover { text-decoration: underline; }
+
+    /* ══════════════════════════════════════════
+       SCROLL-TO-TOP BUTTON
+    ══════════════════════════════════════════ */
+    .scroll-top-btn {
+      position: fixed; bottom: 28px; right: 24px; z-index: 150;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--navy); color: var(--white);
+      border: 1px solid rgba(255,255,255,.15);
+      box-shadow: 0 4px 20px rgba(15,34,70,.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; cursor: pointer;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s, transform .3s, box-shadow .2s;
+      transform: translateY(12px);
+    }
+    .scroll-top-btn.visible {
+      opacity: 1; pointer-events: all; transform: translateY(0);
+    }
+    .scroll-top-btn:hover {
+      background: var(--mid);
+      box-shadow: 0 6px 28px rgba(15,34,70,.45);
+      transform: translateY(-2px);
+    }
 
     /* ══════════════════════════════════════════
        ANIMATIONS
@@ -921,6 +955,9 @@
   </div>
 </footer>
 
+<!-- ══ SCROLL TO TOP ══════════════════════════════ -->
+<button class="scroll-top-btn" id="scroll-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
+
 <script>
 /* ── MOBILE MENU ──────────────────────────────── */
 const hamburger = document.getElementById('nav-hamburger');
@@ -942,11 +979,19 @@ function closeMenu() {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) closeMenu(); });
 
-/* ── NAV SCROLL STATE ─────────────────────────── */
-const mainNav = document.getElementById('main-nav');
+/* ── NAV SCROLL STATE + SCROLL-TO-TOP ────────── */
+const mainNav      = document.getElementById('main-nav');
+const scrollTopBtn = document.getElementById('scroll-top-btn');
+
 window.addEventListener('scroll', () => {
-  mainNav.classList.toggle('scrolled', window.scrollY > 20);
+  const y = window.scrollY;
+  mainNav.classList.toggle('scrolled', y > 20);
+  scrollTopBtn.classList.toggle('visible', y > 400);
 }, { passive: true });
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 /* ── PARALLAX ─────────────────────────────────── */
 const heroBg      = document.getElementById('hero-bg');
@@ -1038,9 +1083,13 @@ function pricingCardHTML(plan, isCA = false, yearIdx = 0) {
   const price = isCA ? plan.prices[yearIdx] : plan.price;
   const unit  = isCA ? `/ ${yearIdx + 1} năm` : (plan.unit || '');
   const priceAttr = isCA ? `data-prices='${JSON.stringify(plan.prices)}'` : '';
+  const badge = plan.variant === 'featured'
+    ? '<div class="plan-featured-badge">Phổ biến nhất</div>'
+    : '';
 
   return `
     <article class="pricing-card${cls} fade-up" aria-label="${plan.label} – ${plan.planName}">
+      ${badge}
       <div class="pricing-plan-name">${plan.planName}</div>
       <div class="pricing-plan-label">${plan.label}</div>
       <div class="pricing-price">
