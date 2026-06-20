@@ -55,121 +55,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="layout.css" />
-
-  <style>
-  /* EasyDocs page-specific styles */
-  .legal-section {
-    padding: 80px 0;
-    background: var(--off);
-  }
-  .legal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-    margin-top: 48px;
-  }
-  .legal-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 1.5px solid var(--border);
-    padding: 28px 24px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: transform .3s, box-shadow .3s;
-  }
-  .legal-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-  }
-  .legal-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--gold), var(--gold2));
-  }
-  .legal-card-icon {
-    font-size: 2rem;
-    margin-bottom: 14px;
-  }
-  .legal-card-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 10px;
-  }
-  .legal-card-desc {
-    font-size: .9rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  .legal-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #fef9e7, #fdebd0);
-    color: #7d4800;
-    border-radius: 6px;
-    padding: 2px 10px;
-    font-size: .78rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .workflow-section {
-    padding: 80px 0;
-    background: var(--white);
-  }
-  .workflow-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-top: 48px;
-    max-width: 780px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .wf-step {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-    padding: 28px 0;
-    position: relative;
-  }
-  .wf-step:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 27px;
-    top: 72px;
-    width: 2px;
-    height: calc(100% - 44px);
-    background: linear-gradient(to bottom, var(--gold), transparent);
-  }
-  .wf-num {
-    flex-shrink: 0;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold), var(--gold2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--navy);
-    box-shadow: 0 4px 12px rgba(201,162,39,.35);
-  }
-  .wf-body { flex: 1; padding-top: 8px; }
-  .wf-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-  .wf-desc {
-    font-size: .93rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  </style>
 </head>
 <body>
 
@@ -187,14 +72,31 @@
   </ul>
   <div class="mobile-menu-divider"></div>
   <div class="mobile-menu-section-label">Sản phẩm</div>
+  <div class="mobile-dd-group">Hoá đơn điện tử</div>
   <ul class="mobile-nav-links mobile-nav-links--sm">
-    <li><a href="easyinvoice.html" onclick="closeMenu()">🧾 EasyInvoice</a></li>
-    <li><a href="easyca.html" onclick="closeMenu()">🔏 EasyCA</a></li>
-    <li><a href="easybooks.html" onclick="closeMenu()">📊 EasyBooks</a></li>
-    <li><a href="easyhrm.html" onclick="closeMenu()">👥 EasyHRM</a></li>
-    <li><a href="easypos.html" onclick="closeMenu()">🏪 EasyPOS</a></li>
-    <li><a href="easydocs.html" onclick="closeMenu()">📄 EasyDocs</a></li>
+    <li><a href="easyinvoice.html" onclick="closeMenu()">EasyInvoice</a></li>
   </ul>
+  <div class="mobile-dd-group">Chữ ký số</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easyca.html" onclick="closeMenu()">EasyCA</a></li>
+  </ul>
+  <div class="mobile-dd-group">Kế toán</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easybooks.html" onclick="closeMenu()">EasyBooks</a></li>
+  </ul>
+  <div class="mobile-dd-group">Nhân sự</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easyhrm.html" onclick="closeMenu()">EasyHRM</a></li>
+  </ul>
+  <div class="mobile-dd-group">Phần mềm bán hàng</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easypos.html" onclick="closeMenu()">EasyPOS</a></li>
+  </ul>
+  <div class="mobile-dd-group">Hợp đồng điện tử</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easydocs.html" onclick="closeMenu()">EasyDocs</a></li>
+  </ul>
+  
   <div class="mobile-menu-divider"></div>
   <a href="index.html#contact" class="mobile-menu-cta" onclick="closeMenu()">📞 Liên hệ ngay</a>
   <div class="mobile-menu-socials">
@@ -217,14 +119,28 @@
     <li class="nav-dropdown">
       <a href="index.html#products" aria-haspopup="true">Sản phẩm ▾</a>
       <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="easyinvoice.html"><span class="nav-dd-icon">🧾</span> EasyInvoice</a></li>
-        <li><a href="easyca.html"><span class="nav-dd-icon">🔏</span> EasyCA</a></li>
-        <li><a href="easybooks.html"><span class="nav-dd-icon">📊</span> EasyBooks</a></li>
+        <li class="nav-dd-group">Hoá đơn điện tử</li>
+        <li><a href="easyinvoice.html">EasyInvoice</a></li>
         <li class="nav-dropdown-divider" role="separator"></li>
-        <li><a href="easyhrm.html"><span class="nav-dd-icon">👥</span> EasyHRM</a></li>
-        <li><a href="easypos.html"><span class="nav-dd-icon">🏪</span> EasyPOS</a></li>
-        <li><a href="easydocs.html"><span class="nav-dd-icon">📄</span> EasyDocs</a></li>
+        <li class="nav-dd-group">Chữ ký số</li>
+        <li><a href="easyca.html">EasyCA</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Kế toán</li>
+        <li><a href="easybooks.html">EasyBooks</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Nhân sự</li>
+        <li><a href="easyhrm.html">EasyHRM</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Phần mềm bán hàng</li>
+        <li><a href="easypos.html">EasyPOS</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Hợp đồng điện tử</li>
+        <li><a href="easydocs.html">EasyDocs</a></li>
       </ul>
+    </li>
+    <li><a href="index.html#ecosystem">Hệ sinh thái</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Liên hệ ngay</a></li>
+  </ul>
     </li>
     <li><a href="index.html#ecosystem">Hệ sinh thái</a></li>
     <li><a href="index.html#contact" class="nav-cta">Liên hệ ngay</a></li>
@@ -244,11 +160,6 @@
   <div class="hero-grid" aria-hidden="true"></div>
 
   <div class="hero-content" id="hero-content">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Trang chủ</a>
-      <span class="breadcrumb-sep">›</span>
-      <span>EasyDocs</span>
-    </nav>
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
       📄 Hợp đồng điện tử · SDS Vietnam

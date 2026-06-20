@@ -67,17 +67,35 @@
     <li><a href="index.html" onclick="closeMenu()">Trang chủ</a></li>
     <li><a href="index.html#easyca" onclick="closeMenu()">Bảng giá</a></li>
     <li><a href="index.html#ecosystem" onclick="closeMenu()">Hệ sinh thái</a></li>
+    <li><a href="index.html#contact" onclick="closeMenu()">Liên hệ</a></li>
   </ul>
   <div class="mobile-menu-divider"></div>
   <div class="mobile-menu-section-label">Sản phẩm</div>
+  <div class="mobile-dd-group">Hoá đơn điện tử</div>
   <ul class="mobile-nav-links mobile-nav-links--sm">
-    <li><a href="easyinvoice.html" onclick="closeMenu()">🧾 EasyInvoice</a></li>
-    <li><a href="easyca.html" onclick="closeMenu()">🔏 EasyCA</a></li>
-    <li><a href="easybooks.html" onclick="closeMenu()">📊 EasyBooks</a></li>
-    <li><a href="easyhrm.html" onclick="closeMenu()">👥 EasyHRM</a></li>
-    <li><a href="easypos.html" onclick="closeMenu()">🏪 EasyPOS</a></li>
-    <li><a href="easydocs.html" onclick="closeMenu()">📄 EasyDocs</a></li>
+    <li><a href="easyinvoice.html" onclick="closeMenu()">EasyInvoice</a></li>
   </ul>
+  <div class="mobile-dd-group">Chữ ký số</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easyca.html" onclick="closeMenu()">EasyCA</a></li>
+  </ul>
+  <div class="mobile-dd-group">Kế toán</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easybooks.html" onclick="closeMenu()">EasyBooks</a></li>
+  </ul>
+  <div class="mobile-dd-group">Nhân sự</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easyhrm.html" onclick="closeMenu()">EasyHRM</a></li>
+  </ul>
+  <div class="mobile-dd-group">Phần mềm bán hàng</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easypos.html" onclick="closeMenu()">EasyPOS</a></li>
+  </ul>
+  <div class="mobile-dd-group">Hợp đồng điện tử</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easydocs.html" onclick="closeMenu()">EasyDocs</a></li>
+  </ul>
+  
   <div class="mobile-menu-divider"></div>
   <a href="index.html#contact" class="mobile-menu-cta" onclick="closeMenu()">📞 Liên hệ ngay</a>
   <div class="mobile-menu-socials">
@@ -100,14 +118,29 @@
     <li class="nav-dropdown">
       <a href="index.html#products" aria-haspopup="true">Sản phẩm ▾</a>
       <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="easyinvoice.html"><span class="nav-dd-icon">🧾</span> EasyInvoice</a></li>
-        <li><a href="easyca.html"><span class="nav-dd-icon">🔏</span> EasyCA</a></li>
-        <li><a href="easybooks.html"><span class="nav-dd-icon">📊</span> EasyBooks</a></li>
+        <li class="nav-dd-group">Hoá đơn điện tử</li>
+        <li><a href="easyinvoice.html">EasyInvoice</a></li>
         <li class="nav-dropdown-divider" role="separator"></li>
-        <li><a href="easyhrm.html"><span class="nav-dd-icon">👥</span> EasyHRM</a></li>
-        <li><a href="easypos.html"><span class="nav-dd-icon">🏪</span> EasyPOS</a></li>
-        <li><a href="easydocs.html"><span class="nav-dd-icon">📄</span> EasyDocs</a></li>
+        <li class="nav-dd-group">Chữ ký số</li>
+        <li><a href="easyca.html">EasyCA</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Kế toán</li>
+        <li><a href="easybooks.html">EasyBooks</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Nhân sự</li>
+        <li><a href="easyhrm.html">EasyHRM</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Phần mềm bán hàng</li>
+        <li><a href="easypos.html">EasyPOS</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Hợp đồng điện tử</li>
+        <li><a href="easydocs.html">EasyDocs</a></li>
       </ul>
+    </li>
+    <li><a href="index.html#easyca">Bảng giá</a></li>
+    <li><a href="index.html#ecosystem">Hệ sinh thái</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Liên hệ ngay</a></li>
+  </ul>
     </li>
     <li><a href="index.html#easyca">Bảng giá</a></li>
     <li><a href="index.html#ecosystem">Hệ sinh thái</a></li>
@@ -128,11 +161,6 @@
   <div class="hero-grid" aria-hidden="true"></div>
 
   <div class="hero-content" id="hero-content">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Trang chủ</a>
-      <span class="breadcrumb-sep">›</span>
-      <span>EasyCA</span>
-    </nav>
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
       🔏 Chữ ký số · SDS Vietnam
@@ -203,6 +231,30 @@
         <div class="feat-icon blue">🌐</div>
         <h3 class="feat-title">Dịch vụ công trực tuyến</h3>
         <p class="feat-desc">Nộp hồ sơ trên Cổng dịch vụ công Quốc gia, giao dịch ngân hàng điện tử, đấu thầu trực tuyến và nhiều hệ thống Chính phủ điện tử.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══════════════════════════════════ -->
+<section class="stats-section" aria-label="Số liệu EasyCA">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item fade-up">
+        <div class="stat-num">PKI</div>
+        <div class="stat-label">Chuẩn quốc gia Việt Nam</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Hình thức ký số</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">50K+</div>
+        <div class="stat-label">Chứng thư đã cấp</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Hỗ trợ kỹ thuật</div>
       </div>
     </div>
   </div>

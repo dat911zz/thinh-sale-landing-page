@@ -55,59 +55,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="layout.css" />
-
-  <style>
-  /* EasyPOS page-specific styles */
-  .pos-modes-section {
-    padding: 80px 0;
-    background: var(--off);
-  }
-  .pos-modes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-top: 48px;
-  }
-  .pos-mode-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 1.5px solid var(--border);
-    padding: 32px 24px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: transform .3s, box-shadow .3s;
-  }
-  .pos-mode-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-  }
-  .pos-mode-icon {
-    font-size: 3rem;
-    margin-bottom: 16px;
-  }
-  .pos-mode-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 12px;
-  }
-  .pos-mode-desc {
-    font-size: .92rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  .pos-highlight {
-    display: inline-block;
-    background: linear-gradient(135deg, #e8f0fe, #d2e3fc);
-    color: var(--mid);
-    border-radius: 6px;
-    padding: 2px 10px;
-    font-size: .8rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: .03em;
-  }
-  </style>
 </head>
 <body>
 
@@ -125,14 +72,31 @@
   </ul>
   <div class="mobile-menu-divider"></div>
   <div class="mobile-menu-section-label">Sản phẩm</div>
+  <div class="mobile-dd-group">Hoá đơn điện tử</div>
   <ul class="mobile-nav-links mobile-nav-links--sm">
-    <li><a href="easyinvoice.html" onclick="closeMenu()">🧾 EasyInvoice</a></li>
-    <li><a href="easyca.html" onclick="closeMenu()">🔏 EasyCA</a></li>
-    <li><a href="easybooks.html" onclick="closeMenu()">📊 EasyBooks</a></li>
-    <li><a href="easyhrm.html" onclick="closeMenu()">👥 EasyHRM</a></li>
-    <li><a href="easypos.html" onclick="closeMenu()">🏪 EasyPOS</a></li>
-    <li><a href="easydocs.html" onclick="closeMenu()">📄 EasyDocs</a></li>
+    <li><a href="easyinvoice.html" onclick="closeMenu()">EasyInvoice</a></li>
   </ul>
+  <div class="mobile-dd-group">Chữ ký số</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easyca.html" onclick="closeMenu()">EasyCA</a></li>
+  </ul>
+  <div class="mobile-dd-group">Kế toán</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easybooks.html" onclick="closeMenu()">EasyBooks</a></li>
+  </ul>
+  <div class="mobile-dd-group">Nhân sự</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easyhrm.html" onclick="closeMenu()">EasyHRM</a></li>
+  </ul>
+  <div class="mobile-dd-group">Phần mềm bán hàng</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easypos.html" onclick="closeMenu()">EasyPOS</a></li>
+  </ul>
+  <div class="mobile-dd-group">Hợp đồng điện tử</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easydocs.html" onclick="closeMenu()">EasyDocs</a></li>
+  </ul>
+  
   <div class="mobile-menu-divider"></div>
   <a href="index.html#contact" class="mobile-menu-cta" onclick="closeMenu()">📞 Liên hệ ngay</a>
   <div class="mobile-menu-socials">
@@ -155,14 +119,28 @@
     <li class="nav-dropdown">
       <a href="index.html#products" aria-haspopup="true">Sản phẩm ▾</a>
       <ul class="nav-dropdown-menu" role="menu">
-        <li><a href="easyinvoice.html"><span class="nav-dd-icon">🧾</span> EasyInvoice</a></li>
-        <li><a href="easyca.html"><span class="nav-dd-icon">🔏</span> EasyCA</a></li>
-        <li><a href="easybooks.html"><span class="nav-dd-icon">📊</span> EasyBooks</a></li>
+        <li class="nav-dd-group">Hoá đơn điện tử</li>
+        <li><a href="easyinvoice.html">EasyInvoice</a></li>
         <li class="nav-dropdown-divider" role="separator"></li>
-        <li><a href="easyhrm.html"><span class="nav-dd-icon">👥</span> EasyHRM</a></li>
-        <li><a href="easypos.html"><span class="nav-dd-icon">🏪</span> EasyPOS</a></li>
-        <li><a href="easydocs.html"><span class="nav-dd-icon">📄</span> EasyDocs</a></li>
+        <li class="nav-dd-group">Chữ ký số</li>
+        <li><a href="easyca.html">EasyCA</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Kế toán</li>
+        <li><a href="easybooks.html">EasyBooks</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Nhân sự</li>
+        <li><a href="easyhrm.html">EasyHRM</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Phần mềm bán hàng</li>
+        <li><a href="easypos.html">EasyPOS</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li class="nav-dd-group">Hợp đồng điện tử</li>
+        <li><a href="easydocs.html">EasyDocs</a></li>
       </ul>
+    </li>
+    <li><a href="index.html#ecosystem">Hệ sinh thái</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Liên hệ ngay</a></li>
+  </ul>
     </li>
     <li><a href="index.html#ecosystem">Hệ sinh thái</a></li>
     <li><a href="index.html#contact" class="nav-cta">Liên hệ ngay</a></li>
@@ -182,11 +160,6 @@
   <div class="hero-grid" aria-hidden="true"></div>
 
   <div class="hero-content" id="hero-content">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Trang chủ</a>
-      <span class="breadcrumb-sep">›</span>
-      <span>EasyPOS</span>
-    </nav>
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
       🏪 Điểm bán hàng thông minh · SDS Vietnam
