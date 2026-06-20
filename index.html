@@ -357,14 +357,16 @@
     .product-card:hover { border-color: var(--mid); box-shadow: var(--shadow); transform: translateY(-4px); }
 
     .product-logo-wrap {
-      height: 32px;
+      width: 150px;
+      height: 28px;
       margin-bottom: 14px;
       display: flex;
       align-items: center;
     }
     .product-logo-wrap img {
-      height: 100%; width: auto; max-width: 90%;
+      width: 100%; height: 100%;
       object-fit: contain;
+      object-position: left center;
       transition: opacity .2s;
     }
     .product-card:hover .product-logo-wrap img { opacity: .85; }
@@ -469,9 +471,11 @@
        PLAN CARD CAROUSEL (per-section)
     ══════════════════════════════════════════ */
     .plan-carousel {
-      position: relative;
       max-width: 480px;
       margin: 0 auto;
+    }
+    .plan-body {
+      position: relative;
     }
     .plan-outer {
       overflow: hidden;
@@ -498,7 +502,7 @@
     }
 
     .plan-arrow {
-      position: absolute; top: 38%; transform: translateY(-50%);
+      position: absolute; top: 50%; transform: translateY(-50%);
       z-index: 5; width: 38px; height: 38px; border-radius: 50%;
       border: 1px solid var(--border);
       background: rgba(255,255,255,.95); backdrop-filter: blur(4px);
@@ -550,11 +554,12 @@
     .eco-card:hover { border-color: var(--mid); box-shadow: var(--shadow); transform: translateY(-3px); }
 
     .eco-logo-wrap {
-      height: 32px;
+      width: 130px;
+      height: 26px;
       display: flex; align-items: center;
       margin-bottom: 2px;
     }
-    .eco-logo-wrap img { height: 100%; width: auto; max-width: 90%; object-fit: contain; }
+    .eco-logo-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: left center; }
     .eco-logo-fallback { font-size: 22px; }
 
     .eco-name  { font-size: .9rem; font-weight: 700; color: var(--navy); }
@@ -1112,9 +1117,11 @@ function buildPlanCarouselHTML(cardsHTML, count, key) {
     `<button class="plan-dot${i === 0 ? ' plan-dot--active' : ''}" data-idx="${i}" aria-label="Gói ${i + 1}"></button>`
   ).join('');
   return `
-    <div class="plan-outer">
+    <div class="plan-body">
       <button class="plan-arrow plan-arrow--prev" aria-label="Gói trước">&#8249;</button>
-      <div class="plan-track" id="plan-track-${key}">${cardsHTML}</div>
+      <div class="plan-outer">
+        <div class="plan-track" id="plan-track-${key}">${cardsHTML}</div>
+      </div>
       <button class="plan-arrow plan-arrow--next" aria-label="Gói sau">&#8250;</button>
     </div>
     <div class="plan-dots">${dots}</div>
@@ -1264,7 +1271,7 @@ function initPlanCarousel(el, delay = 5000) {
   function goTo(n) {
     n = ((n % total) + total) % total;
     current = n;
-    track.style.transform = `translateX(-${n * 100}%)`;
+    track.style.transform = `translateX(-${n * cards[0].offsetWidth}px)`;
     dots.forEach((d, i) => d.classList.toggle('plan-dot--active', i === n));
     clearInterval(timer);
     triggerFill();
@@ -1305,6 +1312,12 @@ function initPlanCarousel(el, delay = 5000) {
     if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
     if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
   });
+
+  window.addEventListener('resize', () => {
+    track.style.transition = 'none';
+    track.style.transform = `translateX(-${current * cards[0].offsetWidth}px)`;
+    requestAnimationFrame(() => { track.style.transition = ''; });
+  }, { passive: true });
 
   triggerFill();
   timer = setInterval(() => goTo(current + 1), delay);
