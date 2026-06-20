@@ -370,6 +370,13 @@
       transition: opacity .2s;
     }
     .product-card:hover .product-logo-wrap img { opacity: .85; }
+    /* EasyDocs PNG is 725×330 (ratio 2.2:1) vs 512×143 (3.58:1) for others.
+       At 28px height, content renders 62px wide vs ~100px – scale up to match. */
+    .product-logo-wrap img[src*="easydocs"],
+    .eco-logo-wrap img[src*="easydocs"] {
+      transform: scale(1.6);
+      transform-origin: left center;
+    }
     .product-logo-fallback {
       display: flex; align-items: center; gap: 8px;
       font-size: 20px;
