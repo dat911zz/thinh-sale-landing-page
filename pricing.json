@@ -206,7 +206,7 @@
     { "icon": "🤝", "logo": "logos/wordmarks/easycrm.png",     "name": "EasyCRM",       "desc": "Quản lý quan hệ khách hàng toàn diện",                "badge": "Liên hệ báo giá" },
     { "icon": "💰", "logo": "logos/wordmarks/easypit.png",     "name": "EasyPIT",       "desc": "Quản lý thuế thu nhập cá nhân khấu trừ",              "badge": "Liên hệ báo giá" },
     { "icon": "🎫", "logo": "logos/wordmarks/easyticket.png",  "name": "EasyTicket",    "desc": "Vé điện tử – sự kiện, vận tải, giải trí",             "badge": "Liên hệ báo giá" },
-    { "icon": "🔐", "logo": "logos/easysmartotp.png",          "name": "Easy SmartOTP", "desc": "Giải pháp xác thực OTP thông minh",                   "badge": "Liên hệ báo giá" },
+    { "icon": "🔐", "logo": null,                              "name": "Easy SmartOTP", "desc": "Giải pháp xác thực OTP thông minh",                   "badge": "Liên hệ báo giá" },
     { "icon": "🪪", "logo": "logos/wordmarks/easykyc.png",     "name": "EasyKYC",       "desc": "Xác thực danh tính khách hàng trực tuyến",            "badge": "Liên hệ báo giá" }
   ]
 }

@@ -357,22 +357,22 @@
     .product-card:hover { border-color: var(--mid); box-shadow: var(--shadow); transform: translateY(-4px); }
 
     .product-logo-wrap {
-      height: 48px;
+      height: 32px;
       margin-bottom: 14px;
       display: flex;
       align-items: center;
     }
     .product-logo-wrap img {
-      height: 100%; width: auto; max-width: 85%;
+      height: 100%; width: auto; max-width: 90%;
       object-fit: contain;
       transition: opacity .2s;
     }
     .product-card:hover .product-logo-wrap img { opacity: .85; }
     .product-logo-fallback {
       display: flex; align-items: center; gap: 8px;
-      font-size: 26px;
+      font-size: 20px;
     }
-    .product-logo-fallback strong { font-size: 1rem; color: var(--navy); }
+    .product-logo-fallback strong { font-size: .95rem; color: var(--navy); }
 
     .product-name { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .product-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
@@ -466,90 +466,65 @@
     .year-tab.active { background: var(--white); color: var(--navy); box-shadow: 0 2px 10px rgba(0,0,0,.14); }
 
     /* ══════════════════════════════════════════
-       PRICING CAROUSEL
+       PLAN CARD CAROUSEL (per-section)
     ══════════════════════════════════════════ */
-    .prc-carousel { position: relative; }
-
-    .prc-nav {
-      background: var(--navy);
+    .plan-carousel {
       position: relative;
+      max-width: 480px;
+      margin: 0 auto;
     }
-    .prc-nav-inner {
+    .plan-outer {
+      overflow: hidden;
+      padding-top: 14px; /* room for .featured::before badge */
+    }
+    .plan-track {
       display: flex;
-      padding: 10px 16px 0;
-      gap: 4px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-    .prc-nav-inner::-webkit-scrollbar { display: none; }
-
-    .prc-tab {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 11px 22px 13px;
-      background: transparent; border: none; cursor: pointer;
-      color: rgba(255,255,255,.45);
-      font-family: inherit; font-size: .88rem; font-weight: 600;
-      white-space: nowrap; position: relative;
-      border-radius: 10px 10px 0 0;
-      transition: color .25s, background .25s;
-    }
-    .prc-tab:hover { color: rgba(255,255,255,.8); }
-    .prc-tab::after {
-      content: '';
-      position: absolute; bottom: 0; left: 14px; right: 14px;
-      height: 3px; border-radius: 3px 3px 0 0;
-      background: var(--gold); opacity: 0; transition: opacity .25s;
-    }
-    .prc-tab.prc-tab--active { color: #fff; background: rgba(255,255,255,.1); }
-    .prc-tab.prc-tab--active::after { opacity: 1; }
-    .prc-tab-icon { font-size: 1.05em; }
-
-    .prc-progress-bar {
-      height: 3px; background: rgba(255,255,255,.08);
-    }
-    .prc-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--gold2));
-      width: 0%;
-    }
-    @keyframes prcFill { to { width: 100%; } }
-
-    .prc-outer { overflow: hidden; position: relative; }
-
-    .prc-track {
-      display: flex;
-      transition: transform .65s cubic-bezier(.4,0,.2,1);
+      transition: transform .55s cubic-bezier(.4,0,.2,1);
       will-change: transform;
     }
-    .prc-slide { min-width: 100%; }
+    .plan-track .pricing-card {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
 
-    .prc-arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      z-index: 5; width: 40px; height: 40px; border-radius: 50%;
+    .plan-arrow {
+      position: absolute; top: 38%; transform: translateY(-50%);
+      z-index: 5; width: 38px; height: 38px; border-radius: 50%;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.92); backdrop-filter: blur(4px);
-      box-shadow: 0 2px 10px rgba(0,0,0,.1);
+      background: rgba(255,255,255,.95); backdrop-filter: blur(4px);
+      box-shadow: 0 2px 10px rgba(0,0,0,.12);
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 1.3rem; color: var(--navy);
+      cursor: pointer; font-size: 1.25rem; color: var(--navy); line-height: 1;
       transition: all .2s;
     }
-    .prc-arrow:hover { background: #fff; box-shadow: 0 4px 18px rgba(0,0,0,.18); transform: translateY(-50%) scale(1.08); }
-    .prc-arrow--prev { left: 14px; }
-    .prc-arrow--next { right: 14px; }
-    @media (max-width: 640px) { .prc-arrow { display: none; } }
+    .plan-arrow:hover { background: #fff; box-shadow: 0 4px 18px rgba(0,0,0,.2); transform: translateY(-50%) scale(1.08); }
+    .plan-arrow--prev { left: -18px; }
+    .plan-arrow--next { right: -18px; }
+    @media (max-width: 580px) { .plan-arrow { display: none; } }
 
-    .prc-dots {
+    .plan-dots {
       display: flex; justify-content: center; gap: 8px;
-      padding: 18px 0 28px; background: var(--off);
+      padding: 18px 0 4px;
     }
-    .prc-dot {
+    .plan-dot {
       width: 8px; height: 8px; border-radius: 50%;
       border: none; cursor: pointer; padding: 0;
       background: var(--border);
       transition: all .35s cubic-bezier(.4,0,.2,1);
     }
-    .prc-dot.prc-dot--active { width: 28px; border-radius: 4px; background: var(--navy); }
+    .plan-dot.plan-dot--active { width: 28px; border-radius: 4px; background: var(--navy); }
+
+    .plan-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+    .plan-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      width: 0%;
+    }
+    @keyframes planFill { to { width: 100%; } }
+
+    .pricing-section-wrap.alt .plan-dot.plan-dot--active { background: var(--mid); }
+    .pricing-section-wrap.alt .plan-fill { background: linear-gradient(90deg, var(--mid), var(--blue)); }
+    .pricing-section-wrap.alt .plan-bar { background: rgba(30,77,140,.14); }
 
     /* ══════════════════════════════════════════
        ECOSYSTEM
@@ -795,97 +770,55 @@
   </div>
 </section>
 
-<!-- ══ PRICING CAROUSEL ════════════════════════════ -->
-<div id="pricing-carousel" class="prc-carousel" role="region" aria-label="Bảng giá sản phẩm">
-
-  <!-- Tab navigation -->
-  <div class="prc-nav">
-    <div class="container prc-nav-inner" role="tablist" aria-label="Chọn sản phẩm">
-      <button class="prc-tab prc-tab--active" data-idx="0" role="tab" aria-selected="true" aria-controls="prc-slide-0">
-        <span class="prc-tab-icon">🧾</span> EasyInvoice
-      </button>
-      <button class="prc-tab" data-idx="1" role="tab" aria-selected="false" aria-controls="prc-slide-1">
-        <span class="prc-tab-icon">🔏</span> EasyCA
-      </button>
-      <button class="prc-tab" data-idx="2" role="tab" aria-selected="false" aria-controls="prc-slide-2">
-        <span class="prc-tab-icon">📊</span> EasyBooks
-      </button>
+<!-- ══ EASYINVOICE PRICING ══════════════════════════ -->
+<section class="pricing-section-wrap" id="easyinvoice" aria-labelledby="invoice-title">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow" id="invoice-eyebrow"></div>
+      <h2 class="section-title" id="invoice-title"></h2>
+      <p class="section-desc" id="invoice-desc"></p>
     </div>
-    <div class="prc-progress-bar" aria-hidden="true">
-      <div class="prc-fill" id="prc-fill"></div>
+    <div class="setup-fee-tag" id="invoice-setup-fee">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <span></span>
     </div>
+    <div id="invoice-grid"><!-- plan carousel --></div>
+    <p id="invoice-disclaimer" style="font-size:.82rem;color:var(--muted);margin-top:16px;text-align:center"></p>
   </div>
+</section>
 
-  <!-- Slides -->
-  <div class="prc-outer">
-    <button class="prc-arrow prc-arrow--prev" aria-label="Slide trước">&#8249;</button>
-    <button class="prc-arrow prc-arrow--next" aria-label="Slide sau">&#8250;</button>
-
-    <div class="prc-track" id="prc-track">
-
-      <div class="prc-slide" id="prc-slide-0" role="tabpanel" aria-labelledby="invoice-title">
-        <section class="pricing-section-wrap" id="easyinvoice" aria-labelledby="invoice-title">
-          <div class="container">
-            <div class="section-header">
-              <div class="section-eyebrow" id="invoice-eyebrow">EasyInvoice</div>
-              <h2 class="section-title" id="invoice-title">Bảng giá Hóa đơn điện tử</h2>
-              <p class="section-desc" id="invoice-desc"></p>
-            </div>
-            <div class="setup-fee-tag" id="invoice-setup-fee">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-              </svg>
-              <span></span>
-            </div>
-            <div class="pricing-grid stagger-children" id="invoice-grid"><!-- from JSON --></div>
-            <p id="invoice-disclaimer" style="font-size:.82rem;color:var(--muted);margin-top:20px"></p>
-          </div>
-        </section>
-      </div>
-
-      <div class="prc-slide" id="prc-slide-1" role="tabpanel" aria-labelledby="ca-title">
-        <section class="pricing-section-wrap alt" id="easyca" aria-labelledby="ca-title">
-          <div class="container">
-            <div class="section-header">
-              <div class="section-eyebrow" id="ca-eyebrow">EasyCA</div>
-              <h2 class="section-title" id="ca-title">Bảng giá Chữ ký số</h2>
-              <p class="section-desc" id="ca-desc"></p>
-            </div>
-            <div class="year-tabs" id="ca-year-tabs" role="tablist" aria-label="Chọn kỳ hạn"><!-- from JSON --></div>
-            <div class="pricing-grid stagger-children" id="ca-grid"><!-- from JSON --></div>
-          </div>
-        </section>
-      </div>
-
-      <div class="prc-slide" id="prc-slide-2" role="tabpanel" aria-labelledby="books-title">
-        <section class="pricing-section-wrap" id="easybooks" aria-labelledby="books-title">
-          <div class="container">
-            <div class="section-header">
-              <div class="section-eyebrow" id="books-eyebrow">EasyBooks</div>
-              <h2 class="section-title" id="books-title">Bảng giá Phần mềm Kế toán</h2>
-              <p class="section-desc" id="books-desc"></p>
-            </div>
-            <div class="setup-fee-tag" id="books-setup-fee">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-              </svg>
-              <span></span>
-            </div>
-            <div class="pricing-grid stagger-children" id="books-grid"><!-- from JSON --></div>
-          </div>
-        </section>
-      </div>
-
-    </div><!-- /prc-track -->
-  </div><!-- /prc-outer -->
-
-  <div class="prc-dots" aria-hidden="true">
-    <button class="prc-dot prc-dot--active" data-idx="0"></button>
-    <button class="prc-dot" data-idx="1"></button>
-    <button class="prc-dot" data-idx="2"></button>
+<!-- ══ EASYCA PRICING ═══════════════════════════════ -->
+<section class="pricing-section-wrap alt" id="easyca" aria-labelledby="ca-title">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow" id="ca-eyebrow"></div>
+      <h2 class="section-title" id="ca-title"></h2>
+      <p class="section-desc" id="ca-desc"></p>
+    </div>
+    <div class="year-tabs" id="ca-year-tabs" role="tablist" aria-label="Chọn kỳ hạn"></div>
+    <div id="ca-grid"><!-- plan carousel --></div>
   </div>
+</section>
 
-</div><!-- /pricing-carousel -->
+<!-- ══ EASYBOOKS PRICING ════════════════════════════ -->
+<section class="pricing-section-wrap" id="easybooks" aria-labelledby="books-title">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow" id="books-eyebrow"></div>
+      <h2 class="section-title" id="books-title"></h2>
+      <p class="section-desc" id="books-desc"></p>
+    </div>
+    <div class="setup-fee-tag" id="books-setup-fee">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <span></span>
+    </div>
+    <div id="books-grid"><!-- plan carousel --></div>
+  </div>
+</section>
 
 <!-- ══ ECOSYSTEM ══════════════════════════════════ -->
 <section class="ecosystem-section" id="ecosystem">
@@ -1069,24 +1002,27 @@ function setYear(yr, tabEl) {
   });
 }
 
+/* ── LOGO ERROR HANDLERS ──────────────────────── */
+function onLogoError(el, emoji, name) {
+  el.parentNode.innerHTML = '<div class="product-logo-fallback"><span>' + emoji + '</span><strong>' + name + '</strong></div>';
+}
+function onEcoLogoError(el, emoji) {
+  el.parentNode.innerHTML = '<span class="eco-logo-fallback">' + emoji + '</span>';
+}
+
 /* ── RENDER HELPERS ───────────────────────────── */
 function logoImg(logo, name, fallbackEmoji) {
   if (logo) {
-    return `<div class="product-logo-wrap">
-      <img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\\"product-logo-fallback\\"><span>${fallbackEmoji}</span><strong>${name}</strong></div>'">
-    </div>`;
+    return '<div class="product-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" loading="lazy" onerror="onLogoError(this,\'' + fallbackEmoji + '\',\'' + name + '\')"></div>';
   }
-  return `<div class="product-logo-wrap">
-    <div class="product-logo-fallback"><span>${fallbackEmoji}</span><strong>${name}</strong></div>
-  </div>`;
+  return '<div class="product-logo-wrap"><div class="product-logo-fallback"><span>' + fallbackEmoji + '</span><strong>' + name + '</strong></div></div>';
 }
 
 function ecoLogoImg(logo, name, fallbackEmoji) {
-  return `<div class="eco-logo-wrap">
-    ${logo
-      ? `<img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.parentNode.innerHTML='<span class=\\"eco-logo-fallback\\">${fallbackEmoji}</span>'">`
-      : `<span class="eco-logo-fallback">${fallbackEmoji}</span>`}
-  </div>`;
+  if (logo) {
+    return '<div class="eco-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" loading="lazy" onerror="onEcoLogoError(this,\'' + fallbackEmoji + '\')"></div>';
+  }
+  return '<div class="eco-logo-wrap"><span class="eco-logo-fallback">' + fallbackEmoji + '</span></div>';
 }
 
 function featuresHTML(features) {
@@ -1122,6 +1058,20 @@ function setupFeeHTML(tag, data) {
     `${data.setupFeeLabel}: <strong>${data.setupFee} ${data.setupFeeSuffix}</strong>`;
 }
 
+function buildPlanCarouselHTML(cardsHTML, count, key) {
+  const dots = Array.from({length: count}, (_, i) =>
+    `<button class="plan-dot${i === 0 ? ' plan-dot--active' : ''}" data-idx="${i}" aria-label="Gói ${i + 1}"></button>`
+  ).join('');
+  return `
+    <div class="plan-outer">
+      <button class="plan-arrow plan-arrow--prev" aria-label="Gói trước">&#8249;</button>
+      <div class="plan-track" id="plan-track-${key}">${cardsHTML}</div>
+      <button class="plan-arrow plan-arrow--next" aria-label="Gói sau">&#8250;</button>
+    </div>
+    <div class="plan-dots">${dots}</div>
+    <div class="plan-bar" aria-hidden="true"><div class="plan-fill" id="plan-fill-${key}"></div></div>`;
+}
+
 /* ── MAIN RENDER ──────────────────────────────── */
 function render(data) {
   const { meta, products, easyinvoice, easyca, easybooks, ecosystem } = data;
@@ -1143,14 +1093,18 @@ function render(data) {
       </div>`).join('');
 
   /* EasyInvoice */
-  document.getElementById('invoice-eyebrow').textContent   = easyinvoice.eyebrow;
-  document.getElementById('invoice-title').textContent     = easyinvoice.title;
-  document.getElementById('invoice-desc').textContent      = easyinvoice.desc;
-  document.getElementById('invoice-disclaimer').textContent= easyinvoice.disclaimer;
+  document.getElementById('invoice-eyebrow').textContent    = easyinvoice.eyebrow;
+  document.getElementById('invoice-title').textContent      = easyinvoice.title;
+  document.getElementById('invoice-desc').textContent       = easyinvoice.desc;
+  document.getElementById('invoice-disclaimer').textContent = easyinvoice.disclaimer;
   setupFeeHTML(document.getElementById('invoice-setup-fee'), easyinvoice);
   const invoiceGrid = document.getElementById('invoice-grid');
-  invoiceGrid.className = `pricing-grid stagger-children ${easyinvoice.gridClass}`;
-  invoiceGrid.innerHTML = easyinvoice.plans.map(p => pricingCardHTML(p)).join('');
+  invoiceGrid.className = 'plan-carousel';
+  invoiceGrid.innerHTML = buildPlanCarouselHTML(
+    easyinvoice.plans.map(p => pricingCardHTML(p)).join(''),
+    easyinvoice.plans.length, 'invoice'
+  );
+  initPlanCarousel(invoiceGrid);
 
   /* EasyCA */
   document.getElementById('ca-eyebrow').textContent = easyca.eyebrow;
@@ -1162,8 +1116,12 @@ function render(data) {
            role="tab" aria-selected="${i === 0}"
            onclick="setYear(${yr}, this)">${yr} năm</div>`).join('');
   const caGrid = document.getElementById('ca-grid');
-  caGrid.className = `pricing-grid stagger-children ${easyca.gridClass}`;
-  caGrid.innerHTML = easyca.plans.map(p => pricingCardHTML(p, true, 0)).join('');
+  caGrid.className = 'plan-carousel';
+  caGrid.innerHTML = buildPlanCarouselHTML(
+    easyca.plans.map(p => pricingCardHTML(p, true, 0)).join(''),
+    easyca.plans.length, 'ca'
+  );
+  initPlanCarousel(caGrid);
 
   /* EasyBooks */
   document.getElementById('books-eyebrow').textContent = easybooks.eyebrow;
@@ -1171,8 +1129,12 @@ function render(data) {
   document.getElementById('books-desc').textContent    = easybooks.desc;
   setupFeeHTML(document.getElementById('books-setup-fee'), easybooks);
   const booksGrid = document.getElementById('books-grid');
-  booksGrid.className = `pricing-grid stagger-children ${easybooks.gridClass}`;
-  booksGrid.innerHTML = easybooks.plans.map(p => pricingCardHTML(p)).join('');
+  booksGrid.className = 'plan-carousel';
+  booksGrid.innerHTML = buildPlanCarouselHTML(
+    easybooks.plans.map(p => pricingCardHTML(p)).join(''),
+    easybooks.plans.length, 'books'
+  );
+  initPlanCarousel(booksGrid);
 
   /* Ecosystem */
   document.getElementById('ecosystem-grid').innerHTML =
@@ -1229,105 +1191,74 @@ function render(data) {
      · Hotline: <a href="${meta.sdsHotline.href}">${meta.sdsHotline.display}</a>`;
 
   observeFadeUps();
-  initCarousel();
 }
 
-/* ── PRICING CAROUSEL ────────────────────────── */
-function initCarousel() {
-  const carousel = document.getElementById('pricing-carousel');
-  if (!carousel) return;
+/* ── PLAN CARD CAROUSEL ──────────────────────── */
+function initPlanCarousel(el, delay = 5000) {
+  const track = el.querySelector('.plan-track');
+  const fill  = el.querySelector('.plan-fill');
+  const dots  = el.querySelectorAll('.plan-dot');
+  const cards = track.querySelectorAll('.pricing-card');
+  const total = cards.length;
+  let current = 0, timer = null;
 
-  const track  = document.getElementById('prc-track');
-  const fill   = document.getElementById('prc-fill');
-  const tabs   = carousel.querySelectorAll('.prc-tab');
-  const dots   = carousel.querySelectorAll('.prc-dot');
-  const slides = carousel.querySelectorAll('.prc-slide');
-  const DELAY  = 5000;
-  let current  = 0;
-  let timer    = null;
+  /* Ensure all cards are visible inside overflow:hidden */
+  cards.forEach(c => c.classList.add('visible'));
 
   function triggerFill() {
+    if (!fill) return;
     fill.style.animation = 'none';
-    fill.offsetHeight; // force reflow
-    fill.style.animation = `prcFill ${DELAY}ms linear forwards`;
+    fill.offsetHeight;
+    fill.style.animation = `planFill ${delay}ms linear forwards`;
   }
 
-  function goTo(n, resetTimer = true) {
-    n = ((n % slides.length) + slides.length) % slides.length;
-    if (n === current && resetTimer) return;
-
-    track.style.transform = `translateX(-${n * 100}%)`;
-
-    tabs[current].classList.remove('prc-tab--active');
-    tabs[current].setAttribute('aria-selected', 'false');
-    dots[current].classList.remove('prc-dot--active');
-
+  function goTo(n) {
+    n = ((n % total) + total) % total;
     current = n;
-
-    tabs[current].classList.add('prc-tab--active');
-    tabs[current].setAttribute('aria-selected', 'true');
-    dots[current].classList.add('prc-dot--active');
-
-    if (resetTimer) {
-      clearInterval(timer);
-      triggerFill();
-      timer = setInterval(() => goTo(current + 1), DELAY);
-    }
+    track.style.transform = `translateX(-${n * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('plan-dot--active', i === n));
+    clearInterval(timer);
+    triggerFill();
+    timer = setInterval(() => goTo(current + 1), delay);
   }
 
   function stopAuto() {
     clearInterval(timer);
     timer = null;
-    const w = getComputedStyle(fill).width;
-    fill.style.animation = 'none';
-    fill.style.width = w; // freeze bar at current position
+    if (fill) {
+      const w = getComputedStyle(fill).width;
+      fill.style.animation = 'none';
+      fill.style.width = w;
+    }
   }
 
   function startAuto() {
     triggerFill();
-    timer = setInterval(() => goTo(current + 1), DELAY);
+    timer = setInterval(() => goTo(current + 1), delay);
   }
 
-  /* tab clicks */
-  tabs.forEach((tab, i) => tab.addEventListener('click', () => goTo(i)));
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+  el.querySelector('.plan-arrow--prev')?.addEventListener('click', () => goTo(current - 1));
+  el.querySelector('.plan-arrow--next')?.addEventListener('click', () => goTo(current + 1));
 
-  /* dot clicks */
-  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  el.addEventListener('mouseenter', stopAuto);
+  el.addEventListener('mouseleave', startAuto);
 
-  /* arrow clicks */
-  carousel.querySelector('.prc-arrow--prev')?.addEventListener('click', () => goTo(current - 1));
-  carousel.querySelector('.prc-arrow--next')?.addEventListener('click', () => goTo(current + 1));
-
-  /* pause on hover */
-  carousel.addEventListener('mouseenter', stopAuto);
-  carousel.addEventListener('mouseleave', startAuto);
-
-  /* touch swipe */
   let touchX = 0;
-  carousel.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
-  carousel.addEventListener('touchend', e => {
+  el.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - touchX;
     if (Math.abs(dx) > 50) goTo(current + (dx > 0 ? -1 : 1));
   }, { passive: true });
 
-  /* keyboard */
-  carousel.setAttribute('tabindex', '0');
-  carousel.addEventListener('keydown', e => {
+  el.setAttribute('tabindex', '0');
+  el.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
     if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
   });
 
-  /* hash-based deep link: #easyca → slide 1, #easybooks → slide 2 */
-  const hashMap = { '#easyinvoice': 0, '#easyca': 1, '#easybooks': 2 };
-  function handleHash() {
-    const idx = hashMap[window.location.hash];
-    if (idx !== undefined) goTo(idx);
-  }
-  window.addEventListener('hashchange', handleHash);
-  handleHash();
-
   triggerFill();
-  timer = setInterval(() => goTo(current + 1), DELAY);
+  timer = setInterval(() => goTo(current + 1), delay);
 }
 
 /* ── FORM SUBMIT ──────────────────────────────── */
