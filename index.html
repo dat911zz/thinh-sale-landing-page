@@ -357,16 +357,22 @@
     .product-card:hover { border-color: var(--mid); box-shadow: var(--shadow); transform: translateY(-4px); }
 
     .product-logo-wrap {
-      width: 56px; height: 56px; border-radius: 14px; overflow: hidden;
-      margin-bottom: 16px; display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+      height: 32px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
     }
     .product-logo-wrap img {
-      width: 100%; height: 100%; object-fit: contain;
-      transition: transform .3s;
+      height: 100%; width: auto; max-width: 90%;
+      object-fit: contain;
+      transition: opacity .2s;
     }
-    .product-card:hover .product-logo-wrap img { transform: scale(1.08); }
-    .product-logo-fallback { font-size: 26px; }
+    .product-card:hover .product-logo-wrap img { opacity: .85; }
+    .product-logo-fallback {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 20px;
+    }
+    .product-logo-fallback strong { font-size: .95rem; color: var(--navy); }
 
     .product-name { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
     .product-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
@@ -460,6 +466,67 @@
     .year-tab.active { background: var(--white); color: var(--navy); box-shadow: 0 2px 10px rgba(0,0,0,.14); }
 
     /* ══════════════════════════════════════════
+       PLAN CARD CAROUSEL (per-section)
+    ══════════════════════════════════════════ */
+    .plan-carousel {
+      position: relative;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .plan-outer {
+      overflow: hidden;
+      padding-top: 14px; /* room for .featured::before badge */
+    }
+    .plan-track {
+      display: flex;
+      transition: transform .55s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .plan-track .pricing-card {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+
+    .plan-arrow {
+      position: absolute; top: 38%; transform: translateY(-50%);
+      z-index: 5; width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.95); backdrop-filter: blur(4px);
+      box-shadow: 0 2px 10px rgba(0,0,0,.12);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.25rem; color: var(--navy); line-height: 1;
+      transition: all .2s;
+    }
+    .plan-arrow:hover { background: #fff; box-shadow: 0 4px 18px rgba(0,0,0,.2); transform: translateY(-50%) scale(1.08); }
+    .plan-arrow--prev { left: -18px; }
+    .plan-arrow--next { right: -18px; }
+    @media (max-width: 580px) { .plan-arrow { display: none; } }
+
+    .plan-dots {
+      display: flex; justify-content: center; gap: 8px;
+      padding: 18px 0 4px;
+    }
+    .plan-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: none; cursor: pointer; padding: 0;
+      background: var(--border);
+      transition: all .35s cubic-bezier(.4,0,.2,1);
+    }
+    .plan-dot.plan-dot--active { width: 28px; border-radius: 4px; background: var(--navy); }
+
+    .plan-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+    .plan-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      width: 0%;
+    }
+    @keyframes planFill { to { width: 100%; } }
+
+    .pricing-section-wrap.alt .plan-dot.plan-dot--active { background: var(--mid); }
+    .pricing-section-wrap.alt .plan-fill { background: linear-gradient(90deg, var(--mid), var(--blue)); }
+    .pricing-section-wrap.alt .plan-bar { background: rgba(30,77,140,.14); }
+
+    /* ══════════════════════════════════════════
        ECOSYSTEM
     ══════════════════════════════════════════ */
     .ecosystem-section { background: var(--white); }
@@ -473,11 +540,11 @@
     .eco-card:hover { border-color: var(--mid); box-shadow: var(--shadow); transform: translateY(-3px); }
 
     .eco-logo-wrap {
-      width: 44px; height: 44px; border-radius: 10px; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--off);
+      height: 32px;
+      display: flex; align-items: center;
+      margin-bottom: 2px;
     }
-    .eco-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .eco-logo-wrap img { height: 100%; width: auto; max-width: 90%; object-fit: contain; }
     .eco-logo-fallback { font-size: 22px; }
 
     .eco-name  { font-size: .9rem; font-weight: 700; color: var(--navy); }
@@ -703,12 +770,12 @@
   </div>
 </section>
 
-<!-- ══ EASYINVOICE ════════════════════════════════ -->
+<!-- ══ EASYINVOICE PRICING ══════════════════════════ -->
 <section class="pricing-section-wrap" id="easyinvoice" aria-labelledby="invoice-title">
   <div class="container">
     <div class="section-header">
-      <div class="section-eyebrow" id="invoice-eyebrow">EasyInvoice</div>
-      <h2 class="section-title" id="invoice-title">Bảng giá Hóa đơn điện tử</h2>
+      <div class="section-eyebrow" id="invoice-eyebrow"></div>
+      <h2 class="section-title" id="invoice-title"></h2>
       <p class="section-desc" id="invoice-desc"></p>
     </div>
     <div class="setup-fee-tag" id="invoice-setup-fee">
@@ -717,30 +784,30 @@
       </svg>
       <span></span>
     </div>
-    <div class="pricing-grid stagger-children" id="invoice-grid"><!-- from JSON --></div>
-    <p id="invoice-disclaimer" style="font-size:.82rem;color:var(--muted);margin-top:20px"></p>
+    <div id="invoice-grid"><!-- plan carousel --></div>
+    <p id="invoice-disclaimer" style="font-size:.82rem;color:var(--muted);margin-top:16px;text-align:center"></p>
   </div>
 </section>
 
-<!-- ══ EASYCA ═════════════════════════════════════ -->
+<!-- ══ EASYCA PRICING ═══════════════════════════════ -->
 <section class="pricing-section-wrap alt" id="easyca" aria-labelledby="ca-title">
   <div class="container">
     <div class="section-header">
-      <div class="section-eyebrow" id="ca-eyebrow">EasyCA</div>
-      <h2 class="section-title" id="ca-title">Bảng giá Chữ ký số</h2>
+      <div class="section-eyebrow" id="ca-eyebrow"></div>
+      <h2 class="section-title" id="ca-title"></h2>
       <p class="section-desc" id="ca-desc"></p>
     </div>
-    <div class="year-tabs" id="ca-year-tabs" role="tablist" aria-label="Chọn kỳ hạn"><!-- from JSON --></div>
-    <div class="pricing-grid stagger-children" id="ca-grid"><!-- from JSON --></div>
+    <div class="year-tabs" id="ca-year-tabs" role="tablist" aria-label="Chọn kỳ hạn"></div>
+    <div id="ca-grid"><!-- plan carousel --></div>
   </div>
 </section>
 
-<!-- ══ EASYBOOKS ══════════════════════════════════ -->
+<!-- ══ EASYBOOKS PRICING ════════════════════════════ -->
 <section class="pricing-section-wrap" id="easybooks" aria-labelledby="books-title">
   <div class="container">
     <div class="section-header">
-      <div class="section-eyebrow" id="books-eyebrow">EasyBooks</div>
-      <h2 class="section-title" id="books-title">Bảng giá Phần mềm Kế toán</h2>
+      <div class="section-eyebrow" id="books-eyebrow"></div>
+      <h2 class="section-title" id="books-title"></h2>
       <p class="section-desc" id="books-desc"></p>
     </div>
     <div class="setup-fee-tag" id="books-setup-fee">
@@ -749,7 +816,7 @@
       </svg>
       <span></span>
     </div>
-    <div class="pricing-grid stagger-children" id="books-grid"><!-- from JSON --></div>
+    <div id="books-grid"><!-- plan carousel --></div>
   </div>
 </section>
 
@@ -935,24 +1002,27 @@ function setYear(yr, tabEl) {
   });
 }
 
+/* ── LOGO ERROR HANDLERS ──────────────────────── */
+function onLogoError(el, emoji, name) {
+  el.parentNode.innerHTML = '<div class="product-logo-fallback"><span>' + emoji + '</span><strong>' + name + '</strong></div>';
+}
+function onEcoLogoError(el, emoji) {
+  el.parentNode.innerHTML = '<span class="eco-logo-fallback">' + emoji + '</span>';
+}
+
 /* ── RENDER HELPERS ───────────────────────────── */
-function logoImg(logo, name, fallbackEmoji, bgStyle) {
+function logoImg(logo, name, fallbackEmoji) {
   if (logo) {
-    return `<div class="product-logo-wrap" style="background:${bgStyle}">
-      <img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.style.opacity=0">
-    </div>`;
+    return '<div class="product-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" loading="lazy" onerror="onLogoError(this,\'' + fallbackEmoji + '\',\'' + name + '\')"></div>';
   }
-  return `<div class="product-logo-wrap" style="background:${bgStyle}">
-    <span class="product-logo-fallback">${fallbackEmoji}</span>
-  </div>`;
+  return '<div class="product-logo-wrap"><div class="product-logo-fallback"><span>' + fallbackEmoji + '</span><strong>' + name + '</strong></div></div>';
 }
 
 function ecoLogoImg(logo, name, fallbackEmoji) {
-  return `<div class="eco-logo-wrap">
-    ${logo
-      ? `<img src="${logo}" alt="${name} logo" loading="lazy" onerror="this.style.opacity=0">`
-      : `<span class="eco-logo-fallback">${fallbackEmoji}</span>`}
-  </div>`;
+  if (logo) {
+    return '<div class="eco-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" loading="lazy" onerror="onEcoLogoError(this,\'' + fallbackEmoji + '\')"></div>';
+  }
+  return '<div class="eco-logo-wrap"><span class="eco-logo-fallback">' + fallbackEmoji + '</span></div>';
 }
 
 function featuresHTML(features) {
@@ -988,6 +1058,20 @@ function setupFeeHTML(tag, data) {
     `${data.setupFeeLabel}: <strong>${data.setupFee} ${data.setupFeeSuffix}</strong>`;
 }
 
+function buildPlanCarouselHTML(cardsHTML, count, key) {
+  const dots = Array.from({length: count}, (_, i) =>
+    `<button class="plan-dot${i === 0 ? ' plan-dot--active' : ''}" data-idx="${i}" aria-label="Gói ${i + 1}"></button>`
+  ).join('');
+  return `
+    <div class="plan-outer">
+      <button class="plan-arrow plan-arrow--prev" aria-label="Gói trước">&#8249;</button>
+      <div class="plan-track" id="plan-track-${key}">${cardsHTML}</div>
+      <button class="plan-arrow plan-arrow--next" aria-label="Gói sau">&#8250;</button>
+    </div>
+    <div class="plan-dots">${dots}</div>
+    <div class="plan-bar" aria-hidden="true"><div class="plan-fill" id="plan-fill-${key}"></div></div>`;
+}
+
 /* ── MAIN RENDER ──────────────────────────────── */
 function render(data) {
   const { meta, products, easyinvoice, easyca, easybooks, ecosystem } = data;
@@ -1004,20 +1088,23 @@ function render(data) {
   document.getElementById('products-grid').innerHTML =
     products.map(p => `
       <div class="product-card fade-up">
-        ${logoImg(p.logo, p.name, p.icon, p.iconBg)}
-        <h3 class="product-name">${p.name}</h3>
+        ${logoImg(p.logo, p.name, p.icon)}
         <p class="product-desc">${p.desc}</p>
       </div>`).join('');
 
   /* EasyInvoice */
-  document.getElementById('invoice-eyebrow').textContent   = easyinvoice.eyebrow;
-  document.getElementById('invoice-title').textContent     = easyinvoice.title;
-  document.getElementById('invoice-desc').textContent      = easyinvoice.desc;
-  document.getElementById('invoice-disclaimer').textContent= easyinvoice.disclaimer;
+  document.getElementById('invoice-eyebrow').textContent    = easyinvoice.eyebrow;
+  document.getElementById('invoice-title').textContent      = easyinvoice.title;
+  document.getElementById('invoice-desc').textContent       = easyinvoice.desc;
+  document.getElementById('invoice-disclaimer').textContent = easyinvoice.disclaimer;
   setupFeeHTML(document.getElementById('invoice-setup-fee'), easyinvoice);
   const invoiceGrid = document.getElementById('invoice-grid');
-  invoiceGrid.className = `pricing-grid stagger-children ${easyinvoice.gridClass}`;
-  invoiceGrid.innerHTML = easyinvoice.plans.map(p => pricingCardHTML(p)).join('');
+  invoiceGrid.className = 'plan-carousel';
+  invoiceGrid.innerHTML = buildPlanCarouselHTML(
+    easyinvoice.plans.map(p => pricingCardHTML(p)).join(''),
+    easyinvoice.plans.length, 'invoice'
+  );
+  initPlanCarousel(invoiceGrid);
 
   /* EasyCA */
   document.getElementById('ca-eyebrow').textContent = easyca.eyebrow;
@@ -1029,8 +1116,12 @@ function render(data) {
            role="tab" aria-selected="${i === 0}"
            onclick="setYear(${yr}, this)">${yr} năm</div>`).join('');
   const caGrid = document.getElementById('ca-grid');
-  caGrid.className = `pricing-grid stagger-children ${easyca.gridClass}`;
-  caGrid.innerHTML = easyca.plans.map(p => pricingCardHTML(p, true, 0)).join('');
+  caGrid.className = 'plan-carousel';
+  caGrid.innerHTML = buildPlanCarouselHTML(
+    easyca.plans.map(p => pricingCardHTML(p, true, 0)).join(''),
+    easyca.plans.length, 'ca'
+  );
+  initPlanCarousel(caGrid);
 
   /* EasyBooks */
   document.getElementById('books-eyebrow').textContent = easybooks.eyebrow;
@@ -1038,8 +1129,12 @@ function render(data) {
   document.getElementById('books-desc').textContent    = easybooks.desc;
   setupFeeHTML(document.getElementById('books-setup-fee'), easybooks);
   const booksGrid = document.getElementById('books-grid');
-  booksGrid.className = `pricing-grid stagger-children ${easybooks.gridClass}`;
-  booksGrid.innerHTML = easybooks.plans.map(p => pricingCardHTML(p)).join('');
+  booksGrid.className = 'plan-carousel';
+  booksGrid.innerHTML = buildPlanCarouselHTML(
+    easybooks.plans.map(p => pricingCardHTML(p)).join(''),
+    easybooks.plans.length, 'books'
+  );
+  initPlanCarousel(booksGrid);
 
   /* Ecosystem */
   document.getElementById('ecosystem-grid').innerHTML =
@@ -1096,6 +1191,74 @@ function render(data) {
      · Hotline: <a href="${meta.sdsHotline.href}">${meta.sdsHotline.display}</a>`;
 
   observeFadeUps();
+}
+
+/* ── PLAN CARD CAROUSEL ──────────────────────── */
+function initPlanCarousel(el, delay = 5000) {
+  const track = el.querySelector('.plan-track');
+  const fill  = el.querySelector('.plan-fill');
+  const dots  = el.querySelectorAll('.plan-dot');
+  const cards = track.querySelectorAll('.pricing-card');
+  const total = cards.length;
+  let current = 0, timer = null;
+
+  /* Ensure all cards are visible inside overflow:hidden */
+  cards.forEach(c => c.classList.add('visible'));
+
+  function triggerFill() {
+    if (!fill) return;
+    fill.style.animation = 'none';
+    fill.offsetHeight;
+    fill.style.animation = `planFill ${delay}ms linear forwards`;
+  }
+
+  function goTo(n) {
+    n = ((n % total) + total) % total;
+    current = n;
+    track.style.transform = `translateX(-${n * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('plan-dot--active', i === n));
+    clearInterval(timer);
+    triggerFill();
+    timer = setInterval(() => goTo(current + 1), delay);
+  }
+
+  function stopAuto() {
+    clearInterval(timer);
+    timer = null;
+    if (fill) {
+      const w = getComputedStyle(fill).width;
+      fill.style.animation = 'none';
+      fill.style.width = w;
+    }
+  }
+
+  function startAuto() {
+    triggerFill();
+    timer = setInterval(() => goTo(current + 1), delay);
+  }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+  el.querySelector('.plan-arrow--prev')?.addEventListener('click', () => goTo(current - 1));
+  el.querySelector('.plan-arrow--next')?.addEventListener('click', () => goTo(current + 1));
+
+  el.addEventListener('mouseenter', stopAuto);
+  el.addEventListener('mouseleave', startAuto);
+
+  let touchX = 0;
+  el.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) goTo(current + (dx > 0 ? -1 : 1));
+  }, { passive: true });
+
+  el.setAttribute('tabindex', '0');
+  el.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+  });
+
+  triggerFill();
+  timer = setInterval(() => goTo(current + 1), delay);
 }
 
 /* ── FORM SUBMIT ──────────────────────────────── */
