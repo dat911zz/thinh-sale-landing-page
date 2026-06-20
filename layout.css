@@ -306,6 +306,7 @@ nav.scrolled { background: rgba(10,22,50,.99); box-shadow: 0 2px 20px rgba(0,0,0
   width: 6px; height: 6px; background: var(--gold2); border-radius: 50%;
   animation: pulse-dot 2s infinite;
 }
+.hero-badge-logo { height: 18px; width: auto; filter: brightness(0) invert(1); opacity: .85; }
 @keyframes pulse-dot {
   0%,100% { opacity: 1; transform: scale(1); }
   50%      { opacity: .4; transform: scale(1.5); }
@@ -411,6 +412,10 @@ section { padding: 88px 24px; }
 .product-logo-fallback strong { font-size: .95rem; color: var(--navy); }
 
 .product-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+.product-card-cta {
+  display: inline-block; margin-top: auto; padding-top: 12px;
+  font-size: .85rem; font-weight: 700; color: var(--gold2);
+}
 
 /* ══════════════════════════════════════════
    PRICING (index.html)
