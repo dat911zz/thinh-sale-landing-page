@@ -995,7 +995,7 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 }
 
 @media (max-width: 375px) {
-  .hero-stats { gap: 12px; }
+  .hero-stats { flex-wrap: wrap; justify-content: center; gap: 12px; }
   .hero-stat-num { font-size: 1.3rem; }
   .hero-stat-label { font-size: .6rem; }
   .hero-stat { min-width: 72px; }
@@ -1004,6 +1004,44 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 /* ══════════════════════════════════════════
    PAGE-SPECIFIC SECTIONS (shared across product pages)
 ══════════════════════════════════════════ */
+
+/* EasyBooks – integration badge row */
+.integration-section { padding: 64px 24px; background: var(--white); }
+.integration-logos {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  justify-content: center; margin-top: 36px;
+}
+.int-badge {
+  background: var(--off); border: 1px solid var(--border);
+  border-radius: 12px; padding: 11px 18px;
+  display: flex; align-items: center; gap: 9px;
+  font-size: .84rem; font-weight: 600; color: var(--navy);
+  transition: border-color .18s, box-shadow .18s;
+}
+.int-badge:hover {
+  border-color: rgba(201,162,39,.5);
+  box-shadow: 0 4px 16px rgba(201,162,39,.12);
+}
+.int-badge-icon { font-size: 1.15rem; }
+
+/* EasyHRM – module chip grid */
+.hrm-modules-section { padding: 80px 24px; background: var(--off); }
+.hrm-modules-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px; margin-top: 36px;
+}
+.hrm-module-item {
+  background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+  padding: 13px 15px; display: flex; align-items: center; gap: 9px;
+  font-size: .82rem; font-weight: 600; color: var(--navy);
+  transition: border-color .18s;
+}
+.hrm-module-item:hover { border-color: rgba(201,162,39,.5); }
+.hrm-module-icon { font-size: 1.05rem; flex-shrink: 0; }
+@media (max-width: 480px) {
+  .hrm-modules-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hrm-module-item { font-size: .77rem; padding: 10px 12px; }
+}
 
 /* EasyPOS – modes grid */
 .pos-modes-section { padding: 80px 0; background: var(--off); }
