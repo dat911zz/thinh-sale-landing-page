@@ -199,6 +199,138 @@
     ]
   },
 
+  "easyhrm": {
+    "eyebrow": "👥 EasyHRM",
+    "title": "Bảng giá Quản lý Nhân sự",
+    "desc": "Giải pháp quản lý nhân sự toàn diện – chấm công, lương thưởng, đào tạo và tuyển dụng cho mọi quy mô.",
+    "gridClass": "pricing-grid-2",
+    "plans": [
+      {
+        "planName": "Gói Tiêu chuẩn",
+        "label": "Dưới 50 nhân sự",
+        "price": "Liên hệ",
+        "unit": "",
+        "note": "Phù hợp SME · Hộ kinh doanh và doanh nghiệp nhỏ",
+        "features": [
+          "Hồ sơ nhân sự số hóa",
+          "Chấm công thẻ từ / vân tay",
+          "Tính lương tự động hàng tháng",
+          "Quản lý ngày nghỉ & phép năm",
+          "Báo cáo nhân sự cơ bản",
+          "Hỗ trợ hotline 24/7"
+        ],
+        "variant": "",
+        "cta": { "text": "Nhận báo giá", "style": "outline" }
+      },
+      {
+        "planName": "Gói Nâng cao",
+        "label": "50+ nhân sự · Đa chi nhánh",
+        "price": "Liên hệ",
+        "unit": "",
+        "note": "Phù hợp DN vừa & lớn · Đa chi nhánh / đa pháp nhân",
+        "features": [
+          "Toàn bộ tính năng Tiêu chuẩn",
+          "Chấm công GPS & App mobile",
+          "Quản lý đa chi nhánh / pháp nhân",
+          "Tích hợp EasyBooks tính lương",
+          "KPI & đánh giá hiệu suất",
+          "Tuyển dụng & onboarding số",
+          "Ưu tiên hỗ trợ 24/7"
+        ],
+        "variant": "featured",
+        "cta": { "text": "Nhận báo giá Pro", "style": "gold" }
+      }
+    ]
+  },
+
+  "easypos": {
+    "eyebrow": "🏪 EasyPOS",
+    "title": "Bảng giá Phần mềm Bán hàng",
+    "desc": "Phần mềm bán hàng tại điểm bán tích hợp hóa đơn điện tử – phù hợp F&B, bán lẻ và thương mại điện tử.",
+    "gridClass": "pricing-grid-2",
+    "plans": [
+      {
+        "planName": "Gói Cơ bản",
+        "label": "1 điểm bán",
+        "price": "Liên hệ",
+        "unit": "",
+        "note": "Phù hợp cửa hàng đơn lẻ / F&B nhỏ",
+        "features": [
+          "Bán hàng tại quầy & takeaway",
+          "Quản lý kho hàng cơ bản",
+          "Tích hợp hóa đơn điện tử",
+          "Báo cáo doanh thu theo ngày",
+          "Quản lý khách hàng (CRM cơ bản)",
+          "Hỗ trợ hotline 24/7"
+        ],
+        "variant": "",
+        "cta": { "text": "Nhận báo giá", "style": "outline" }
+      },
+      {
+        "planName": "Gói Pro",
+        "label": "Đa điểm bán · Chuỗi cửa hàng",
+        "price": "Liên hệ",
+        "unit": "",
+        "note": "Chuỗi cửa hàng · Tích hợp sàn thương mại điện tử",
+        "features": [
+          "Toàn bộ tính năng Cơ bản",
+          "Quản lý đa chi nhánh / chuỗi",
+          "Tích hợp Shopee, TikTok Shop",
+          "Quản lý nguyên vật liệu (F&B)",
+          "Phân tích doanh thu nâng cao",
+          "API tích hợp hệ thống bên thứ 3",
+          "Ưu tiên hỗ trợ 24/7"
+        ],
+        "variant": "featured",
+        "cta": { "text": "Nhận báo giá Pro", "style": "gold" }
+      }
+    ]
+  },
+
+  "easydocs": {
+    "eyebrow": "📄 EasyDocs",
+    "title": "Bảng giá Hợp đồng Điện tử",
+    "desc": "Ký kết hợp đồng điện tử có giá trị pháp lý – nhanh, an toàn, lưu trữ bảo mật lâu dài.",
+    "gridClass": "pricing-grid-2",
+    "plans": [
+      {
+        "planName": "Gói Cơ bản",
+        "label": "Dưới 50 hợp đồng / tháng",
+        "price": "Liên hệ",
+        "unit": "",
+        "note": "Phù hợp SME · Ký hợp đồng nội bộ & đối tác",
+        "features": [
+          "Ký số hợp đồng PDF / Word",
+          "Xác thực OTP qua SMS / Email",
+          "Lưu trữ bảo mật trên đám mây",
+          "Tra cứu hợp đồng theo bộ lọc",
+          "Nhắc nhở gia hạn tự động",
+          "Hỗ trợ hotline 24/7"
+        ],
+        "variant": "",
+        "cta": { "text": "Nhận báo giá", "style": "outline" }
+      },
+      {
+        "planName": "Gói Doanh nghiệp",
+        "label": "Không giới hạn hợp đồng",
+        "price": "Liên hệ",
+        "unit": "",
+        "note": "DN vừa & lớn · Workflow phê duyệt đa cấp",
+        "features": [
+          "Toàn bộ tính năng Cơ bản",
+          "Không giới hạn số hợp đồng",
+          "Workflow phê duyệt đa cấp",
+          "Tích hợp EasyCA & EasyInvoice",
+          "API kết nối CRM / ERP",
+          "Kiểm soát quyền truy cập chi tiết",
+          "SLA hỗ trợ ưu tiên 24/7"
+        ],
+        "variant": "featured",
+        "cta": { "text": "Nhận báo giá Enterprise", "style": "gold" }
+      }
+    ]
+  },
+
   "ecosystem": [
     { "icon": "👥", "logo": "logos/wordmarks/easyhrm.png",     "name": "EasyHRM",       "desc": "Quản lý nhân sự, chấm công, lương thưởng tự động",    "badge": "Liên hệ báo giá" },
     { "icon": "🏪", "logo": "logos/wordmarks/easypos.png",     "name": "EasyPOS",       "desc": "Phần mềm bán hàng tại điểm – tích hợp HĐ điện tử",   "badge": "Liên hệ báo giá" },

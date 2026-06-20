@@ -56,7 +56,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="layout.css" />
 </head>
-<body>
+<body data-product="easydocs">
 
 <!-- ══ MOBILE MENU ════════════════════════════ -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
@@ -167,7 +167,7 @@
     </div>
     <div class="hero-btns">
       <a href="index.html#contact" class="btn-primary">Nhận tư vấn miễn phí →</a>
-      <a href="index.html#contact" class="btn-ghost">Xem bảng giá</a>
+      <a href="#pricing" class="btn-ghost">Xem bảng giá</a>
     </div>
   </div>
 
@@ -316,6 +316,27 @@
 </section>
 
 <!-- ══ PRICING CTA ════════════════════════════ -->
+
+<!-- ══ PRICING ══════════════════════════════════ -->
+<section class="pricing-section-wrap" id="pricing" aria-labelledby="pp-title">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="section-eyebrow">Bảng giá</div>
+      <h2 class="section-title" id="pp-title">Chọn gói phù hợp</h2>
+      <p class="section-desc" id="pp-desc"></p>
+    </div>
+    <div class="year-tabs" id="pp-year-tabs" role="tablist" aria-label="Chọn kỳ hạn" hidden></div>
+    <div id="pp-grid"><!-- rendered by product-pricing.js --></div>
+    <div class="setup-fee-tag" id="pp-setup-fee" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <span></span>
+    </div>
+    <p id="pp-disclaimer" style="font-size:.82rem;color:var(--muted);margin-top:16px;text-align:center"></p>
+  </div>
+</section>
+
 <section class="pricing-cta-section" aria-labelledby="pcta-title">
   <div class="container">
     <div class="pricing-cta-inner">
@@ -368,5 +389,6 @@
 
 <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
 <script src="layout.js"></script>
+<script src="product-pricing.js"></script>
 </body>
 </html>
