@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="vi" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ── SEO PRIMARY ───────────────────────────── -->
+  <title>EasyPOS – Phần mềm bán hàng thông minh tích hợp hóa đơn điện tử | Thịnh Vượng Luật</title>
+  <meta name="description" content="EasyPOS – phần mềm bán hàng tại điểm bán tích hợp hóa đơn điện tử theo Nghị định 70/2025. AI đặt món giọng nói, QR order tại bàn, kết nối Shopee/TikTok Shop. Liên hệ tư vấn ngay." />
+  <meta name="keywords" content="EasyPOS, phần mềm bán hàng, POS, hóa đơn điện tử, quản lý bán hàng, AI đặt món, QR order, Shopee, TikTok Shop, SDS, Softdreams" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Thịnh Vượng Luật" />
+  <link rel="canonical" href="https://thinhvuongluat.vn/easypos.html" />
+
+  <!-- ── OPEN GRAPH ────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:url" content="https://thinhvuongluat.vn/easypos.html" />
+  <meta property="og:site_name" content="Thịnh Vượng Luật" />
+  <meta property="og:title" content="EasyPOS – Bán hàng thông minh, hóa đơn tức thì | Thịnh Vượng Luật" />
+  <meta property="og:description" content="Phần mềm POS tích hợp hóa đơn điện tử theo NĐ 70/2025 – AI đặt món, QR order, kết nối sàn thương mại điện tử. Liên hệ báo giá ngay." />
+  <meta property="og:image" content="https://thinhvuongluat.vn/logos/wordmarks/easypos.png" />
+
+  <!-- ── TWITTER CARD ──────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EasyPOS – Phần mềm bán hàng POS | Thịnh Vượng Luật" />
+  <meta name="twitter:description" content="Bán hàng thông minh, phát hóa đơn điện tử ngay tại POS theo NĐ 70/2025 – AI, QR, đa kênh." />
+
+  <!-- ── JSON-LD ────────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "EasyPOS",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web, iOS, Android, Windows",
+    "description": "Phần mềm bán hàng tại điểm bán tích hợp hóa đơn điện tử theo Nghị định 70/2025. AI đặt món bằng giọng nói, QR order tại bàn, kết nối Shopee/TikTok Shop, quản lý kho đa điểm, báo cáo doanh thu thời gian thực.",
+    "offers": { "@type": "Offer", "priceCurrency": "VND", "description": "Liên hệ báo giá" },
+    "publisher": { "@type": "Organization", "name": "Softdreams", "url": "https://softdreams.vn" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://thinhvuongluat.vn/" },
+      { "@type": "ListItem", "position": 2, "name": "EasyPOS", "item": "https://thinhvuongluat.vn/easypos.html" }
+    ]
+  }
+  </script>
+
+  <!-- ── FONTS ─────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="layout.css" />
+
+  <style>
+  /* EasyPOS page-specific styles */
+  .pos-modes-section {
+    padding: 80px 0;
+    background: var(--off);
+  }
+  .pos-modes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .pos-mode-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .pos-mode-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  .pos-mode-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+  .pos-mode-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .pos-mode-desc {
+    font-size: .92rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .pos-highlight {
+    display: inline-block;
+    background: linear-gradient(135deg, #e8f0fe, #d2e3fc);
+    color: var(--mid);
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: .8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: .03em;
+  }
+  </style>
+</head>
+<body>
+
+<!-- ══ MOBILE MENU ════════════════════════════ -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
+  <a href="index.html" class="mobile-menu-logo" onclick="closeMenu()">
+    <div class="mobile-menu-logo-icon">TV</div>
+    <div class="mobile-menu-logo-text">Thịnh Vượng Luật</div>
+  </a>
+  <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Đóng menu">✕</button>
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" onclick="closeMenu()">Trang chủ</a></li>
+    <li><a href="index.html#ecosystem" onclick="closeMenu()">Hệ sinh thái</a></li>
+    <li><a href="index.html#contact" onclick="closeMenu()">Liên hệ</a></li>
+  </ul>
+  <div class="mobile-menu-divider"></div>
+  <div class="mobile-menu-section-label">Sản phẩm</div>
+  <ul class="mobile-nav-links mobile-nav-links--sm">
+    <li><a href="easyinvoice.html" onclick="closeMenu()">🧾 EasyInvoice</a></li>
+    <li><a href="easyca.html" onclick="closeMenu()">🔏 EasyCA</a></li>
+    <li><a href="easybooks.html" onclick="closeMenu()">📊 EasyBooks</a></li>
+    <li><a href="easyhrm.html" onclick="closeMenu()">👥 EasyHRM</a></li>
+    <li><a href="easypos.html" onclick="closeMenu()">🏪 EasyPOS</a></li>
+    <li><a href="easydocs.html" onclick="closeMenu()">📄 EasyDocs</a></li>
+  </ul>
+  <div class="mobile-menu-divider"></div>
+  <a href="index.html#contact" class="mobile-menu-cta" onclick="closeMenu()">📞 Liên hệ ngay</a>
+  <div class="mobile-menu-socials">
+    <a href="#" class="mobile-social-link" aria-label="Zalo">💬</a>
+    <a href="tel:0986633426" class="mobile-social-link" aria-label="Gọi điện">📞</a>
+    <a href="mailto:info@thinhvuongluat.vn" class="mobile-social-link" aria-label="Email">📧</a>
+  </div>
+</div>
+
+<!-- ══ NAV ═══════════════════════════════════ -->
+<nav id="main-nav" role="navigation" aria-label="Điều hướng chính">
+  <a href="index.html" class="nav-logo" aria-label="Thịnh Vượng Luật – Trang chủ">
+    <div class="nav-logo-icon" aria-hidden="true">TV</div>
+    <div>
+      <div class="nav-logo-text">Thịnh Vượng Luật</div>
+      <div class="nav-logo-sub">Đại lý dịch vụ SDS chính thức</div>
+    </div>
+  </a>
+  <ul class="nav-links" role="list">
+    <li class="nav-dropdown">
+      <a href="index.html#products" aria-haspopup="true">Sản phẩm ▾</a>
+      <ul class="nav-dropdown-menu" role="menu">
+        <li><a href="easyinvoice.html"><span class="nav-dd-icon">🧾</span> EasyInvoice</a></li>
+        <li><a href="easyca.html"><span class="nav-dd-icon">🔏</span> EasyCA</a></li>
+        <li><a href="easybooks.html"><span class="nav-dd-icon">📊</span> EasyBooks</a></li>
+        <li class="nav-dropdown-divider" role="separator"></li>
+        <li><a href="easyhrm.html"><span class="nav-dd-icon">👥</span> EasyHRM</a></li>
+        <li><a href="easypos.html"><span class="nav-dd-icon">🏪</span> EasyPOS</a></li>
+        <li><a href="easydocs.html"><span class="nav-dd-icon">📄</span> EasyDocs</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#ecosystem">Hệ sinh thái</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Liên hệ ngay</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
+          aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════ -->
+<section class="hero" aria-label="EasyPOS – Bán hàng thông minh">
+  <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+
+  <div class="hero-content" id="hero-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>EasyPOS</span>
+    </nav>
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      🏪 Điểm bán hàng thông minh · SDS Vietnam
+    </div>
+    <h1>EasyPOS<br /><em>Bán hàng thông minh – hóa đơn tức thì</em></h1>
+    <p class="hero-sub">Phát hành hóa đơn điện tử ngay tại quầy theo Nghị định 70/2025 – AI đặt món bằng giọng nói, QR order tại bàn, kết nối đa kênh Shopee & TikTok Shop.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">NĐ 70</div>
+        <div class="hero-stat-label">Tuân thủ 2025</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">AI</div>
+        <div class="hero-stat-label">Đặt món giọng nói</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Đa kênh</div>
+        <div class="hero-stat-label">Shopee / TikTok</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="index.html#contact" class="btn-primary">Nhận báo giá →</a>
+      <a href="index.html#contact" class="btn-ghost">Xem demo miễn phí</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Kéo xuống</span>
+    <div class="hero-scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══════════════════════════════ -->
+<section class="feat-section" aria-labelledby="feat-title">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="section-eyebrow">Tính năng nổi bật</div>
+      <h2 class="section-title" id="feat-title">Bán hàng thế hệ mới</h2>
+      <p class="section-desc">EasyPOS kết hợp AI, phát hành hóa đơn điện tử và quản lý đa kênh – mọi thứ trong một màn hình, không phần mềm rời rạc.</p>
+    </div>
+    <div class="feat-grid stagger-children">
+      <div class="feat-card fade-up">
+        <div class="feat-icon gold">🎙️</div>
+        <h3 class="feat-title">AI đặt món giọng nói</h3>
+        <p class="feat-desc">Nhân viên hoặc khách hàng đặt món bằng tiếng Việt tự nhiên – AI nhận diện, tạo đơn và gửi bếp tự động, giảm 70% thời gian order.</p>
+      </div>
+      <div class="feat-card fade-up">
+        <div class="feat-icon blue">📱</div>
+        <h3 class="feat-title">QR order tại bàn</h3>
+        <p class="feat-desc">Khách quét mã QR tại bàn, chọn món và xác nhận đơn hàng trực tiếp từ điện thoại – không cần gọi nhân viên, tăng trải nghiệm và doanh thu.</p>
+      </div>
+      <div class="feat-card fade-up">
+        <div class="feat-icon green">🧾</div>
+        <h3 class="feat-title">HĐ điện tử từ POS (NĐ 70)</h3>
+        <p class="feat-desc">Phát hành hóa đơn điện tử ngay tại quầy sau mỗi giao dịch – tuân thủ Nghị định 70/2025, kết nối thuế thời gian thực, không cần thao tác riêng.</p>
+      </div>
+      <div class="feat-card fade-up">
+        <div class="feat-icon gold">🛒</div>
+        <h3 class="feat-title">Kết nối Shopee & TikTok Shop</h3>
+        <p class="feat-desc">Đồng bộ đơn hàng từ Shopee Food, TikTok Shop về POS tập trung – quản lý một màn hình, không bỏ sót đơn, không nhập tay.</p>
+      </div>
+      <div class="feat-card fade-up">
+        <div class="feat-icon blue">📦</div>
+        <h3 class="feat-title">Quản lý kho đa điểm</h3>
+        <p class="feat-desc">Theo dõi tồn kho thời gian thực tại nhiều chi nhánh – cảnh báo sắp hết hàng, tự động đặt bổ sung và cân đối kho giữa các điểm bán.</p>
+      </div>
+      <div class="feat-card fade-up">
+        <div class="feat-icon green">📈</div>
+        <h3 class="feat-title">Báo cáo doanh thu tức thì</h3>
+        <p class="feat-desc">Dashboard live theo dõi doanh thu theo giờ, theo ngày, theo nhân viên thu ngân – so sánh kỳ trước, dự báo xu hướng ngay trên app mobile.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ POS MODES ═══════════════════════════ -->
+<section class="pos-modes-section" aria-labelledby="modes-title">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="section-eyebrow">Phù hợp mọi mô hình</div>
+      <h2 class="section-title" id="modes-title">EasyPOS cho từng loại hình kinh doanh</h2>
+      <p class="section-desc">Từ quán cà phê nhỏ đến chuỗi nhà hàng – EasyPOS linh hoạt cấu hình theo đặc thù vận hành của bạn.</p>
+    </div>
+    <div class="pos-modes-grid stagger-children">
+      <div class="pos-mode-card fade-up">
+        <div class="pos-highlight">F&B</div>
+        <div class="pos-mode-icon">☕</div>
+        <div class="pos-mode-title">Nhà hàng & Cà phê</div>
+        <p class="pos-mode-desc">QR order theo bàn, màn hình bếp (KDS), split bill, quản lý ca và cắt ca – đầy đủ cho F&B từ nhỏ đến chuỗi.</p>
+      </div>
+      <div class="pos-mode-card fade-up">
+        <div class="pos-highlight">Retail</div>
+        <div class="pos-mode-icon">🛍️</div>
+        <div class="pos-mode-title">Cửa hàng & Siêu thị</div>
+        <p class="pos-mode-desc">Quét mã vạch, giá theo khuyến mãi, thẻ thành viên và tích điểm – kết nối trực tiếp với EasyBooks và hóa đơn điện tử.</p>
+      </div>
+      <div class="pos-mode-card fade-up">
+        <div class="pos-highlight">eCommerce</div>
+        <div class="pos-mode-icon">📦</div>
+        <div class="pos-mode-title">Bán hàng đa kênh</div>
+        <p class="pos-mode-desc">Tích hợp Shopee, TikTok Shop, website và cửa hàng vật lý – một hệ thống duy nhất, không đồng bộ thủ công.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══════════════════════════════════ -->
+<section class="stats-section" aria-label="Số liệu EasyPOS">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item fade-up">
+        <div class="stat-num">NĐ&nbsp;70</div>
+        <div class="stat-label">Tuân thủ hoàn toàn 2025</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">3&nbsp;kênh</div>
+        <div class="stat-label">POS · Shopee · TikTok</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">&lt;3&nbsp;s</div>
+        <div class="stat-label">Phát hành hóa đơn</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Hỗ trợ kỹ thuật</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ═══════════════════════════ -->
+<section class="steps-section alt" aria-labelledby="steps-title">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="section-eyebrow">Quy trình triển khai</div>
+      <h2 class="section-title" id="steps-title">Bắt đầu bán hàng trong 1 ngày</h2>
+    </div>
+    <div class="steps-grid stagger-children">
+      <div class="step fade-up">
+        <div class="step-num">01</div>
+        <div class="step-icon">⚙️</div>
+        <h3 class="step-title">Cài đặt & cấu hình</h3>
+        <p class="step-desc">Nhập menu, danh mục hàng hóa, cấu hình máy in bill và kết nối máy thanh toán – chuyên gia hỗ trợ trực tiếp trong ngày đầu.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">02</div>
+        <div class="step-icon">🔗</div>
+        <h3 class="step-title">Kết nối hóa đơn & kênh bán</h3>
+        <p class="step-desc">Liên kết EasyInvoice để phát hóa đơn tự động, kết nối Shopee/TikTok Shop và đồng bộ dữ liệu với EasyBooks.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">03</div>
+        <div class="step-icon">🚀</div>
+        <h3 class="step-title">Vận hành & theo dõi</h3>
+        <p class="step-desc">Bán hàng ngay từ ngày đầu – theo dõi doanh thu thời gian thực trên app mobile, điều chỉnh menu và khuyến mãi ngay lập tức.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING CTA ════════════════════════════ -->
+<section class="pricing-cta-section" aria-labelledby="pcta-title">
+  <div class="container">
+    <div class="pricing-cta-inner">
+      <div class="pricing-cta-content fade-up">
+        <div class="section-eyebrow">Liên hệ báo giá</div>
+        <h2 class="section-title" id="pcta-title">Giá phù hợp – Triển khai ngay hôm nay</h2>
+        <p class="section-desc">EasyPOS có gói cho cửa hàng đơn lẻ và chuỗi nhiều chi nhánh. Liên hệ để nhận báo giá phù hợp với mô hình kinh doanh của bạn.</p>
+        <div class="pricing-cta-btns">
+          <a href="index.html#contact" class="btn-primary">Nhận báo giá ngay →</a>
+          <a href="index.html#contact" class="btn-ghost">Xem demo miễn phí</a>
+        </div>
+      </div>
+      <div class="pricing-cta-highlights fade-up">
+        <div class="pch-item">
+          <span class="pch-check">✓</span>
+          <span>Phát hóa đơn điện tử theo NĐ 70/2025 ngay tại POS</span>
+        </div>
+        <div class="pch-item">
+          <span class="pch-check">✓</span>
+          <span>Không giới hạn giao dịch, không phí phát sinh</span>
+        </div>
+        <div class="pch-item">
+          <span class="pch-check">✓</span>
+          <span>Hỗ trợ cài đặt tại chỗ và đào tạo nhân viên</span>
+        </div>
+        <div class="pch-item">
+          <span class="pch-check">✓</span>
+          <span>Kích hoạt trong ngày, vận hành ngay hôm đó</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="footer-logo-icon">TV</div>
+      <div class="footer-logo-text">
+        © 2024 <strong>Thịnh Vượng Luật</strong> · Đại lý dịch vụ SDS chính thức
+      </div>
+    </div>
+    <div class="footer-sds">
+      Powered by <a href="https://softdreams.vn" target="_blank" rel="noopener noreferrer">SDS Vietnam</a>
+      · Hotline: <a href="tel:190033369">1900 33 69</a>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top-btn" id="scroll-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
+<script src="layout.js"></script>
+</body>
+</html>
