@@ -450,8 +450,10 @@ section { padding: 88px 24px; }
   transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
   transition: transform .5s cubic-bezier(.4,0,.2,1);
 }
-.showcase-visual:hover .app-window-wrap {
-  transform: perspective(1200px) rotateY(-2deg) rotateX(0);
+@media (hover: hover) {
+  .showcase-visual:hover .app-window-wrap {
+    transform: perspective(1200px) rotateY(-2deg) rotateX(0);
+  }
 }
 .app-window {
   background: #fff; border-radius: 14px;
@@ -537,6 +539,9 @@ section { padding: 88px 24px; }
 .showcase-visual.visible .showcase-float-card {
   animation-play-state: running;
 }
+@media (prefers-reduced-motion: reduce) {
+  .showcase-float-card { animation: none; }
+}
 @keyframes floatCard {
   0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-8px); }
@@ -548,8 +553,7 @@ section { padding: 88px 24px; }
 @media (max-width: 768px) {
   .showcase-grid { grid-template-columns: 1fr; gap: 36px; }
   .showcase-visual { padding-bottom: 32px; }
-  .app-window-wrap { transform: none; }
-  .showcase-visual:hover .app-window-wrap { transform: none; }
+  .app-window-wrap { transform: none; transition: none; }
   .showcase-float-card { bottom: 0; right: 0; }
 }
 @media (max-width: 480px) {
