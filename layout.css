@@ -209,7 +209,7 @@ nav.scrolled { background: rgba(10,22,50,.99); box-shadow: 0 2px 20px rgba(0,0,0
   text-transform: uppercase; color: rgba(255,255,255,.3);
   cursor: default; user-select: none;
 }
-.nav-dd-logo-link {
+.nav-dropdown-menu li a.nav-dd-logo-link {
   display: flex; align-items: center; gap: 10px;
   padding: 5px 14px 8px;
 }
