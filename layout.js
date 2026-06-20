@@ -41,6 +41,7 @@ if (_scrollBtn) {
 /* ── PARALLAX (only when hero exists) ────────── */
 const _heroBg      = document.getElementById('hero-bg');
 const _heroContent = document.getElementById('hero-content');
+const _heroVisual  = document.querySelector('.hero-visual');
 const _heroEl      = document.querySelector('.hero');
 const _orbs        = document.querySelectorAll('.hero-orb');
 let _ticking = false;
@@ -50,9 +51,14 @@ function updateParallax() {
   const heroH = _heroEl.offsetHeight;
   if (y > heroH) { _ticking = false; return; }
 
+  const fade = `${Math.max(0, 1 - (y / heroH) * 1.4)}`;
   _heroBg.style.transform      = `translateY(${y * 0.38}px)`;
   _heroContent.style.transform = `translateY(${y * 0.08}px)`;
-  _heroContent.style.opacity   = `${Math.max(0, 1 - (y / heroH) * 1.4)}`;
+  _heroContent.style.opacity   = fade;
+  if (_heroVisual) {
+    _heroVisual.style.transform = `translateY(${y * 0.04}px)`;
+    _heroVisual.style.opacity   = fade;
+  }
   _orbs.forEach((orb, i) => {
     orb.style.transform = `translateY(${y * (0.12 + i * 0.1)}px)`;
   });
