@@ -446,15 +446,17 @@ section { padding: 88px 24px; }
 
 /* App window mockup */
 .showcase-visual { position: relative; }
+.app-window-wrap {
+  transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.showcase-visual:hover .app-window-wrap {
+  transform: perspective(1200px) rotateY(-2deg) rotateX(0);
+}
 .app-window {
   background: #fff; border-radius: 14px;
   box-shadow: 0 30px 80px rgba(15,34,70,.18), 0 2px 8px rgba(0,0,0,.06);
   overflow: hidden;
-  transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
-  transition: transform .5s cubic-bezier(.4,0,.2,1);
-}
-.showcase-visual:hover .app-window {
-  transform: perspective(1200px) rotateY(-2deg) rotateX(0);
 }
 .app-topbar {
   background: #f0f0f2; padding: 9px 14px;
@@ -530,6 +532,10 @@ section { padding: 88px 24px; }
   display: flex; align-items: center; gap: 10px;
   font-size: .78rem; max-width: 220px;
   animation: floatCard 4s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.showcase-visual.visible .showcase-float-card {
+  animation-play-state: running;
 }
 @keyframes floatCard {
   0%,100% { transform: translateY(0); }
@@ -542,8 +548,8 @@ section { padding: 88px 24px; }
 @media (max-width: 768px) {
   .showcase-grid { grid-template-columns: 1fr; gap: 36px; }
   .showcase-visual { padding-bottom: 32px; }
-  .app-window { transform: none; }
-  .showcase-visual:hover .app-window { transform: none; }
+  .app-window-wrap { transform: none; }
+  .showcase-visual:hover .app-window-wrap { transform: none; }
   .showcase-float-card { bottom: 0; right: 0; }
 }
 @media (max-width: 480px) {
