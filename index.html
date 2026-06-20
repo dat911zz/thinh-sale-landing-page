@@ -372,9 +372,13 @@ function pricingCardHTML(plan, isCA = false, yearIdx = 0) {
   const price = isCA ? plan.prices[yearIdx] : plan.price;
   const unit  = isCA ? `/ ${yearIdx + 1} năm` : (plan.unit || '');
   const priceAttr = isCA ? `data-prices='${JSON.stringify(plan.prices)}'` : '';
+  const badge = plan.variant === 'featured'
+    ? '<div class="plan-featured-badge">Phổ biến nhất</div>'
+    : '';
 
   return `
     <article class="pricing-card${cls} fade-up" aria-label="${plan.label} – ${plan.planName}">
+      ${badge}
       <div class="pricing-plan-name">${plan.planName}</div>
       <div class="pricing-plan-label">${plan.label}</div>
       <div class="pricing-price">
