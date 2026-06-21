@@ -749,16 +749,20 @@ fetch('pricing.json')
     'nhân sự không lo nghỉ',
     'bán hàng mọi lúc mọi nơi',
   ];
-  let pi = 0, ci = phrases[0].length, del = false;
-  const TYPE = 65, DEL = 32, PAUSE = 2400;
+  let pi = 0, ci = phrases[0].length - 1, del = false; // ci-1 so first ++ci lands on phrase.length
+  const TYPE = 65, DEL = 32, PAUSE = 2400, GAP = 500;  // GAP = blank pause between phrases
   function tick() {
+    if (document.hidden) { setTimeout(tick, 500); return; } // don't pile up while tab hidden
     const phrase = phrases[pi];
     if (!del) {
       el.textContent = phrase.slice(0, ++ci);
       if (ci === phrase.length) return setTimeout(() => { del = true; tick(); }, PAUSE);
     } else {
       el.textContent = phrase.slice(0, --ci);
-      if (ci === 0) { del = false; pi = (pi + 1) % phrases.length; }
+      if (ci === 0) {
+        del = false; pi = (pi + 1) % phrases.length;
+        return setTimeout(tick, GAP); // brief pause before typing next phrase
+      }
     }
     setTimeout(tick, del ? DEL : TYPE);
   }
@@ -771,18 +775,35 @@ fetch('pricing.json')
   const dots = document.querySelectorAll('.scroll-rail-dot');
   if (!fill) return;
   const sectionIds = ['', 'products', 'easyinvoice', 'ecosystem', 'contact'];
+  // cache elements once — never changes after load
+  const sections = sectionIds.map(id => id ? document.getElementById(id) : null);
+
+  // position dots proportionally to actual section offsets once layout is final
+  function positionDots() {
+    const totalH = document.documentElement.scrollHeight;
+    if (totalH <= window.innerHeight) return;
+    dots.forEach((dot, i) => {
+      const sec = sections[i];
+      dot.style.top = sec ? ((sec.offsetTop / totalH) * 100) + '%' : '0%';
+    });
+  }
+  window.addEventListener('load', positionDots);
+
+  // rAF-throttled update
+  let _railTick = false;
   function update() {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     fill.style.height = (maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0) + '%';
     let active = 0;
-    sectionIds.forEach((id, i) => {
-      if (!id) return;
-      const sec = document.getElementById(id);
+    sections.forEach((sec, i) => {
       if (sec && sec.getBoundingClientRect().top < window.innerHeight * 0.55) active = i;
     });
     dots.forEach((d, i) => d.classList.toggle('active', i === active));
+    _railTick = false;
   }
-  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (!_railTick) { requestAnimationFrame(update); _railTick = true; }
+  }, { passive: true });
   update();
   dots.forEach(d => d.addEventListener('click', () => {
     const t = d.dataset.target;

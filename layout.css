@@ -1311,11 +1311,6 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 .wf-title { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
 .wf-desc { font-size: .93rem; color: var(--muted); line-height: 1.7; }
 
-@media (max-width: 860px) {
-  .products-grid { grid-template-columns: repeat(2, 1fr); }
-  .product-card--flagship { grid-column: span 2; grid-row: span 1; }
-}
-
 
 /* ══════════════════════════════════════════
    CREATIVE INTERACTIONS
