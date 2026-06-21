@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cây Đa — Banyan Mock · Thịnh Vượng Luật</title>
+<style>
+:root { --gold:#c9a227; --gold2:#f0c93a; --navy:#0f2246; }
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+body{
+  background: radial-gradient(ellipse at 28% 18%, rgba(26,58,107,.45) 0%, #070e1f 62%);
+  min-height:240vh;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:rgba(255,255,255,.7);
+}
+
+/* ── Fake page content ── */
+.hero{ padding:90px 52px 60px; max-width:640px; }
+.hero h1{ font-size:clamp(2rem,5vw,3rem); line-height:1.18; margin-bottom:18px; color:rgba(255,255,255,.88); }
+.hero em{ color:var(--gold2); font-style:italic; }
+.hero p{ color:rgba(255,255,255,.32); font-size:1.05rem; line-height:1.8; }
+
+.section{ padding:72px 52px; max-width:640px; border-top:1px solid rgba(255,255,255,.05); }
+.section h2{ color:var(--gold); font-size:1.3rem; margin-bottom:10px; }
+.section p{ color:rgba(255,255,255,.28); line-height:1.85; font-size:.95rem; }
+
+/* ── UI chrome ── */
+.hint{
+  position:fixed; top:16px; left:50%; transform:translateX(-50%);
+  background:rgba(201,162,39,.1); border:1px solid rgba(201,162,39,.25);
+  color:var(--gold); padding:6px 20px; border-radius:100px;
+  font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  pointer-events:none; z-index:100; transition:opacity .5s;
+}
+.hint.hide{ opacity:0; }
+
+.pct{
+  position:fixed; top:16px; right:16px;
+  color:rgba(201,162,39,.45); font-size:.72rem; font-weight:800;
+  letter-spacing:.06em; z-index:100; font-variant-numeric:tabular-nums;
+}
+
+.controls{
+  position:fixed; bottom:16px; left:16px;
+  display:flex; gap:8px; z-index:100;
+}
+.btn{
+  padding:7px 16px;
+  background:rgba(10,20,45,.88); border:1px solid rgba(201,162,39,.28);
+  color:var(--gold); font-size:.68rem; font-weight:700;
+  letter-spacing:.05em; border-radius:10px; cursor:pointer;
+  backdrop-filter:blur(8px); transition:background .2s, border-color .2s;
+}
+.btn:hover{ background:rgba(201,162,39,.14); border-color:rgba(201,162,39,.55); }
+
+/* ── Banyan tree (fixed corner) ── */
+.banyan-wrap{
+  position:fixed; bottom:16px; right:16px;
+  z-index:10; pointer-events:none;
+  filter:drop-shadow(0 0 18px rgba(201,162,39,.2));
+  opacity:.55;
+}
+.bn-br  { fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.bn-root{ fill:none; stroke-linecap:round; }
+.bn-lf  { opacity:0; transform-box:fill-box; transform-origin:center; transform:scale(.08); }
+
+/* ── Seed label ── */
+.seed-row{
+  position:fixed; bottom:52px; left:16px;
+  display:flex; align-items:center; gap:8px; z-index:100;
+  color:rgba(255,255,255,.25); font-size:.65rem;
+}
+.seed-row input{
+  width:64px; padding:4px 8px;
+  background:rgba(10,20,45,.7); border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.6); border-radius:6px; font-size:.65rem;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<div class="hint" id="hint">↓ Scroll để cây mọc · hoặc nhấn Autoplay</div>
+<div class="pct" id="pct">0%</div>
+
+<div class="hero">
+  <h1>Số hoá doanh nghiệp<br><em>trọn gói, một đầu mối</em></h1>
+  <p>SDS Vietnam — EasyInvoice · EasyCA · EasyBooks · EasyHRM · EasyPOS · EasyDocs</p>
+</div>
+<div class="section">
+  <h2>EasyInvoice</h2>
+  <p>Phần mềm hóa đơn điện tử theo Nghị định 123/2020/NĐ-CP. Phát hành tức thì, kết nối tổng cục thuế tự động.</p>
+</div>
+<div class="section">
+  <h2>EasyCA</h2>
+  <p>Chữ ký số PKI chuẩn quốc gia. USB Token &amp; Remote Signing — ký mọi lúc mọi nơi trên mọi thiết bị.</p>
+</div>
+<div class="section">
+  <h2>EasyBooks</h2>
+  <p>Kế toán tự động hóa toàn diện. Ghi sổ, báo cáo tài chính, quyết toán cuối năm — không cần kế toán viên chuyên sâu.</p>
+</div>
+
+<!-- ── Tree SVG ── -->
+<div class="banyan-wrap" id="banyan-wrap">
+  <svg id="btree" viewBox="0 0 180 290" width="180" height="290" style="overflow:visible"></svg>
+</div>
+
+<!-- ── Controls ── -->
+<div class="controls">
+  <button class="btn" onclick="autoplay()">▶ Autoplay</button>
+  <button class="btn" onclick="resetTree()">↺ Reset</button>
+  <button class="btn" onclick="regrow()">🌱 New seed</button>
+</div>
+<div class="seed-row">
+  Seed: <input id="seed-in" type="number" value="1337" min="1" max="9999">
+</div>
+
+<script>
+/* ── Seeded PRNG: mulberry32 ── */
+function makePrng(seed) {
+  let s = seed >>> 0;
+  return () => {
+    s = (s + 0x6D2B79F5) >>> 0;
+    let t = Math.imul(s ^ (s >>> 15), s | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const W = 180, H = 290;
+const svg = document.getElementById('btree');
+const ns  = 'http://www.w3.org/2000/svg';
+let items = [];
+
+/* ── Build tree recursively ── */
+function addBranch(rng, x1, y1, angle, len, depth) {
+  const isTerminal = depth > 5 || len < 5;
+
+  if (isTerminal) {
+    /* Leaf cluster — overlapping circles */
+    const g = document.createElementNS(ns, 'g');
+    g.classList.add('bn-lf');
+    const nc = 3 + Math.floor(rng() * 4);
+    for (let i = 0; i < nc; i++) {
+      const cx  = x1 + (rng() - .5) * 28;
+      const cy  = y1 - 4 + (rng() - .5) * 20;
+      const rad = 4 + rng() * 11;
+      const c = document.createElementNS(ns, 'circle');
+      c.setAttribute('cx', cx.toFixed(1));
+      c.setAttribute('cy', cy.toFixed(1));
+      c.setAttribute('r',  rad.toFixed(1));
+      c.setAttribute('fill',   `rgba(201,162,39,${(.05 + rng() * .07).toFixed(2)})`);
+      c.setAttribute('stroke', i < 2 ? `rgba(240,201,58,.38)` : `rgba(201,162,39,.22)`);
+      c.setAttribute('stroke-width', '0.9');
+      g.appendChild(c);
+    }
+    svg.appendChild(g);
+    items.push({ el: g, depth: 20, type: 'leaf' });
+    return;
+  }
+
+  const x2 = x1 + Math.sin(angle) * len;
+  const y2 = y1 - Math.cos(angle) * len;
+
+  /* Organic quadratic bezier branch */
+  const qx = (x1 + x2) / 2 + (rng() - .5) * len * .40;
+  const qy = (y1 + y2) / 2 + (rng() - .5) * len * .18;
+  const d  = `M${x1.toFixed(1)},${y1.toFixed(1)} Q${qx.toFixed(1)},${qy.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`;
+
+  const path = document.createElementNS(ns, 'path');
+  path.setAttribute('d', d);
+  const sw = Math.max(0.55, 5.4 - depth * .84);
+  const op = Math.min(.95, .48 + (5 - depth) * .09);
+  path.setAttribute('stroke', `rgba(201,162,39,${op.toFixed(2)})`);
+  path.setAttribute('stroke-width', sw.toFixed(1));
+  path.classList.add('bn-br');
+  svg.appendChild(path);
+
+  const tl = path.getTotalLength();
+  path.style.strokeDasharray  = tl;
+  path.style.strokeDashoffset = tl;
+  items.push({ el: path, depth, type: 'branch', tl });
+
+  /* Aerial roots — banyan signature */
+  if (depth === 2 && rng() > .38) {
+    const ox = x1 * .40 + x2 * .60 + (rng() - .5) * 6;
+    const oy = y1 * .40 + y2 * .60;
+    const tx = ox + (rng() - .5) * 14;
+    const rp = document.createElementNS(ns, 'path');
+    rp.setAttribute('d',
+      `M${ox.toFixed(1)},${oy.toFixed(1)} C${(ox+(rng()-.5)*14).toFixed(1)},${(oy+38).toFixed(1)} ${(tx+(rng()-.5)*10).toFixed(1)},${(H-38).toFixed(1)} ${tx.toFixed(1)},${(H+4).toFixed(0)}`
+    );
+    rp.setAttribute('stroke', `rgba(201,162,39,${(.16 + rng()*.10).toFixed(2)})`);
+    rp.setAttribute('stroke-width', (.7 + rng() * .5).toFixed(1));
+    rp.classList.add('bn-root');
+    svg.appendChild(rp);
+    const rtl = rp.getTotalLength();
+    rp.style.strokeDasharray  = rtl;
+    rp.style.strokeDashoffset = rtl;
+    items.push({ el: rp, depth: 8, type: 'root', tl: rtl });
+  }
+
+  /* Recurse children */
+  const nk = depth < 1 ? 2 : (rng() > .20 ? 2 : 3);
+  for (let i = 0; i < nk; i++) {
+    const half   = (nk - 1) / 2;
+    const spread = (i - half) * (.30 + rng() * .22);
+    const ca     = angle + spread + (rng() - .5) * .13;
+    const cl     = len   * (.60  + rng() * .18);
+    addBranch(rng, x2, y2, ca, cl, depth + 1);
+  }
+}
+
+/* ── Build with a given seed ── */
+function buildTree(seed) {
+  /* Clear previous */
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  items = [];
+
+  const rng = makePrng(seed);
+  /* Slight trunk lean: start angle slightly off-vertical */
+  const lean = (rng() - .5) * .12;
+  addBranch(rng, W / 2, H - 2, lean, 74, 0);
+
+  /* BFS order: trunk first, then rings outward, roots mid, leaves last */
+  items.sort((a, b) => a.depth - b.depth);
+}
+
+/* ── Reveal first n items ── */
+function revealN(n) {
+  items.forEach((item, i) => {
+    if (i < n) {
+      if (item.type === 'leaf') {
+        item.el.style.transition = 'opacity .55s ease, transform .7s cubic-bezier(.34,1.28,.64,1)';
+        item.el.style.opacity    = '1';
+        item.el.style.transform  = 'scale(1)';
+      } else {
+        item.el.style.transition = 'stroke-dashoffset .62s cubic-bezier(.4,0,.2,1)';
+        item.el.style.strokeDashoffset = '0';
+      }
+    } else {
+      if (item.type === 'leaf') {
+        item.el.style.transition = 'none';
+        item.el.style.opacity    = '0';
+        item.el.style.transform  = 'scale(.08)';
+      } else {
+        item.el.style.transition = 'none';
+        item.el.style.strokeDashoffset = item.tl;
+      }
+    }
+  });
+  document.getElementById('pct').textContent = Math.round((n / Math.max(1, items.length)) * 100) + '%';
+}
+
+/* ── Scroll driver ── */
+let _t = false;
+let _scrolled = false;
+window.addEventListener('scroll', () => {
+  if (!_scrolled) {
+    _scrolled = true;
+    document.getElementById('hint').classList.add('hide');
+    clearInterval(_ap);
+  }
+  if (_t) return;
+  _t = true;
+  requestAnimationFrame(() => {
+    const maxS = document.documentElement.scrollHeight - window.innerHeight;
+    const pct  = maxS > 0 ? window.scrollY / maxS : 0;
+    revealN(Math.round(pct * items.length));
+    _t = false;
+  });
+}, { passive: true });
+
+/* ── Autoplay ── */
+let _ap = null;
+function autoplay() {
+  resetTree();
+  let n = 0;
+  _ap = setInterval(() => {
+    revealN(++n);
+    if (n >= items.length) clearInterval(_ap);
+  }, 52);
+}
+function resetTree() {
+  clearInterval(_ap);
+  revealN(0);
+}
+function regrow() {
+  const newSeed = 1 + Math.floor(Math.random() * 9998);
+  document.getElementById('seed-in').value = newSeed;
+  buildTree(newSeed);
+  resetTree();
+  setTimeout(autoplay, 100);
+}
+
+/* ── Init ── */
+const initSeed = parseInt(document.getElementById('seed-in').value, 10) || 1337;
+buildTree(initSeed);
+window.addEventListener('load', () => setTimeout(autoplay, 500));
+</script>
+</body>
+</html>
