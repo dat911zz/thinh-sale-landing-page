@@ -150,7 +150,7 @@
         <div class="hero-badge-dot"></div>
         Đại lý uỷ quyền chính thức · SDS Vietnam
       </div>
-      <h1 id="hero-title">Số hoá doanh nghiệp<br /><em>trọn gói, một đầu mối</em></h1>
+      <h1 id="hero-title">Số hoá doanh nghiệp<br /><em><span id="typewriter-text">trọn gói, một đầu mối</span><span class="typewriter-cursor" aria-hidden="true"></span></em></h1>
       <p class="hero-sub" id="hero-desc">Hoá đơn điện tử, chữ ký số, kế toán, nhân sự, bán hàng – toàn bộ hệ sinh thái phần mềm SDS trong một nơi. Tư vấn miễn phí, kích hoạt trong ngày, hỗ trợ trọn đời.</p>
       <div class="hero-btns">
         <a href="#contact" class="btn-primary">Nhận tư vấn miễn phí →</a>
@@ -390,6 +390,38 @@
 
 <!-- ══ SCROLL TO TOP ══════════════════════════════ -->
 <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
+
+<!-- ══ SCROLL PROGRESS RAIL ════════════════════════ -->
+<div class="scroll-rail" id="scroll-rail" aria-hidden="true">
+  <div class="scroll-rail-bg"></div>
+  <div class="scroll-rail-fill" id="scroll-rail-fill"></div>
+  <div class="scroll-rail-dot active" data-target="" data-label="Trang chủ" style="top:0%"></div>
+  <div class="scroll-rail-dot" data-target="products" data-label="Sản phẩm" style="top:25%"></div>
+  <div class="scroll-rail-dot" data-target="easyinvoice" data-label="Bảng giá" style="top:50%"></div>
+  <div class="scroll-rail-dot" data-target="ecosystem" data-label="Hệ sinh thái" style="top:75%"></div>
+  <div class="scroll-rail-dot" data-target="contact" data-label="Liên hệ" style="top:100%"></div>
+</div>
+
+<!-- ══ BAMBOO PLANT ════════════════════════════════ -->
+<div class="bamboo-wrap" aria-hidden="true">
+  <svg class="bamboo-svg" viewBox="0 0 70 260" width="70" height="260">
+    <line class="bam-part bam-stem"  x1="35" y1="260" x2="35" y2="215" data-stage="0"/>
+    <line class="bam-part bam-joint" x1="29" y1="215" x2="41" y2="215" data-stage="0"/>
+    <line class="bam-part bam-stem"  x1="35" y1="215" x2="35" y2="170" data-stage="1"/>
+    <line class="bam-part bam-joint" x1="29" y1="170" x2="41" y2="170" data-stage="1"/>
+    <path class="bam-part bam-leaf"  d="M35,176 Q14,164 4,146"          data-stage="1"/>
+    <line class="bam-part bam-stem"  x1="35" y1="170" x2="35" y2="125" data-stage="2"/>
+    <line class="bam-part bam-joint" x1="29" y1="125" x2="41" y2="125" data-stage="2"/>
+    <path class="bam-part bam-leaf"  d="M35,131 Q56,119 66,101"         data-stage="2"/>
+    <line class="bam-part bam-stem"  x1="35" y1="125" x2="35" y2="80"  data-stage="3"/>
+    <line class="bam-part bam-joint" x1="29" y1="80"  x2="41" y2="80"  data-stage="3"/>
+    <path class="bam-part bam-leaf"  d="M35,86 Q13,73 3,55"             data-stage="3"/>
+    <path class="bam-part bam-leaf"  d="M35,86 Q57,75 67,58"            data-stage="3"/>
+    <line class="bam-part bam-stem"  x1="35" y1="80"  x2="35" y2="35"  data-stage="4"/>
+    <path class="bam-part bam-leaf"  d="M35,42 Q11,28 1,10"             data-stage="4"/>
+    <path class="bam-part bam-leaf"  d="M35,42 Q59,30 69,13"            data-stage="4"/>
+  </svg>
+</div>
 
 <script src="layout.js"></script>
 <script>
@@ -704,6 +736,86 @@ fetch('pricing.json')
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(render)
   .catch(err => console.error('Không thể tải pricing.json:', err));
+
+/* ── TYPEWRITER ───────────────────────────────── */
+(function () {
+  const el = document.getElementById('typewriter-text');
+  if (!el) return;
+  const phrases = [
+    'trọn gói, một đầu mối',
+    'hóa đơn điện tử tức thì',
+    'ký số trong 5 phút',
+    'kế toán tự động hóa',
+    'nhân sự không lo nghỉ',
+    'bán hàng mọi lúc mọi nơi',
+  ];
+  let pi = 0, ci = phrases[0].length, del = false;
+  const TYPE = 65, DEL = 32, PAUSE = 2400;
+  function tick() {
+    const phrase = phrases[pi];
+    if (!del) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) return setTimeout(() => { del = true; tick(); }, PAUSE);
+    } else {
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) { del = false; pi = (pi + 1) % phrases.length; }
+    }
+    setTimeout(tick, del ? DEL : TYPE);
+  }
+  setTimeout(tick, 2800);
+})();
+
+/* ── SCROLL PROGRESS RAIL ─────────────────────── */
+(function () {
+  const fill = document.getElementById('scroll-rail-fill');
+  const dots = document.querySelectorAll('.scroll-rail-dot');
+  if (!fill) return;
+  const sectionIds = ['', 'products', 'easyinvoice', 'ecosystem', 'contact'];
+  function update() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    fill.style.height = (maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0) + '%';
+    let active = 0;
+    sectionIds.forEach((id, i) => {
+      if (!id) return;
+      const sec = document.getElementById(id);
+      if (sec && sec.getBoundingClientRect().top < window.innerHeight * 0.55) active = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === active));
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+  dots.forEach(d => d.addEventListener('click', () => {
+    const t = d.dataset.target;
+    if (!t) window.scrollTo({ top: 0, behavior: 'smooth' });
+    else document.getElementById(t)?.scrollIntoView({ behavior: 'smooth' });
+  }));
+})();
+
+/* ── BAMBOO GROWTH ────────────────────────────── */
+(function () {
+  const wrap = document.querySelector('.bamboo-wrap');
+  if (!wrap) return;
+  const parts = wrap.querySelectorAll('.bam-part');
+  parts.forEach(el => {
+    let len;
+    try { len = el.getTotalLength(); } catch (_) {
+      len = Math.hypot(+el.getAttribute('x2') - +el.getAttribute('x1'),
+                       +el.getAttribute('y2') - +el.getAttribute('y1'));
+    }
+    el._len = len;
+    el.style.strokeDasharray  = len;
+    el.style.strokeDashoffset = len;
+  });
+  function update() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const stage = max > 0 ? Math.min(4, Math.floor((window.scrollY / max) * 6)) : 0;
+    parts.forEach(el => {
+      el.style.strokeDashoffset = +el.dataset.stage <= stage ? 0 : el._len;
+    });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
 </script>
 </body>
 </html>

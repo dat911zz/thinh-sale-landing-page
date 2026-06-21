@@ -1316,8 +1316,78 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
   .product-card--flagship { grid-column: span 2; grid-row: span 1; }
 }
 
-@media (max-width: 560px) {
-  .products-grid { grid-template-columns: 1fr; }
-  .product-card--flagship { grid-column: span 1; }
-  .product-card--flagship .product-logo-wrap { width: 160px; }
+
+/* ══════════════════════════════════════════
+   CREATIVE INTERACTIONS
+══════════════════════════════════════════ */
+
+/* ── Typewriter cursor ────────────────────────── */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px; height: .85em;
+  background: var(--gold2);
+  margin-left: 3px;
+  vertical-align: text-bottom;
+  border-radius: 1px;
+  animation: blink-caret .85s step-end infinite;
+}
+@keyframes blink-caret {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Scroll progress rail ─────────────────────── */
+.scroll-rail {
+  position: fixed; left: 18px; top: 50%; transform: translateY(-50%);
+  z-index: 50; width: 2px; height: 200px;
+}
+.scroll-rail-bg {
+  position: absolute; inset: 0;
+  background: rgba(15,34,70,.12); border-radius: 2px;
+}
+.scroll-rail-fill {
+  position: absolute; top: 0; left: 0; width: 100%; height: 0%;
+  background: linear-gradient(to bottom, var(--gold), var(--gold2));
+  border-radius: 2px; transition: height .12s linear;
+}
+.scroll-rail-dot {
+  position: absolute; left: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(15,34,70,.15); border: 1.5px solid rgba(15,34,70,.22);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: background .25s, border-color .25s, transform .25s;
+}
+.scroll-rail-dot.active {
+  background: var(--gold); border-color: var(--gold);
+  transform: translate(-50%, -50%) scale(1.4);
+}
+.scroll-rail-dot::after {
+  content: attr(data-label);
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: .62rem; font-weight: 700; letter-spacing: .05em; white-space: nowrap;
+  color: rgba(15,34,70,.5); opacity: 0; transition: opacity .2s;
+  pointer-events: none; text-transform: uppercase;
+}
+.scroll-rail-dot.active::after { opacity: 1; color: var(--navy); }
+@media (max-width: 900px) { .scroll-rail { display: none; } }
+
+/* ── Bamboo plant ─────────────────────────────── */
+.bamboo-wrap {
+  position: fixed; bottom: 20px; right: 20px;
+  z-index: 10; pointer-events: none; opacity: .5;
+  filter: drop-shadow(0 0 8px rgba(201,162,39,.18));
+}
+.bam-part {
+  fill: none; stroke-linecap: round;
+  transition: stroke-dashoffset .75s cubic-bezier(.4,0,.2,1);
+}
+.bam-stem  { stroke: var(--gold);          stroke-width: 3; }
+.bam-joint { stroke: rgba(201,162,39,.55); stroke-width: 5; stroke-linecap: square; }
+.bam-leaf  { stroke: var(--gold2);         stroke-width: 1.5; opacity: .75; }
+@media (max-width: 768px) {
+  .bamboo-wrap {
+    bottom: 72px; right: 8px; opacity: .28;
+    transform: scale(.65); transform-origin: bottom right;
+  }
 }
