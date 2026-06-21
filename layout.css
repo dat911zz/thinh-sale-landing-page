@@ -372,6 +372,25 @@ section { padding: 88px 24px; }
 
 .product-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
 
+.product-card--flagship {
+  grid-column: span 2; grid-row: span 2;
+  justify-content: flex-start;
+  background: linear-gradient(150deg, var(--white) 60%, rgba(201,162,39,.06));
+  border-color: rgba(201,162,39,.35);
+}
+.product-card--flagship .product-logo-wrap { width: 200px; height: 38px; margin-bottom: 20px; }
+.product-card--flagship .product-desc { font-size: 1rem; max-width: 420px; }
+.product-flagship-badge {
+  align-self: flex-start;
+  font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--gold); background: rgba(201,162,39,.12);
+  padding: 4px 10px; border-radius: 100px; margin-bottom: 14px;
+}
+.product-card-cta {
+  display: inline-block; margin-top: 16px; padding-top: 12px;
+  font-size: .85rem; font-weight: 700; color: var(--gold2);
+}
+
 /* ══════════════════════════════════════════
    PRODUCT SHOWCASE (product pages)
 ══════════════════════════════════════════ */
@@ -903,4 +922,15 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
   .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
   .pricing-cta-section { padding: 64px 16px; }
   .stats-section { padding: 40px 16px; }
+}
+
+@media (max-width: 860px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-card--flagship { grid-column: span 2; grid-row: span 1; }
+}
+
+@media (max-width: 560px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .product-card--flagship { grid-column: span 1; }
+  .product-card--flagship .product-logo-wrap { width: 160px; }
 }

@@ -429,10 +429,12 @@ function render(data) {
     'EasyPOS': 'easypos.html', 'EasyDocs': 'easydocs.html'
   };
   document.getElementById('products-grid').innerHTML =
-    products.map(p => `
-      <a href="${productLinks[p.name] || '#'}" class="product-card fade-up">
+    products.map((p, i) => `
+      <a href="${productLinks[p.name] || '#'}" class="product-card fade-up${i === 0 ? ' product-card--flagship' : ''}">
+        ${i === 0 ? '<span class="product-flagship-badge">Sản phẩm chủ lực</span>' : ''}
         ${logoImg(p.logo, p.name, p.icon)}
         <p class="product-desc">${p.desc}</p>
+        <span class="product-card-cta">Tìm hiểu thêm →</span>
       </a>`).join('');
 
   /* EasyInvoice */
