@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cây Đa v2 — Banyan Mock · Thịnh Vượng Luật</title>
+<title>Mai Vàng — Tree Mock · Thịnh Vượng Luật</title>
 <style>
 :root { --gold:#c9a227; --gold2:#f0c93a; }
 *{ box-sizing:border-box; margin:0; padding:0; }
@@ -17,16 +17,10 @@ body{
 
 /* ── Fake page content ── */
 .hero{ padding:90px 52px 60px; max-width:640px; }
-.hero h1{
-  font-size:clamp(2rem,5vw,3rem); line-height:1.18;
-  margin-bottom:18px; color:rgba(255,255,255,.88);
-}
+.hero h1{ font-size:clamp(2rem,5vw,3rem); line-height:1.18; margin-bottom:18px; color:rgba(255,255,255,.88); }
 .hero em{ color:var(--gold2); font-style:italic; }
 .hero p{ color:rgba(255,255,255,.32); font-size:1.05rem; line-height:1.8; }
-.section{
-  padding:72px 52px; max-width:640px;
-  border-top:1px solid rgba(255,255,255,.05);
-}
+.section{ padding:72px 52px; max-width:640px; border-top:1px solid rgba(255,255,255,.05); }
 .section h2{ color:var(--gold); font-size:1.3rem; margin-bottom:10px; }
 .section p{ color:rgba(255,255,255,.28); line-height:1.85; font-size:.95rem; }
 
@@ -39,83 +33,91 @@ body{
   pointer-events:none; z-index:100; transition:opacity .5s;
 }
 .hint.hide{ opacity:0; }
-
 .pct{
   position:fixed; top:16px; right:16px;
   color:rgba(201,162,39,.45); font-size:.72rem; font-weight:800;
   letter-spacing:.06em; z-index:100; font-variant-numeric:tabular-nums;
 }
-.controls{
-  position:fixed; bottom:16px; left:16px;
-  display:flex; gap:8px; z-index:100;
-}
+.controls{ position:fixed; bottom:16px; left:16px; display:flex; gap:8px; z-index:100; }
 .btn{
-  padding:7px 16px;
-  background:rgba(10,20,45,.88); border:1px solid rgba(201,162,39,.28);
-  color:var(--gold); font-size:.68rem; font-weight:700;
-  letter-spacing:.05em; border-radius:10px; cursor:pointer;
-  backdrop-filter:blur(8px); transition:background .2s, border-color .2s;
+  padding:7px 16px; background:rgba(10,20,45,.88);
+  border:1px solid rgba(201,162,39,.28); color:var(--gold);
+  font-size:.68rem; font-weight:700; letter-spacing:.05em; border-radius:10px;
+  cursor:pointer; backdrop-filter:blur(8px); transition:background .2s, border-color .2s;
 }
 .btn:hover{ background:rgba(201,162,39,.14); border-color:rgba(201,162,39,.55); }
 .seed-row{
-  position:fixed; bottom:52px; left:16px;
-  display:flex; align-items:center; gap:8px; z-index:100;
-  color:rgba(255,255,255,.22); font-size:.63rem;
+  position:fixed; bottom:52px; left:16px; display:flex; align-items:center;
+  gap:8px; z-index:100; color:rgba(255,255,255,.22); font-size:.63rem;
 }
 .seed-row input{
-  width:60px; padding:3px 8px;
-  background:rgba(10,20,45,.7); border:1px solid rgba(255,255,255,.13);
-  color:rgba(255,255,255,.55); border-radius:6px; font-size:.63rem; text-align:center;
+  width:60px; padding:3px 8px; background:rgba(10,20,45,.7);
+  border:1px solid rgba(255,255,255,.13); color:rgba(255,255,255,.55);
+  border-radius:6px; font-size:.63rem; text-align:center;
 }
 
 /* ── Tree ── */
 .banyan-wrap{
-  position:fixed; bottom:16px; right:16px;
-  z-index:10; pointer-events:none;
-  filter:drop-shadow(0 0 18px rgba(201,162,39,.22));
-  opacity:.55;
+  position:fixed; bottom:12px; right:14px; z-index:10; pointer-events:none;
+  filter:drop-shadow(0 4px 22px rgba(201,162,39,.20));
+  opacity:.92; width:200px; height:300px;
 }
-/* Branch strokes */
-.bn-br  { fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.bn-root{ fill:none; stroke-linecap:round; }
 
-/*
-  Leaf animation container (inner <g>).
-  transform-origin: center top → scale from the ATTACHMENT POINT (base of leaf).
-  Leaf path: base at (0,0), tip drapes downward at (0,+h).
-*/
-.bn-lf{
-  opacity:0;
-  transform-box:fill-box;
-  transform-origin:center top;
-  transform:scale(.04);
+/* Branch body: filled tapered ribbon. Reveal by fade + slight grow. */
+.mb-branch{ opacity:0; transform-box:fill-box; transform-origin:center; transform:scale(.72); }
+/* Aerial root: thin stroke that draws in. */
+.mb-root{ fill:none; stroke-linecap:round; }
+/* Blossom + bud: scale-bounce from their anchor. */
+.mb-bloss{ opacity:0; transform-box:fill-box; transform-origin:center; transform:scale(0); }
+.mb-bud  { opacity:0; transform-box:fill-box; transform-origin:center; transform:scale(0); }
+
+/* Ambient falling petals (HTML overlay). */
+.petal{
+  position:absolute; width:9px; height:11px; pointer-events:none;
+  background:radial-gradient(ellipse at 50% 30%, #f7d94a 0%, #c9a227 80%);
+  border-radius:60% 60% 60% 60% / 70% 70% 40% 40%;
+  opacity:0; top:18%; filter:drop-shadow(0 0 3px rgba(240,201,58,.4));
+}
+@keyframes petalfall{
+  0%   { opacity:0;  transform:translate(0,0)      rotate(0deg)   scale(.9); }
+  12%  { opacity:.75; }
+  100% { opacity:0;  transform:translate(-46px,210px) rotate(300deg) scale(.7); }
 }
 </style>
 </head>
 <body>
 
-<div class="hint" id="hint">↓ Scroll để cây mọc · hoặc nhấn ▶</div>
+<div class="hint" id="hint">↓ Scroll để mai nở · hoặc nhấn ▶</div>
 <div class="pct"  id="pct">0%</div>
 
 <div class="hero">
   <h1>Số hoá doanh nghiệp<br><em>trọn gói, một đầu mối</em></h1>
   <p>SDS Vietnam · EasyInvoice · EasyCA · EasyBooks · EasyHRM · EasyPOS · EasyDocs</p>
 </div>
-<div class="section">
-  <h2>EasyInvoice</h2>
-  <p>Phần mềm hóa đơn điện tử theo Nghị định 123/2020/NĐ-CP. Phát hành tức thì, kết nối tổng cục thuế tự động.</p>
-</div>
-<div class="section">
-  <h2>EasyCA</h2>
-  <p>Chữ ký số PKI chuẩn quốc gia. USB Token &amp; Remote Signing — ký mọi lúc mọi nơi trên mọi thiết bị.</p>
-</div>
-<div class="section">
-  <h2>EasyBooks</h2>
-  <p>Kế toán tự động hóa toàn diện. Ghi sổ, báo cáo tài chính, quyết toán cuối năm không cần kế toán viên chuyên sâu.</p>
-</div>
+<div class="section"><h2>EasyInvoice</h2><p>Phần mềm hóa đơn điện tử theo Nghị định 123/2020/NĐ-CP. Phát hành tức thì, kết nối tổng cục thuế tự động.</p></div>
+<div class="section"><h2>EasyCA</h2><p>Chữ ký số PKI chuẩn quốc gia. USB Token &amp; Remote Signing — ký mọi lúc mọi nơi trên mọi thiết bị.</p></div>
+<div class="section"><h2>EasyBooks</h2><p>Kế toán tự động hóa toàn diện. Ghi sổ, báo cáo tài chính, quyết toán cuối năm không cần kế toán viên chuyên sâu.</p></div>
 
 <div class="banyan-wrap" id="banyan-wrap">
-  <svg id="btree" viewBox="0 0 180 290" width="180" height="290" style="overflow:visible"></svg>
+  <svg id="btree" viewBox="0 0 180 290" width="200" height="300" style="overflow:visible">
+    <defs>
+      <!-- Trunk dark at base → bright gold at canopy (depth illusion) -->
+      <linearGradient id="branchGrad" gradientUnits="userSpaceOnUse" x1="0" y1="290" x2="0" y2="20">
+        <stop offset="0"   stop-color="#5e461a"/>
+        <stop offset=".45" stop-color="#9a7a20"/>
+        <stop offset="1"   stop-color="#d8b733"/>
+      </linearGradient>
+      <radialGradient id="blossomGrad" cx="50%" cy="42%" r="60%">
+        <stop offset="0"  stop-color="#fbe98a"/>
+        <stop offset=".55" stop-color="#f0c93a"/>
+        <stop offset="1"  stop-color="#c9a227"/>
+      </radialGradient>
+      <filter id="bglow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="1.3" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+  </svg>
 </div>
 
 <div class="controls">
@@ -123,13 +125,11 @@ body{
   <button class="btn" onclick="resetTree()">↺ Reset</button>
   <button class="btn" onclick="regrow()">🌱 New seed</button>
 </div>
-<div class="seed-row">
-  Seed: <input id="seed-in" type="number" value="1337" min="1" max="9999">
-</div>
+<div class="seed-row">Seed: <input id="seed-in" type="number" value="1337" min="1" max="9999"></div>
 
 <script>
 /* ─── Seeded PRNG: mulberry32 ─── */
-function makePrng(seed) {
+function makePrng(seed){
   let s = seed >>> 0;
   return () => {
     s = (s + 0x6D2B79F5) >>> 0;
@@ -140,222 +140,211 @@ function makePrng(seed) {
 }
 
 const W = 180, H = 290;
-const svg = document.getElementById('btree');
 const ns  = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('btree');
 let items = [];
 
-/* ─────────────────────────────────────────────────
-   LEAF: inverted teardrop ("giọt nước ngược")
-   Local coords: base/stem at (0, 0), tip drapes to (0, +h).
-   Outer <g> handles position + rotation in world space.
-   Inner <g class="bn-lf"> handles CSS scale animation.
-   ───────────────────────────────────────────────── */
-function placeLeaf(rng, px, py, rotateDeg, h) {
-  const w = h * (0.30 + rng() * 0.12); // leaf width
+const widthAt = d => Math.max(0.8, 10 * Math.pow(0.585, d));
 
-  const outer = document.createElementNS(ns, 'g');
-  outer.setAttribute('transform',
-    `translate(${px.toFixed(1)},${py.toFixed(1)}) rotate(${rotateDeg.toFixed(1)})`);
-
-  const inner = document.createElementNS(ns, 'g');
-  inner.classList.add('bn-lf');
-
-  /* Blade: M 0,0 (stem) curving out to max width at ~35% then tapering to tip at (0,h) */
-  const blade = document.createElementNS(ns, 'path');
-  blade.setAttribute('d',
-    `M 0,0 ` +
-    `C ${(-w).toFixed(2)},${(h * .32).toFixed(2)} ${(-w * .76).toFixed(2)},${(h * .65).toFixed(2)} 0,${h.toFixed(2)} ` +
-    `C ${(w * .76).toFixed(2)},${(h * .65).toFixed(2)} ${w.toFixed(2)},${(h * .32).toFixed(2)} 0,0 Z`
-  );
-  const fillOp   = (.055 + rng() * .075).toFixed(3);
-  const strokeOp = (.26  + rng() * .22 ).toFixed(3);
-  const bright   = rng() > .42;
-  blade.setAttribute('fill',   `rgba(201,162,39,${fillOp})`);
-  blade.setAttribute('stroke', bright
-    ? `rgba(240,201,58,${strokeOp})`
-    : `rgba(201,162,39,${strokeOp})`);
-  blade.setAttribute('stroke-width', (.5 + rng() * .3).toFixed(2));
-  inner.appendChild(blade);
-
-  /* Midrib vein */
-  const vein = document.createElementNS(ns, 'line');
-  vein.setAttribute('x1', '0'); vein.setAttribute('y1', '0');
-  vein.setAttribute('x2', '0'); vein.setAttribute('y2', (h * .88).toFixed(2));
-  vein.setAttribute('stroke', 'rgba(240,201,58,.22)');
-  vein.setAttribute('stroke-width', '.32');
-  inner.appendChild(vein);
-
-  outer.appendChild(inner);
-  svg.appendChild(outer);
-  return inner; // the element we animate
-}
-
-/* ─────────────────────────────────────────────────
-   SCATTER LEAVES along a quadratic bezier segment.
-   Sample n points, alternate left/right, leaves drape down.
-   ───────────────────────────────────────────────── */
-function scatterLeaves(rng, p0, ctrl, p2, depth) {
-  if (depth < 3) return;
-
-  const n      = depth >= 5 ? 5 : (depth === 4 ? 4 : 3);
-  const baseH  = Math.max(5, 15 - depth * 1.6);
-
-  for (let i = 0; i < n; i++) {
-    const t  = (2 * i + 1) / (2 * n); // evenly spaced
-    const mt = 1 - t;
-
-    /* Point on bezier */
-    const px = mt*mt*p0.x + 2*mt*t*ctrl.x + t*t*p2.x;
-    const py = mt*mt*p0.y + 2*mt*t*ctrl.y + t*t*p2.y;
-
-    /* Tangent at t → branch direction in degrees from "up" */
-    const tdx = 2*mt*(ctrl.x - p0.x) + 2*t*(p2.x - ctrl.x);
-    const tdy = 2*mt*(ctrl.y - p0.y) + 2*t*(p2.y - ctrl.y);
-    const branchFromUp = Math.atan2(tdx, -tdy) * 180 / Math.PI;
-
-    /*
-      Leaf rotation in SVG degrees:
-        0°   → tip points DOWN  (giọt nước ngược default)
-       +90°  → tip points RIGHT
-       -90°  → tip points LEFT
-      We want leaves to drape mostly downward, alternating left/right ≈ ±70°,
-      with a slight influence from the branch direction so they look attached.
-    */
-    const side    = (i % 2 === 0) ? 1 : -1;
-    const base    = side * (65 + rng() * 20); // ±65-85° from down
-    const bias    = branchFromUp * 0.18;       // subtle branch influence
-    const jitter  = (rng() - .5) * 22;
-    const rotDeg  = base + bias + jitter;
-
-    const h  = baseH * (.80 + rng() * .42);
-    const el = placeLeaf(rng, px, py, rotDeg, h);
-    /* Leaves sort after their parent branch depth, ordered by sample index */
-    items.push({ el, depth: 10 + depth + i * .1, type: 'leaf' });
+/* ─────────────────────────────────────────────
+   TAPERED RIBBON — filled organic branch body.
+   Centerline = quadratic bezier (p0→ctrl→p2),
+   width interpolates w1(base)→w2(tip).
+   ───────────────────────────────────────────── */
+function ribbonPath(p0, ctrl, p2, w1, w2){
+  const N = 9, L = [], R = [];
+  for (let i = 0; i <= N; i++){
+    const t = i / N, mt = 1 - t;
+    const x  = mt*mt*p0.x + 2*mt*t*ctrl.x + t*t*p2.x;
+    const y  = mt*mt*p0.y + 2*mt*t*ctrl.y + t*t*p2.y;
+    const dx = 2*mt*(ctrl.x-p0.x) + 2*t*(p2.x-ctrl.x);
+    const dy = 2*mt*(ctrl.y-p0.y) + 2*t*(p2.y-ctrl.y);
+    const ln = Math.hypot(dx, dy) || 1;
+    const nx = -dy/ln, nyv = dx/ln;
+    const hw = (w1*(1-t) + w2*t) / 2;
+    L.push([x + nx*hw, y + nyv*hw]);
+    R.push([x - nx*hw, y - nyv*hw]);
   }
+  let d = `M${L[0][0].toFixed(1)},${L[0][1].toFixed(1)}`;
+  for (let i = 1; i < L.length; i++) d += `L${L[i][0].toFixed(1)},${L[i][1].toFixed(1)}`;
+  for (let i = R.length - 1; i >= 0; i--) d += `L${R[i][0].toFixed(1)},${R[i][1].toFixed(1)}`;
+  return d + 'Z';
 }
 
-/* ─────────────────────────────────────────────────
-   RECURSIVE BRANCH
-   ───────────────────────────────────────────────── */
-function addBranch(rng, x1, y1, angle, len, depth) {
-  const isTerminal = depth > 5 || len < 5;
+/* ─── 5-petal hoa mai blossom ─── */
+function placeBlossom(rng, cx, cy, r, depth){
+  const g = document.createElementNS(ns, 'g');
+  g.setAttribute('transform', `translate(${cx.toFixed(1)},${cy.toFixed(1)}) rotate(${(rng()*72).toFixed(1)})`);
+  g.classList.add('mb-bloss');
+  g.setAttribute('filter', 'url(#bglow)');
 
+  for (let i = 0; i < 5; i++){
+    const a = i * 72;
+    const petal = document.createElementNS(ns, 'ellipse');
+    petal.setAttribute('cx', '0');
+    petal.setAttribute('cy', (-r * 0.6).toFixed(2));
+    petal.setAttribute('rx', (r * 0.36).toFixed(2));
+    petal.setAttribute('ry', (r * 0.6).toFixed(2));
+    petal.setAttribute('transform', `rotate(${a})`);
+    petal.setAttribute('fill', 'url(#blossomGrad)');
+    petal.setAttribute('stroke', 'rgba(255,243,176,.5)');
+    petal.setAttribute('stroke-width', '0.35');
+    g.appendChild(petal);
+  }
+  /* Center disc */
+  const core = document.createElementNS(ns, 'circle');
+  core.setAttribute('r', (r * 0.28).toFixed(2));
+  core.setAttribute('fill', '#b9881a');
+  g.appendChild(core);
+  /* Stamens */
+  for (let i = 0; i < 6; i++){
+    const a = (i / 6) * Math.PI * 2;
+    const sd = document.createElementNS(ns, 'circle');
+    sd.setAttribute('cx', (Math.cos(a) * r * 0.26).toFixed(2));
+    sd.setAttribute('cy', (Math.sin(a) * r * 0.26).toFixed(2));
+    sd.setAttribute('r', (r * 0.07).toFixed(2));
+    sd.setAttribute('fill', '#fff3c0');
+    g.appendChild(sd);
+  }
+  svg.appendChild(g);
+  items.push({ el: g, depth: 14 + depth, type: 'bloss' });
+}
+
+/* ─── Unopened bud (teardrop) ─── */
+function placeBud(rng, cx, cy, r){
+  const g = document.createElementNS(ns, 'g');
+  g.setAttribute('transform', `translate(${cx.toFixed(1)},${cy.toFixed(1)}) rotate(${((rng()-.5)*60).toFixed(1)})`);
+  g.classList.add('mb-bud');
+  const bud = document.createElementNS(ns, 'path');
+  /* teardrop pointing up */
+  bud.setAttribute('d', `M0,${(-r*1.5).toFixed(1)} C${(r).toFixed(1)},${(-r*0.4).toFixed(1)} ${(r*0.7).toFixed(1)},${(r*0.7).toFixed(1)} 0,${(r*0.7).toFixed(1)} C${(-r*0.7).toFixed(1)},${(r*0.7).toFixed(1)} ${(-r).toFixed(1)},${(-r*0.4).toFixed(1)} 0,${(-r*1.5).toFixed(1)} Z`);
+  bud.setAttribute('fill', 'rgba(201,162,39,.55)');
+  bud.setAttribute('stroke', 'rgba(240,201,58,.45)');
+  bud.setAttribute('stroke-width', '0.4');
+  g.appendChild(bud);
+  svg.appendChild(g);
+  items.push({ el: g, depth: 13, type: 'bud' });
+}
+
+/* ─── Recursive branch ─── */
+function addBranch(rng, x1, y1, angle, len, depth){
   const x2 = x1 + Math.sin(angle) * len;
   const y2 = y1 - Math.cos(angle) * len;
-
-  if (isTerminal) {
-    /* Few leaves at tip only */
-    scatterLeaves(rng,
-      { x: x1, y: y1 },
-      { x: (x1+x2)/2, y: (y1+y2)/2 },
-      { x: x2, y: y2 }, 5);
-    return;
-  }
-
-  /* Organic quadratic bezier */
-  const qx = (x1+x2)/2 + (rng()-.5)*len*.40;
+  const qx = (x1+x2)/2 + (rng()-.5)*len*.42;
   const qy = (y1+y2)/2 + (rng()-.5)*len*.18;
+  const p0 = {x:x1,y:y1}, ctrl = {x:qx,y:qy}, p2 = {x:x2,y:y2};
 
-  const path = document.createElementNS(ns, 'path');
-  path.setAttribute('d',
-    `M${x1.toFixed(1)},${y1.toFixed(1)} Q${qx.toFixed(1)},${qy.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`);
-  const sw = Math.max(.55, 5.4 - depth * .84);
-  const op = Math.min(.95, .48 + (5 - depth) * .09);
-  path.setAttribute('stroke', `rgba(201,162,39,${op.toFixed(2)})`);
-  path.setAttribute('stroke-width', sw.toFixed(1));
-  path.setAttribute('fill', 'none');
-  path.setAttribute('stroke-linecap', 'round');
-  path.setAttribute('stroke-linejoin', 'round');
-  svg.appendChild(path);
+  /* Filled tapered body */
+  const body = document.createElementNS(ns, 'path');
+  body.setAttribute('d', ribbonPath(p0, ctrl, p2, widthAt(depth), widthAt(depth+1)));
+  body.setAttribute('fill', 'url(#branchGrad)');
+  body.classList.add('mb-branch');
+  svg.appendChild(body);
+  items.push({ el: body, depth, type: 'branch' });
 
-  const tl = path.getTotalLength();
-  path.style.strokeDasharray  = tl;
-  path.style.strokeDashoffset = tl;
-  items.push({ el: path, depth, type: 'branch', tl });
-
-  /* Scatter leaves along this branch */
-  scatterLeaves(rng, { x:x1, y:y1 }, { x:qx, y:qy }, { x:x2, y:y2 }, depth);
-
-  /* Aerial roots — banyan signature: thin tendrils hanging from mid branches */
-  if (depth === 2 && rng() > .40) {
-    const ox = x1*.40 + x2*.60 + (rng()-.5)*6;
-    const oy = y1*.40 + y2*.60;
+  /* Aerial roots — banyan/mai hanging tendrils from mid branches */
+  if (depth === 2 && rng() > .42){
+    const ox = x1*.4 + x2*.6 + (rng()-.5)*6;
+    const oy = y1*.4 + y2*.6;
     const tx = ox + (rng()-.5)*14;
     const rp = document.createElementNS(ns, 'path');
     rp.setAttribute('d',
-      `M${ox.toFixed(1)},${oy.toFixed(1)} ` +
-      `C${(ox+(rng()-.5)*14).toFixed(1)},${(oy+36).toFixed(1)} ` +
-      `${(tx+(rng()-.5)*10).toFixed(1)},${(H-40).toFixed(1)} ` +
-      `${tx.toFixed(1)},${(H+4)}`);
-    rp.setAttribute('stroke', `rgba(201,162,39,${(.15+rng()*.11).toFixed(2)})`);
-    rp.setAttribute('stroke-width', (.65+rng()*.50).toFixed(1));
+      `M${ox.toFixed(1)},${oy.toFixed(1)} C${(ox+(rng()-.5)*14).toFixed(1)},${(oy+36).toFixed(1)} ${(tx+(rng()-.5)*10).toFixed(1)},${(H-40).toFixed(1)} ${tx.toFixed(1)},${(H+4)}`);
+    rp.setAttribute('stroke', `rgba(201,162,39,${(.14+rng()*.10).toFixed(2)})`);
+    rp.setAttribute('stroke-width', (.6+rng()*.5).toFixed(1));
     rp.setAttribute('fill', 'none');
     rp.setAttribute('stroke-linecap', 'round');
     svg.appendChild(rp);
     const rtl = rp.getTotalLength();
     rp.style.strokeDasharray  = rtl;
     rp.style.strokeDashoffset = rtl;
-    items.push({ el: rp, depth: 8, type: 'root', tl: rtl });
+    items.push({ el: rp, depth: 9, type: 'root', tl: rtl });
+  }
+
+  const isTerminal = depth > 4 || len < 7;
+  if (isTerminal){
+    /* Cluster of blossoms + a bud at the tip */
+    const nb = 1 + Math.floor(rng() * 2.5);          // 1-3 blossoms
+    for (let i = 0; i < nb; i++){
+      placeBlossom(rng,
+        x2 + (rng()-.5)*12, y2 + (rng()-.5)*12,
+        4.5 + rng()*2.8, depth + i*0.1);
+    }
+    if (rng() > .5) placeBud(rng, x2 + (rng()-.5)*10, y2 + (rng()-.5)*10, 1.8 + rng());
+    return;
+  }
+
+  /* Scatter a few buds along inner branches */
+  if (depth >= 2 && rng() > .55){
+    const t = .55 + rng()*.3;
+    const bx = (1-t)*(1-t)*x1 + 2*(1-t)*t*qx + t*t*x2;
+    const by = (1-t)*(1-t)*y1 + 2*(1-t)*t*qy + t*t*y2;
+    placeBud(rng, bx, by, 1.6 + rng());
   }
 
   /* Recurse */
-  const nk = depth < 1 ? 2 : (rng() > .20 ? 2 : 3);
-  for (let i = 0; i < nk; i++) {
+  const nk = depth < 1 ? 2 : (rng() > .22 ? 2 : 3);
+  for (let i = 0; i < nk; i++){
     const half   = (nk - 1) / 2;
-    const spread = (i - half) * (.30 + rng() * .22);
-    const ca     = angle + spread + (rng() - .5) * .13;
-    const cl     = len   * (.60  + rng() * .18);
+    const spread = (i - half) * (.32 + rng()*.22);
+    const ca     = angle + spread + (rng()-.5)*.12;
+    const cl     = len * (.62 + rng()*.16);
     addBranch(rng, x2, y2, ca, cl, depth + 1);
   }
 }
 
 /* ─── Build tree ─── */
-function buildTree(seed) {
-  while (svg.firstChild) svg.removeChild(svg.firstChild);
+function buildTree(seed){
+  /* keep <defs>, clear the rest */
+  [...svg.querySelectorAll(':scope > g, :scope > path')].forEach(n => n.remove());
   items = [];
   const rng  = makePrng(seed);
-  const lean = (rng() - .5) * .10; // slight trunk lean
-  addBranch(rng, W / 2, H - 2, lean, 74, 0);
-  /* BFS: trunk → inner branches → aerial roots → outer branches → leaves */
-  items.sort((a, b) => a.depth - b.depth);
+  const lean = (rng()-.5) * .12;
+  addBranch(rng, W/2, H-2, lean, 72, 0);
+  /* order: trunk → canopy branches → roots → buds → blossoms */
+  items.sort((a,b) => a.depth - b.depth);
 }
 
 /* ─── Reveal first n items ─── */
-function revealN(n) {
-  const total = items.length;
-  items.forEach((item, i) => {
-    if (i < n) {
-      if (item.type === 'leaf') {
-        item.el.style.transition = 'opacity .52s ease, transform .68s cubic-bezier(.34,1.26,.64,1)';
-        item.el.style.opacity    = '1';
-        item.el.style.transform  = 'scale(1)';
-      } else {
-        item.el.style.transition = 'stroke-dashoffset .62s cubic-bezier(.4,0,.2,1)';
-        item.el.style.strokeDashoffset = '0';
-      }
-    } else {
-      if (item.type === 'leaf') {
-        item.el.style.transition = 'none';
-        item.el.style.opacity    = '0';
-        item.el.style.transform  = 'scale(.04)';
-      } else {
-        item.el.style.transition = 'none';
-        item.el.style.strokeDashoffset = item.tl;
-      }
+function revealN(n){
+  items.forEach((it, i) => {
+    const on = i < n;
+    if (it.type === 'root'){
+      it.el.style.transition = on ? 'stroke-dashoffset .6s cubic-bezier(.4,0,.2,1)' : 'none';
+      it.el.style.strokeDashoffset = on ? '0' : it.tl;
+    } else if (it.type === 'branch'){
+      it.el.style.transition = on ? 'opacity .42s ease, transform .5s cubic-bezier(.34,1.2,.64,1)' : 'none';
+      it.el.style.opacity   = on ? '1' : '0';
+      it.el.style.transform = on ? 'scale(1)' : 'scale(.72)';
+    } else { /* bloss / bud */
+      const dur = it.type === 'bloss' ? '.62s' : '.45s';
+      it.el.style.transition = on ? `opacity ${dur} ease, transform ${dur} cubic-bezier(.34,1.5,.55,1)` : 'none';
+      it.el.style.opacity   = on ? '1' : '0';
+      it.el.style.transform = it.el.getAttribute('transform').replace(/scale\([^)]*\)/,'') +
+                              (on ? ' scale(1)' : ' scale(0)');
     }
   });
   document.getElementById('pct').textContent =
     Math.round((n / Math.max(1, items.length)) * 100) + '%';
 }
 
+/* ─── Falling petals (ambient) ─── */
+function spawnPetals(){
+  const wrap = document.getElementById('banyan-wrap');
+  wrap.querySelectorAll('.petal').forEach(p => p.remove());
+  for (let i = 0; i < 5; i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = (28 + Math.random()*120) + 'px';
+    p.style.animation = `petalfall ${5.5 + Math.random()*3}s linear ${Math.random()*6}s infinite`;
+    wrap.appendChild(p);
+  }
+}
+
 /* ─── Scroll driver ─── */
 let _t = false, _scrolled = false;
 window.addEventListener('scroll', () => {
-  if (!_scrolled) {
-    _scrolled = true;
-    document.getElementById('hint').classList.add('hide');
-    clearInterval(_ap);
-  }
+  if (!_scrolled){ _scrolled = true; document.getElementById('hint').classList.add('hide'); clearInterval(_ap); }
   if (_t) return;
   _t = true;
   requestAnimationFrame(() => {
@@ -365,31 +354,19 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-/* ─── Autoplay ─── */
+/* ─── Autoplay / controls ─── */
 let _ap = null;
-function autoplay() {
-  resetTree();
-  let n = 0;
-  _ap = setInterval(() => {
-    revealN(++n);
-    if (n >= items.length) clearInterval(_ap);
-  }, 52);
-}
-function resetTree() {
-  clearInterval(_ap);
-  revealN(0);
-}
-function regrow() {
-  const s = 1 + Math.floor(Math.random() * 9998);
+function autoplay(){ resetTree(); let n = 0; _ap = setInterval(() => { revealN(++n); if (n >= items.length) clearInterval(_ap); }, 46); }
+function resetTree(){ clearInterval(_ap); revealN(0); }
+function regrow(){
+  const s = 1 + Math.floor(Math.random()*9998);
   document.getElementById('seed-in').value = s;
-  buildTree(s);
-  resetTree();
-  setTimeout(autoplay, 80);
+  buildTree(s); resetTree(); setTimeout(autoplay, 80);
 }
 
 /* ─── Init ─── */
-const initSeed = parseInt(document.getElementById('seed-in').value, 10) || 1337;
-buildTree(initSeed);
+buildTree(parseInt(document.getElementById('seed-in').value, 10) || 1337);
+spawnPetals();
 window.addEventListener('load', () => setTimeout(autoplay, 500));
 </script>
 </body>
