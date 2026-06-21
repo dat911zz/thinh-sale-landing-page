@@ -70,6 +70,8 @@ body{
 /* Blossom + bud: scale-bounce from their anchor. */
 .mb-bloss{ opacity:0; transform-box:fill-box; transform-origin:center; transform:scale(0); }
 .mb-bud  { opacity:0; transform-box:fill-box; transform-origin:center; transform:scale(0); }
+/* Leaf: scale from attachment point (center top of fill-box). */
+.mb-leaf { opacity:0; transform-box:fill-box; transform-origin:center top; transform:scale(0); }
 
 /* Ambient falling petals (HTML overlay). */
 .petal{
@@ -226,6 +228,79 @@ function placeBud(rng, cx, cy, r){
   items.push({ el: g, depth: 13, type: 'bud' });
 }
 
+/* ─── Mai Vàng leaf: inverted teardrop, base at (0,0), tip drapes to (0,+h) ─── */
+function placeLeaf(rng, px, py, rotateDeg, h){
+  const w = h * (0.28 + rng() * 0.11);
+
+  /* outer <g>: world position + rotation. inner <g>: CSS animation. */
+  const outer = document.createElementNS(ns, 'g');
+  outer.setAttribute('transform', `translate(${px.toFixed(1)},${py.toFixed(1)}) rotate(${rotateDeg.toFixed(1)})`);
+
+  const inner = document.createElementNS(ns, 'g');
+  inner.classList.add('mb-leaf');
+
+  /* Blade: cubic bezier, wide at ~30% then tapers to tip */
+  const blade = document.createElementNS(ns, 'path');
+  blade.setAttribute('d',
+    `M 0,0 C ${(-w).toFixed(2)},${(h*.30).toFixed(2)} ${(-w*.72).toFixed(2)},${(h*.64).toFixed(2)} 0,${h.toFixed(2)} ` +
+    `C ${(w*.72).toFixed(2)},${(h*.64).toFixed(2)} ${w.toFixed(2)},${(h*.30).toFixed(2)} 0,0 Z`);
+  /* Olive-gold: slightly greener/darker than flowers to read as foliage */
+  const fillOp   = (.07 + rng()*.07).toFixed(3);
+  const strokeOp = (.30 + rng()*.20).toFixed(3);
+  blade.setAttribute('fill',   `rgba(160,140,30,${fillOp})`);
+  blade.setAttribute('stroke', rng() > .45
+    ? `rgba(190,165,40,${strokeOp})`
+    : `rgba(140,125,25,${strokeOp})`);
+  blade.setAttribute('stroke-width', (.45 + rng()*.28).toFixed(2));
+  inner.appendChild(blade);
+
+  /* Midrib vein */
+  const vein = document.createElementNS(ns, 'line');
+  vein.setAttribute('x1','0'); vein.setAttribute('y1','0');
+  vein.setAttribute('x2','0'); vein.setAttribute('y2', (h*.86).toFixed(2));
+  vein.setAttribute('stroke', 'rgba(210,185,50,.2)');
+  vein.setAttribute('stroke-width', '.3');
+  inner.appendChild(vein);
+
+  outer.appendChild(inner);
+  svg.appendChild(outer);
+  return inner;
+}
+
+/* ─── Scatter leaves along a quadratic bezier branch ─── */
+function scatterLeaves(rng, p0, ctrl, p2, depth){
+  if (depth < 2) return;
+  const n     = depth >= 4 ? 5 : (depth === 3 ? 4 : 3);
+  const baseH = Math.max(5, 13 - depth * 1.4);
+
+  for (let i = 0; i < n; i++){
+    const t = (2*i + 1) / (2*n);
+    const mt = 1 - t;
+
+    /* Point on bezier */
+    const px = mt*mt*p0.x + 2*mt*t*ctrl.x + t*t*p2.x;
+    const py = mt*mt*p0.y + 2*mt*t*ctrl.y + t*t*p2.y;
+
+    /* Tangent → branch angle from vertical */
+    const tdx = 2*mt*(ctrl.x - p0.x) + 2*t*(p2.x - ctrl.x);
+    const tdy = 2*mt*(ctrl.y - p0.y) + 2*t*(p2.y - ctrl.y);
+    const branchFromUp = Math.atan2(tdx, -tdy) * 180 / Math.PI;
+
+    /*
+      Leaf tip points "DOWN + sideways" (giọt nước ngược draping effect).
+      0° = tip straight down, ±90° = sideways.
+      Alternate L/R ≈ ±68°, with slight branch influence and jitter.
+    */
+    const side   = (i % 2 === 0) ? 1 : -1;
+    const rotDeg = side * (62 + rng()*22) + branchFromUp * 0.16 + (rng()-.5)*18;
+
+    const h  = baseH * (.78 + rng()*.44);
+    const el = placeLeaf(rng, px, py, rotDeg, h);
+    /* leaves sort after branches but before blossoms */
+    items.push({ el, depth: 11 + depth + i*.1, type: 'leaf' });
+  }
+}
+
 /* ─── Recursive branch ─── */
 function addBranch(rng, x1, y1, angle, len, depth){
   const x2 = x1 + Math.sin(angle) * len;
@@ -241,6 +316,9 @@ function addBranch(rng, x1, y1, angle, len, depth){
   body.classList.add('mb-branch');
   svg.appendChild(body);
   items.push({ el: body, depth, type: 'branch' });
+
+  /* Scatter leaves along this branch segment */
+  scatterLeaves(rng, p0, ctrl, p2, depth);
 
   /* Aerial roots — banyan/mai hanging tendrils from mid branches */
   if (depth === 2 && rng() > .42){
@@ -316,6 +394,10 @@ function revealN(n){
       it.el.style.transition = on ? 'opacity .42s ease, transform .5s cubic-bezier(.34,1.2,.64,1)' : 'none';
       it.el.style.opacity   = on ? '1' : '0';
       it.el.style.transform = on ? 'scale(1)' : 'scale(.72)';
+    } else if (it.type === 'leaf'){
+      it.el.style.transition = on ? 'opacity .48s ease, transform .60s cubic-bezier(.34,1.28,.64,1)' : 'none';
+      it.el.style.opacity   = on ? '1' : '0';
+      it.el.style.transform = on ? 'scale(1)' : 'scale(0)';
     } else { /* bloss / bud */
       const dur = it.type === 'bloss' ? '.62s' : '.45s';
       it.el.style.transition = on ? `opacity ${dur} ease, transform ${dur} cubic-bezier(.34,1.5,.55,1)` : 'none';
