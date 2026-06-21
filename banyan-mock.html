@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cây Đa — Banyan Mock · Thịnh Vượng Luật</title>
+<title>Cây Đa v2 — Banyan Mock · Thịnh Vượng Luật</title>
 <style>
-:root { --gold:#c9a227; --gold2:#f0c93a; --navy:#0f2246; }
+:root { --gold:#c9a227; --gold2:#f0c93a; }
 *{ box-sizing:border-box; margin:0; padding:0; }
 
 body{
@@ -17,11 +17,16 @@ body{
 
 /* ── Fake page content ── */
 .hero{ padding:90px 52px 60px; max-width:640px; }
-.hero h1{ font-size:clamp(2rem,5vw,3rem); line-height:1.18; margin-bottom:18px; color:rgba(255,255,255,.88); }
+.hero h1{
+  font-size:clamp(2rem,5vw,3rem); line-height:1.18;
+  margin-bottom:18px; color:rgba(255,255,255,.88);
+}
 .hero em{ color:var(--gold2); font-style:italic; }
 .hero p{ color:rgba(255,255,255,.32); font-size:1.05rem; line-height:1.8; }
-
-.section{ padding:72px 52px; max-width:640px; border-top:1px solid rgba(255,255,255,.05); }
+.section{
+  padding:72px 52px; max-width:640px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
 .section h2{ color:var(--gold); font-size:1.3rem; margin-bottom:10px; }
 .section p{ color:rgba(255,255,255,.28); line-height:1.85; font-size:.95rem; }
 
@@ -40,7 +45,6 @@ body{
   color:rgba(201,162,39,.45); font-size:.72rem; font-weight:800;
   letter-spacing:.06em; z-index:100; font-variant-numeric:tabular-nums;
 }
-
 .controls{
   position:fixed; bottom:16px; left:16px;
   display:flex; gap:8px; z-index:100;
@@ -53,40 +57,49 @@ body{
   backdrop-filter:blur(8px); transition:background .2s, border-color .2s;
 }
 .btn:hover{ background:rgba(201,162,39,.14); border-color:rgba(201,162,39,.55); }
-
-/* ── Banyan tree (fixed corner) ── */
-.banyan-wrap{
-  position:fixed; bottom:16px; right:16px;
-  z-index:10; pointer-events:none;
-  filter:drop-shadow(0 0 18px rgba(201,162,39,.2));
-  opacity:.55;
-}
-.bn-br  { fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.bn-root{ fill:none; stroke-linecap:round; }
-.bn-lf  { opacity:0; transform-box:fill-box; transform-origin:center; transform:scale(.08); }
-
-/* ── Seed label ── */
 .seed-row{
   position:fixed; bottom:52px; left:16px;
   display:flex; align-items:center; gap:8px; z-index:100;
-  color:rgba(255,255,255,.25); font-size:.65rem;
+  color:rgba(255,255,255,.22); font-size:.63rem;
 }
 .seed-row input{
-  width:64px; padding:4px 8px;
-  background:rgba(10,20,45,.7); border:1px solid rgba(255,255,255,.15);
-  color:rgba(255,255,255,.6); border-radius:6px; font-size:.65rem;
-  text-align:center;
+  width:60px; padding:3px 8px;
+  background:rgba(10,20,45,.7); border:1px solid rgba(255,255,255,.13);
+  color:rgba(255,255,255,.55); border-radius:6px; font-size:.63rem; text-align:center;
+}
+
+/* ── Tree ── */
+.banyan-wrap{
+  position:fixed; bottom:16px; right:16px;
+  z-index:10; pointer-events:none;
+  filter:drop-shadow(0 0 18px rgba(201,162,39,.22));
+  opacity:.55;
+}
+/* Branch strokes */
+.bn-br  { fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.bn-root{ fill:none; stroke-linecap:round; }
+
+/*
+  Leaf animation container (inner <g>).
+  transform-origin: center top → scale from the ATTACHMENT POINT (base of leaf).
+  Leaf path: base at (0,0), tip drapes downward at (0,+h).
+*/
+.bn-lf{
+  opacity:0;
+  transform-box:fill-box;
+  transform-origin:center top;
+  transform:scale(.04);
 }
 </style>
 </head>
 <body>
 
-<div class="hint" id="hint">↓ Scroll để cây mọc · hoặc nhấn Autoplay</div>
-<div class="pct" id="pct">0%</div>
+<div class="hint" id="hint">↓ Scroll để cây mọc · hoặc nhấn ▶</div>
+<div class="pct"  id="pct">0%</div>
 
 <div class="hero">
   <h1>Số hoá doanh nghiệp<br><em>trọn gói, một đầu mối</em></h1>
-  <p>SDS Vietnam — EasyInvoice · EasyCA · EasyBooks · EasyHRM · EasyPOS · EasyDocs</p>
+  <p>SDS Vietnam · EasyInvoice · EasyCA · EasyBooks · EasyHRM · EasyPOS · EasyDocs</p>
 </div>
 <div class="section">
   <h2>EasyInvoice</h2>
@@ -98,15 +111,13 @@ body{
 </div>
 <div class="section">
   <h2>EasyBooks</h2>
-  <p>Kế toán tự động hóa toàn diện. Ghi sổ, báo cáo tài chính, quyết toán cuối năm — không cần kế toán viên chuyên sâu.</p>
+  <p>Kế toán tự động hóa toàn diện. Ghi sổ, báo cáo tài chính, quyết toán cuối năm không cần kế toán viên chuyên sâu.</p>
 </div>
 
-<!-- ── Tree SVG ── -->
 <div class="banyan-wrap" id="banyan-wrap">
   <svg id="btree" viewBox="0 0 180 290" width="180" height="290" style="overflow:visible"></svg>
 </div>
 
-<!-- ── Controls ── -->
 <div class="controls">
   <button class="btn" onclick="autoplay()">▶ Autoplay</button>
   <button class="btn" onclick="resetTree()">↺ Reset</button>
@@ -117,7 +128,7 @@ body{
 </div>
 
 <script>
-/* ── Seeded PRNG: mulberry32 ── */
+/* ─── Seeded PRNG: mulberry32 ─── */
 function makePrng(seed) {
   let s = seed >>> 0;
   return () => {
@@ -133,48 +144,128 @@ const svg = document.getElementById('btree');
 const ns  = 'http://www.w3.org/2000/svg';
 let items = [];
 
-/* ── Build tree recursively ── */
+/* ─────────────────────────────────────────────────
+   LEAF: inverted teardrop ("giọt nước ngược")
+   Local coords: base/stem at (0, 0), tip drapes to (0, +h).
+   Outer <g> handles position + rotation in world space.
+   Inner <g class="bn-lf"> handles CSS scale animation.
+   ───────────────────────────────────────────────── */
+function placeLeaf(rng, px, py, rotateDeg, h) {
+  const w = h * (0.30 + rng() * 0.12); // leaf width
+
+  const outer = document.createElementNS(ns, 'g');
+  outer.setAttribute('transform',
+    `translate(${px.toFixed(1)},${py.toFixed(1)}) rotate(${rotateDeg.toFixed(1)})`);
+
+  const inner = document.createElementNS(ns, 'g');
+  inner.classList.add('bn-lf');
+
+  /* Blade: M 0,0 (stem) curving out to max width at ~35% then tapering to tip at (0,h) */
+  const blade = document.createElementNS(ns, 'path');
+  blade.setAttribute('d',
+    `M 0,0 ` +
+    `C ${(-w).toFixed(2)},${(h * .32).toFixed(2)} ${(-w * .76).toFixed(2)},${(h * .65).toFixed(2)} 0,${h.toFixed(2)} ` +
+    `C ${(w * .76).toFixed(2)},${(h * .65).toFixed(2)} ${w.toFixed(2)},${(h * .32).toFixed(2)} 0,0 Z`
+  );
+  const fillOp   = (.055 + rng() * .075).toFixed(3);
+  const strokeOp = (.26  + rng() * .22 ).toFixed(3);
+  const bright   = rng() > .42;
+  blade.setAttribute('fill',   `rgba(201,162,39,${fillOp})`);
+  blade.setAttribute('stroke', bright
+    ? `rgba(240,201,58,${strokeOp})`
+    : `rgba(201,162,39,${strokeOp})`);
+  blade.setAttribute('stroke-width', (.5 + rng() * .3).toFixed(2));
+  inner.appendChild(blade);
+
+  /* Midrib vein */
+  const vein = document.createElementNS(ns, 'line');
+  vein.setAttribute('x1', '0'); vein.setAttribute('y1', '0');
+  vein.setAttribute('x2', '0'); vein.setAttribute('y2', (h * .88).toFixed(2));
+  vein.setAttribute('stroke', 'rgba(240,201,58,.22)');
+  vein.setAttribute('stroke-width', '.32');
+  inner.appendChild(vein);
+
+  outer.appendChild(inner);
+  svg.appendChild(outer);
+  return inner; // the element we animate
+}
+
+/* ─────────────────────────────────────────────────
+   SCATTER LEAVES along a quadratic bezier segment.
+   Sample n points, alternate left/right, leaves drape down.
+   ───────────────────────────────────────────────── */
+function scatterLeaves(rng, p0, ctrl, p2, depth) {
+  if (depth < 3) return;
+
+  const n      = depth >= 5 ? 5 : (depth === 4 ? 4 : 3);
+  const baseH  = Math.max(5, 15 - depth * 1.6);
+
+  for (let i = 0; i < n; i++) {
+    const t  = (2 * i + 1) / (2 * n); // evenly spaced
+    const mt = 1 - t;
+
+    /* Point on bezier */
+    const px = mt*mt*p0.x + 2*mt*t*ctrl.x + t*t*p2.x;
+    const py = mt*mt*p0.y + 2*mt*t*ctrl.y + t*t*p2.y;
+
+    /* Tangent at t → branch direction in degrees from "up" */
+    const tdx = 2*mt*(ctrl.x - p0.x) + 2*t*(p2.x - ctrl.x);
+    const tdy = 2*mt*(ctrl.y - p0.y) + 2*t*(p2.y - ctrl.y);
+    const branchFromUp = Math.atan2(tdx, -tdy) * 180 / Math.PI;
+
+    /*
+      Leaf rotation in SVG degrees:
+        0°   → tip points DOWN  (giọt nước ngược default)
+       +90°  → tip points RIGHT
+       -90°  → tip points LEFT
+      We want leaves to drape mostly downward, alternating left/right ≈ ±70°,
+      with a slight influence from the branch direction so they look attached.
+    */
+    const side    = (i % 2 === 0) ? 1 : -1;
+    const base    = side * (65 + rng() * 20); // ±65-85° from down
+    const bias    = branchFromUp * 0.18;       // subtle branch influence
+    const jitter  = (rng() - .5) * 22;
+    const rotDeg  = base + bias + jitter;
+
+    const h  = baseH * (.80 + rng() * .42);
+    const el = placeLeaf(rng, px, py, rotDeg, h);
+    /* Leaves sort after their parent branch depth, ordered by sample index */
+    items.push({ el, depth: 10 + depth + i * .1, type: 'leaf' });
+  }
+}
+
+/* ─────────────────────────────────────────────────
+   RECURSIVE BRANCH
+   ───────────────────────────────────────────────── */
 function addBranch(rng, x1, y1, angle, len, depth) {
   const isTerminal = depth > 5 || len < 5;
-
-  if (isTerminal) {
-    /* Leaf cluster — overlapping circles */
-    const g = document.createElementNS(ns, 'g');
-    g.classList.add('bn-lf');
-    const nc = 3 + Math.floor(rng() * 4);
-    for (let i = 0; i < nc; i++) {
-      const cx  = x1 + (rng() - .5) * 28;
-      const cy  = y1 - 4 + (rng() - .5) * 20;
-      const rad = 4 + rng() * 11;
-      const c = document.createElementNS(ns, 'circle');
-      c.setAttribute('cx', cx.toFixed(1));
-      c.setAttribute('cy', cy.toFixed(1));
-      c.setAttribute('r',  rad.toFixed(1));
-      c.setAttribute('fill',   `rgba(201,162,39,${(.05 + rng() * .07).toFixed(2)})`);
-      c.setAttribute('stroke', i < 2 ? `rgba(240,201,58,.38)` : `rgba(201,162,39,.22)`);
-      c.setAttribute('stroke-width', '0.9');
-      g.appendChild(c);
-    }
-    svg.appendChild(g);
-    items.push({ el: g, depth: 20, type: 'leaf' });
-    return;
-  }
 
   const x2 = x1 + Math.sin(angle) * len;
   const y2 = y1 - Math.cos(angle) * len;
 
-  /* Organic quadratic bezier branch */
-  const qx = (x1 + x2) / 2 + (rng() - .5) * len * .40;
-  const qy = (y1 + y2) / 2 + (rng() - .5) * len * .18;
-  const d  = `M${x1.toFixed(1)},${y1.toFixed(1)} Q${qx.toFixed(1)},${qy.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`;
+  if (isTerminal) {
+    /* Few leaves at tip only */
+    scatterLeaves(rng,
+      { x: x1, y: y1 },
+      { x: (x1+x2)/2, y: (y1+y2)/2 },
+      { x: x2, y: y2 }, 5);
+    return;
+  }
+
+  /* Organic quadratic bezier */
+  const qx = (x1+x2)/2 + (rng()-.5)*len*.40;
+  const qy = (y1+y2)/2 + (rng()-.5)*len*.18;
 
   const path = document.createElementNS(ns, 'path');
-  path.setAttribute('d', d);
-  const sw = Math.max(0.55, 5.4 - depth * .84);
+  path.setAttribute('d',
+    `M${x1.toFixed(1)},${y1.toFixed(1)} Q${qx.toFixed(1)},${qy.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`);
+  const sw = Math.max(.55, 5.4 - depth * .84);
   const op = Math.min(.95, .48 + (5 - depth) * .09);
   path.setAttribute('stroke', `rgba(201,162,39,${op.toFixed(2)})`);
   path.setAttribute('stroke-width', sw.toFixed(1));
-  path.classList.add('bn-br');
+  path.setAttribute('fill', 'none');
+  path.setAttribute('stroke-linecap', 'round');
+  path.setAttribute('stroke-linejoin', 'round');
   svg.appendChild(path);
 
   const tl = path.getTotalLength();
@@ -182,18 +273,24 @@ function addBranch(rng, x1, y1, angle, len, depth) {
   path.style.strokeDashoffset = tl;
   items.push({ el: path, depth, type: 'branch', tl });
 
-  /* Aerial roots — banyan signature */
-  if (depth === 2 && rng() > .38) {
-    const ox = x1 * .40 + x2 * .60 + (rng() - .5) * 6;
-    const oy = y1 * .40 + y2 * .60;
-    const tx = ox + (rng() - .5) * 14;
+  /* Scatter leaves along this branch */
+  scatterLeaves(rng, { x:x1, y:y1 }, { x:qx, y:qy }, { x:x2, y:y2 }, depth);
+
+  /* Aerial roots — banyan signature: thin tendrils hanging from mid branches */
+  if (depth === 2 && rng() > .40) {
+    const ox = x1*.40 + x2*.60 + (rng()-.5)*6;
+    const oy = y1*.40 + y2*.60;
+    const tx = ox + (rng()-.5)*14;
     const rp = document.createElementNS(ns, 'path');
     rp.setAttribute('d',
-      `M${ox.toFixed(1)},${oy.toFixed(1)} C${(ox+(rng()-.5)*14).toFixed(1)},${(oy+38).toFixed(1)} ${(tx+(rng()-.5)*10).toFixed(1)},${(H-38).toFixed(1)} ${tx.toFixed(1)},${(H+4).toFixed(0)}`
-    );
-    rp.setAttribute('stroke', `rgba(201,162,39,${(.16 + rng()*.10).toFixed(2)})`);
-    rp.setAttribute('stroke-width', (.7 + rng() * .5).toFixed(1));
-    rp.classList.add('bn-root');
+      `M${ox.toFixed(1)},${oy.toFixed(1)} ` +
+      `C${(ox+(rng()-.5)*14).toFixed(1)},${(oy+36).toFixed(1)} ` +
+      `${(tx+(rng()-.5)*10).toFixed(1)},${(H-40).toFixed(1)} ` +
+      `${tx.toFixed(1)},${(H+4)}`);
+    rp.setAttribute('stroke', `rgba(201,162,39,${(.15+rng()*.11).toFixed(2)})`);
+    rp.setAttribute('stroke-width', (.65+rng()*.50).toFixed(1));
+    rp.setAttribute('fill', 'none');
+    rp.setAttribute('stroke-linecap', 'round');
     svg.appendChild(rp);
     const rtl = rp.getTotalLength();
     rp.style.strokeDasharray  = rtl;
@@ -201,7 +298,7 @@ function addBranch(rng, x1, y1, angle, len, depth) {
     items.push({ el: rp, depth: 8, type: 'root', tl: rtl });
   }
 
-  /* Recurse children */
+  /* Recurse */
   const nk = depth < 1 ? 2 : (rng() > .20 ? 2 : 3);
   for (let i = 0; i < nk; i++) {
     const half   = (nk - 1) / 2;
@@ -212,27 +309,24 @@ function addBranch(rng, x1, y1, angle, len, depth) {
   }
 }
 
-/* ── Build with a given seed ── */
+/* ─── Build tree ─── */
 function buildTree(seed) {
-  /* Clear previous */
   while (svg.firstChild) svg.removeChild(svg.firstChild);
   items = [];
-
-  const rng = makePrng(seed);
-  /* Slight trunk lean: start angle slightly off-vertical */
-  const lean = (rng() - .5) * .12;
+  const rng  = makePrng(seed);
+  const lean = (rng() - .5) * .10; // slight trunk lean
   addBranch(rng, W / 2, H - 2, lean, 74, 0);
-
-  /* BFS order: trunk first, then rings outward, roots mid, leaves last */
+  /* BFS: trunk → inner branches → aerial roots → outer branches → leaves */
   items.sort((a, b) => a.depth - b.depth);
 }
 
-/* ── Reveal first n items ── */
+/* ─── Reveal first n items ─── */
 function revealN(n) {
+  const total = items.length;
   items.forEach((item, i) => {
     if (i < n) {
       if (item.type === 'leaf') {
-        item.el.style.transition = 'opacity .55s ease, transform .7s cubic-bezier(.34,1.28,.64,1)';
+        item.el.style.transition = 'opacity .52s ease, transform .68s cubic-bezier(.34,1.26,.64,1)';
         item.el.style.opacity    = '1';
         item.el.style.transform  = 'scale(1)';
       } else {
@@ -243,19 +337,19 @@ function revealN(n) {
       if (item.type === 'leaf') {
         item.el.style.transition = 'none';
         item.el.style.opacity    = '0';
-        item.el.style.transform  = 'scale(.08)';
+        item.el.style.transform  = 'scale(.04)';
       } else {
         item.el.style.transition = 'none';
         item.el.style.strokeDashoffset = item.tl;
       }
     }
   });
-  document.getElementById('pct').textContent = Math.round((n / Math.max(1, items.length)) * 100) + '%';
+  document.getElementById('pct').textContent =
+    Math.round((n / Math.max(1, items.length)) * 100) + '%';
 }
 
-/* ── Scroll driver ── */
-let _t = false;
-let _scrolled = false;
+/* ─── Scroll driver ─── */
+let _t = false, _scrolled = false;
 window.addEventListener('scroll', () => {
   if (!_scrolled) {
     _scrolled = true;
@@ -266,13 +360,12 @@ window.addEventListener('scroll', () => {
   _t = true;
   requestAnimationFrame(() => {
     const maxS = document.documentElement.scrollHeight - window.innerHeight;
-    const pct  = maxS > 0 ? window.scrollY / maxS : 0;
-    revealN(Math.round(pct * items.length));
+    revealN(Math.round((maxS > 0 ? window.scrollY / maxS : 0) * items.length));
     _t = false;
   });
 }, { passive: true });
 
-/* ── Autoplay ── */
+/* ─── Autoplay ─── */
 let _ap = null;
 function autoplay() {
   resetTree();
@@ -287,14 +380,14 @@ function resetTree() {
   revealN(0);
 }
 function regrow() {
-  const newSeed = 1 + Math.floor(Math.random() * 9998);
-  document.getElementById('seed-in').value = newSeed;
-  buildTree(newSeed);
+  const s = 1 + Math.floor(Math.random() * 9998);
+  document.getElementById('seed-in').value = s;
+  buildTree(s);
   resetTree();
-  setTimeout(autoplay, 100);
+  setTimeout(autoplay, 80);
 }
 
-/* ── Init ── */
+/* ─── Init ─── */
 const initSeed = parseInt(document.getElementById('seed-in').value, 10) || 1337;
 buildTree(initSeed);
 window.addEventListener('load', () => setTimeout(autoplay, 500));
