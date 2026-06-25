@@ -225,6 +225,30 @@
   </div>
 </section>
 
+<!-- ══ TRUST STATS ═════════════════════════════════ -->
+<section class="trust-stats-section" aria-label="Số liệu nổi bật">
+  <div class="container">
+    <div class="trust-stats-grid">
+      <div class="trust-stat" data-target="500" data-suffix="+">
+        <span class="trust-stat-num">0</span>
+        <span class="trust-stat-label">Doanh nghiệp tin dùng</span>
+      </div>
+      <div class="trust-stat" data-target="6" data-suffix="">
+        <span class="trust-stat-num">0</span>
+        <span class="trust-stat-label">Sản phẩm SDS</span>
+      </div>
+      <div class="trust-stat" data-target="10" data-suffix=" năm">
+        <span class="trust-stat-num">0</span>
+        <span class="trust-stat-label">Lưu trữ hóa đơn</span>
+      </div>
+      <div class="trust-stat" data-target="99" data-suffix=".9%">
+        <span class="trust-stat-num">0</span>
+        <span class="trust-stat-label">Uptime hệ thống</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ PRODUCTS OVERVIEW ══════════════════════════ -->
 <section class="products-section" id="products">
   <div class="container">
@@ -373,6 +397,13 @@
   </div>
 </section>
 
+<!-- ══ STICKY CTA (mobile only) ════════════════════ -->
+<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+  <a href="#contact" class="sticky-cta-btn" onclick="document.getElementById('sticky-cta').classList.remove('visible')">
+    Tư vấn miễn phí ngay →
+  </a>
+</div>
+
 <!-- ══ FOOTER ═════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
@@ -425,6 +456,51 @@
 
 <script src="layout.js"></script>
 <script>
+
+/* ── TRUST STATS COUNT-UP ─────────────────────── */
+(function () {
+  const stats = document.querySelectorAll('.trust-stat');
+  if (!stats.length) return;
+  let done = false;
+  function countUp() {
+    if (done) return; done = true;
+    stats.forEach(el => {
+      const numEl = el.querySelector('.trust-stat-num');
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const dur = 1200, start = performance.now();
+      function frame(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        numEl.textContent = Math.round(ease * target) + suffix;
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+  const io = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { countUp(); io.disconnect(); }
+  }, { threshold: .4 });
+  io.observe(document.querySelector('.trust-stats-section'));
+})();
+
+/* ── STICKY CTA ────────────────────────────────── */
+(function () {
+  const bar = document.getElementById('sticky-cta');
+  if (!bar) return;
+  const hero   = document.querySelector('.hero-section') || document.querySelector('section');
+  const contact = document.getElementById('contact');
+  function update(entries) {
+    entries.forEach(e => {
+      if (e.target === hero)    bar.classList.toggle('visible', !e.isIntersecting);
+      if (e.target === contact) { if (e.isIntersecting) bar.classList.remove('visible'); }
+    });
+  }
+  const io = new IntersectionObserver(update, { threshold: .1 });
+  if (hero)    io.observe(hero);
+  if (contact) io.observe(contact);
+  bar.setAttribute('aria-hidden', 'true');
+})();
 
 /* ── EASYCA YEAR TABS ─────────────────────────── */
 function setYear(yr, tabEl) {
