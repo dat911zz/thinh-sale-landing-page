@@ -1368,6 +1368,26 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 @media (max-width: 900px) { .scroll-rail { display: none; } }
 
 /* ── Bamboo plant ─────────────────────────────── */
+/* ── Mưa lá mai ── */
+.petal-rain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 5; overflow: hidden;
+}
+.rain-petal {
+  position: absolute; top: -14px;
+  width: 8px; height: 10px;
+  background: radial-gradient(ellipse at 50% 30%, #f7d94a 0%, #c9a227 80%);
+  border-radius: 60% 60% 60% 60% / 70% 70% 40% 40%;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: petalrain var(--dur) linear var(--delay) infinite;
+}
+@keyframes petalrain {
+  0%   { opacity: 0;    transform: translateX(0)             translateY(-14px) rotate(0deg); }
+  8%   { opacity: .55; }
+  90%  { opacity: .32; }
+  100% { opacity: 0;    transform: translateX(var(--drift))   translateY(105vh) rotate(var(--spin)); }
+}
+
 /* ── Cây Mai Vàng ── */
 .banyan-wrap {
   position: fixed; bottom: 12px; right: 14px;

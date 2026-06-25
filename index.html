@@ -402,6 +402,9 @@
   <div class="scroll-rail-dot" data-target="contact" data-label="Liên hệ" style="top:100%"></div>
 </div>
 
+<!-- ══ MƯA LÁ MAI ══════════════════════════════════ -->
+<div class="petal-rain" id="petal-rain" aria-hidden="true"></div>
+
 <!-- ══ CÂY MAI VÀNG ════════════════════════════════ -->
 <div class="banyan-wrap" id="banyan-wrap" aria-hidden="true">
   <svg id="btree" viewBox="0 0 180 290" width="200" height="300" style="overflow:visible">
@@ -1035,6 +1038,22 @@ fetch('pricing.json')
 
   buildTree();
   spawnPetals();
+
+  /* Mưa lá mai toàn màn hình — 10 cánh, chỉ transform+opacity */
+  (function spawnPetalRain() {
+    const rain = document.getElementById('petal-rain');
+    if (!rain) return;
+    for (let i = 0; i < 10; i++) {
+      const p = document.createElement('div');
+      p.className = 'rain-petal';
+      p.style.left = (Math.random() * 100) + 'vw';
+      p.style.setProperty('--dur',   (6 + Math.random() * 6) + 's');
+      p.style.setProperty('--delay', (Math.random() * 12) + 's');
+      p.style.setProperty('--drift', ((Math.random() - .5) * 90) + 'px');
+      p.style.setProperty('--spin',  (160 + Math.random() * 200) + 'deg');
+      rain.appendChild(p);
+    }
+  })();
 
   let _t = false;
   window.addEventListener('scroll', () => {
