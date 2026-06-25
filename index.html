@@ -402,24 +402,21 @@
   <div class="scroll-rail-dot" data-target="contact" data-label="Liên hệ" style="top:100%"></div>
 </div>
 
-<!-- ══ BAMBOO PLANT ════════════════════════════════ -->
-<div class="bamboo-wrap" aria-hidden="true">
-  <svg class="bamboo-svg" viewBox="0 0 70 260" width="70" height="260">
-    <line class="bam-part bam-stem"  x1="35" y1="260" x2="35" y2="215" data-stage="0"/>
-    <line class="bam-part bam-joint" x1="29" y1="215" x2="41" y2="215" data-stage="0"/>
-    <line class="bam-part bam-stem"  x1="35" y1="215" x2="35" y2="170" data-stage="1"/>
-    <line class="bam-part bam-joint" x1="29" y1="170" x2="41" y2="170" data-stage="1"/>
-    <path class="bam-part bam-leaf"  d="M35,176 Q14,164 4,146"          data-stage="1"/>
-    <line class="bam-part bam-stem"  x1="35" y1="170" x2="35" y2="125" data-stage="2"/>
-    <line class="bam-part bam-joint" x1="29" y1="125" x2="41" y2="125" data-stage="2"/>
-    <path class="bam-part bam-leaf"  d="M35,131 Q56,119 66,101"         data-stage="2"/>
-    <line class="bam-part bam-stem"  x1="35" y1="125" x2="35" y2="80"  data-stage="3"/>
-    <line class="bam-part bam-joint" x1="29" y1="80"  x2="41" y2="80"  data-stage="3"/>
-    <path class="bam-part bam-leaf"  d="M35,86 Q13,73 3,55"             data-stage="3"/>
-    <path class="bam-part bam-leaf"  d="M35,86 Q57,75 67,58"            data-stage="3"/>
-    <line class="bam-part bam-stem"  x1="35" y1="80"  x2="35" y2="35"  data-stage="4"/>
-    <path class="bam-part bam-leaf"  d="M35,42 Q11,28 1,10"             data-stage="4"/>
-    <path class="bam-part bam-leaf"  d="M35,42 Q59,30 69,13"            data-stage="4"/>
+<!-- ══ CÂY MAI VÀNG ════════════════════════════════ -->
+<div class="banyan-wrap" id="banyan-wrap" aria-hidden="true">
+  <svg id="btree" viewBox="0 0 180 290" width="200" height="300" style="overflow:visible">
+    <defs>
+      <linearGradient id="branchGrad" gradientUnits="userSpaceOnUse" x1="0" y1="290" x2="0" y2="20">
+        <stop offset="0"   stop-color="#5e461a"/>
+        <stop offset=".45" stop-color="#9a7a20"/>
+        <stop offset="1"   stop-color="#d8b733"/>
+      </linearGradient>
+      <radialGradient id="blossomGrad" cx="50%" cy="42%" r="60%">
+        <stop offset="0"   stop-color="#fbe98a"/>
+        <stop offset=".55" stop-color="#f0c93a"/>
+        <stop offset="1"   stop-color="#c9a227"/>
+      </radialGradient>
+    </defs>
   </svg>
 </div>
 
@@ -812,30 +809,246 @@ fetch('pricing.json')
   }));
 })();
 
-/* ── BAMBOO GROWTH ────────────────────────────── */
+/* ── CÂY MAI VÀNG ────────────────────────────── */
 (function () {
-  const wrap = document.querySelector('.bamboo-wrap');
-  if (!wrap) return;
-  const parts = wrap.querySelectorAll('.bam-part');
-  parts.forEach(el => {
-    let len;
-    try { len = el.getTotalLength(); } catch (_) {
-      len = Math.hypot(+el.getAttribute('x2') - +el.getAttribute('x1'),
-                       +el.getAttribute('y2') - +el.getAttribute('y1'));
-    }
-    el._len = len;
-    el.style.strokeDasharray  = len;
-    el.style.strokeDashoffset = len;
-  });
-  function update() {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const stage = max > 0 ? Math.min(4, Math.floor((window.scrollY / max) * 6)) : 0;
-    parts.forEach(el => {
-      el.style.strokeDashoffset = +el.dataset.stage <= stage ? 0 : el._len;
-    });
+  const svg = document.getElementById('btree');
+  if (!svg) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const W = 180, H = 290;
+  let items = [], lastN = 0;
+
+  function makePrng(seed) {
+    let s = seed >>> 0;
+    return () => {
+      s = (s + 0x6D2B79F5) >>> 0;
+      let t = Math.imul(s ^ (s >>> 15), s | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
   }
-  window.addEventListener('scroll', update, { passive: true });
-  update();
+
+  const widthAt = d => Math.max(0.8, 10 * Math.pow(0.585, d));
+
+  function ribbonPath(p0, ctrl, p2, w1, w2) {
+    const N = 9, L = [], R = [];
+    for (let i = 0; i <= N; i++) {
+      const t = i/N, mt = 1-t;
+      const x = mt*mt*p0.x + 2*mt*t*ctrl.x + t*t*p2.x;
+      const y = mt*mt*p0.y + 2*mt*t*ctrl.y + t*t*p2.y;
+      const dx = 2*mt*(ctrl.x-p0.x) + 2*t*(p2.x-ctrl.x);
+      const dy = 2*mt*(ctrl.y-p0.y) + 2*t*(p2.y-ctrl.y);
+      const ln = Math.hypot(dx, dy) || 1;
+      const nx = -dy/ln, nyv = dx/ln;
+      const hw = (w1*(1-t) + w2*t) / 2;
+      L.push([x+nx*hw, y+nyv*hw]);
+      R.push([x-nx*hw, y-nyv*hw]);
+    }
+    let d = `M${L[0][0].toFixed(1)},${L[0][1].toFixed(1)}`;
+    for (let i = 1; i < L.length; i++) d += `L${L[i][0].toFixed(1)},${L[i][1].toFixed(1)}`;
+    for (let i = R.length-1; i >= 0; i--) d += `L${R[i][0].toFixed(1)},${R[i][1].toFixed(1)}`;
+    return d + 'Z';
+  }
+
+  function placeBlossom(rng, cx, cy, r, depth) {
+    const outer = document.createElementNS(ns, 'g');
+    outer.setAttribute('transform', `translate(${cx.toFixed(1)},${cy.toFixed(1)}) rotate(${(rng()*72).toFixed(1)})`);
+    const g = document.createElementNS(ns, 'g');
+    g.classList.add('mb-bloss');
+    for (let i = 0; i < 5; i++) {
+      const petal = document.createElementNS(ns, 'ellipse');
+      petal.setAttribute('cx', '0');
+      petal.setAttribute('cy', (-r*0.6).toFixed(2));
+      petal.setAttribute('rx', (r*0.36).toFixed(2));
+      petal.setAttribute('ry', (r*0.6).toFixed(2));
+      petal.setAttribute('transform', `rotate(${i*72})`);
+      petal.setAttribute('fill', 'url(#blossomGrad)');
+      petal.setAttribute('stroke', 'rgba(255,248,200,.68)');
+      petal.setAttribute('stroke-width', '0.35');
+      g.appendChild(petal);
+    }
+    const core = document.createElementNS(ns, 'circle');
+    core.setAttribute('r', (r*0.28).toFixed(2));
+    core.setAttribute('fill', '#b9881a');
+    g.appendChild(core);
+    for (let i = 0; i < 6; i++) {
+      const a = (i/6)*Math.PI*2;
+      const sd = document.createElementNS(ns, 'circle');
+      sd.setAttribute('cx', (Math.cos(a)*r*0.26).toFixed(2));
+      sd.setAttribute('cy', (Math.sin(a)*r*0.26).toFixed(2));
+      sd.setAttribute('r', (r*0.07).toFixed(2));
+      sd.setAttribute('fill', '#fff3c0');
+      g.appendChild(sd);
+    }
+    outer.appendChild(g); svg.appendChild(outer);
+    items.push({ el: g, depth: 14+depth, type: 'bloss' });
+  }
+
+  function placeBud(rng, cx, cy, r) {
+    const outer = document.createElementNS(ns, 'g');
+    outer.setAttribute('transform', `translate(${cx.toFixed(1)},${cy.toFixed(1)}) rotate(${((rng()-.5)*60).toFixed(1)})`);
+    const g = document.createElementNS(ns, 'g');
+    g.classList.add('mb-bud');
+    const bud = document.createElementNS(ns, 'path');
+    bud.setAttribute('d', `M0,${(-r*1.5).toFixed(1)} C${r.toFixed(1)},${(-r*0.4).toFixed(1)} ${(r*0.7).toFixed(1)},${(r*0.7).toFixed(1)} 0,${(r*0.7).toFixed(1)} C${(-r*0.7).toFixed(1)},${(r*0.7).toFixed(1)} ${(-r).toFixed(1)},${(-r*0.4).toFixed(1)} 0,${(-r*1.5).toFixed(1)} Z`);
+    bud.setAttribute('fill', 'rgba(201,162,39,.55)');
+    bud.setAttribute('stroke', 'rgba(240,201,58,.45)');
+    bud.setAttribute('stroke-width', '0.4');
+    g.appendChild(bud); outer.appendChild(g); svg.appendChild(outer);
+    items.push({ el: g, depth: 13, type: 'bud' });
+  }
+
+  function placeLeaf(rng, px, py, rotateDeg, h) {
+    const w = h * (0.28 + rng()*0.11);
+    const outer = document.createElementNS(ns, 'g');
+    outer.setAttribute('transform', `translate(${px.toFixed(1)},${py.toFixed(1)}) rotate(${rotateDeg.toFixed(1)})`);
+    const inner = document.createElementNS(ns, 'g');
+    inner.classList.add('mb-leaf');
+    const blade = document.createElementNS(ns, 'path');
+    blade.setAttribute('d',
+      `M 0,0 C ${(-w).toFixed(2)},${(h*.30).toFixed(2)} ${(-w*.72).toFixed(2)},${(h*.64).toFixed(2)} 0,${h.toFixed(2)} ` +
+      `C ${(w*.72).toFixed(2)},${(h*.64).toFixed(2)} ${w.toFixed(2)},${(h*.30).toFixed(2)} 0,0 Z`);
+    const fo = (.07+rng()*.07).toFixed(3), so = (.30+rng()*.20).toFixed(3);
+    blade.setAttribute('fill', `rgba(160,140,30,${fo})`);
+    blade.setAttribute('stroke', rng()>.45 ? `rgba(190,165,40,${so})` : `rgba(140,125,25,${so})`);
+    blade.setAttribute('stroke-width', (.45+rng()*.28).toFixed(2));
+    inner.appendChild(blade);
+    const vein = document.createElementNS(ns, 'line');
+    vein.setAttribute('x1','0'); vein.setAttribute('y1','0');
+    vein.setAttribute('x2','0'); vein.setAttribute('y2',(h*.86).toFixed(2));
+    vein.setAttribute('stroke','rgba(210,185,50,.2)'); vein.setAttribute('stroke-width','.3');
+    inner.appendChild(vein);
+    outer.appendChild(inner); svg.appendChild(outer);
+    return inner;
+  }
+
+  function scatterLeaves(rng, p0, ctrl, p2, depth) {
+    if (depth < 2) return;
+    const n = depth >= 4 ? 4 : 3;
+    const baseH = Math.max(5, 13 - depth*1.4);
+    for (let i = 0; i < n; i++) {
+      const t = (2*i+1)/(2*n), mt = 1-t;
+      const px = mt*mt*p0.x + 2*mt*t*ctrl.x + t*t*p2.x;
+      const py = mt*mt*p0.y + 2*mt*t*ctrl.y + t*t*p2.y;
+      const tdx = 2*mt*(ctrl.x-p0.x) + 2*t*(p2.x-ctrl.x);
+      const tdy = 2*mt*(ctrl.y-p0.y) + 2*t*(p2.y-ctrl.y);
+      const branchFromUp = Math.atan2(tdx,-tdy)*180/Math.PI;
+      const side = (i%2===0)?1:-1;
+      const rotDeg = side*(62+rng()*22) + branchFromUp*0.16 + (rng()-.5)*18;
+      const h = baseH*(.78+rng()*.44);
+      const el = placeLeaf(rng, px, py, rotDeg, h);
+      items.push({ el, depth: 11+depth+i*.1, type: 'leaf' });
+    }
+  }
+
+  function addBranch(rng, x1, y1, angle, len, depth) {
+    const x2 = x1 + Math.sin(angle)*len;
+    const y2 = y1 - Math.cos(angle)*len;
+    const qx = (x1+x2)/2 + (rng()-.5)*len*.42;
+    const qy = (y1+y2)/2 + (rng()-.5)*len*.18;
+    const p0 = {x:x1,y:y1}, ctrl = {x:qx,y:qy}, p2 = {x:x2,y:y2};
+    const body = document.createElementNS(ns, 'path');
+    body.setAttribute('d', ribbonPath(p0, ctrl, p2, widthAt(depth), widthAt(depth+1)));
+    body.setAttribute('fill', 'url(#branchGrad)');
+    body.classList.add('mb-branch');
+    svg.appendChild(body);
+    items.push({ el: body, depth, type: 'branch' });
+    scatterLeaves(rng, p0, ctrl, p2, depth);
+    if (depth === 2 && rng() > .42) {
+      const ox = x1*.4+x2*.6+(rng()-.5)*6, oy = y1*.4+y2*.6;
+      const tx = ox+(rng()-.5)*14;
+      const rp = document.createElementNS(ns, 'path');
+      rp.setAttribute('d', `M${ox.toFixed(1)},${oy.toFixed(1)} C${(ox+(rng()-.5)*14).toFixed(1)},${(oy+36).toFixed(1)} ${(tx+(rng()-.5)*10).toFixed(1)},${(H-40).toFixed(1)} ${tx.toFixed(1)},${H+4}`);
+      rp.setAttribute('stroke', `rgba(201,162,39,${(.14+rng()*.10).toFixed(2)})`);
+      rp.setAttribute('stroke-width', (.6+rng()*.5).toFixed(1));
+      rp.setAttribute('fill','none'); rp.setAttribute('stroke-linecap','round');
+      svg.appendChild(rp);
+      const rtl = rp.getTotalLength();
+      rp.style.strokeDasharray = rtl; rp.style.strokeDashoffset = rtl;
+      items.push({ el: rp, depth: 9, type: 'root', tl: rtl });
+    }
+    const isTerminal = depth > 4 || len < 7;
+    if (isTerminal) {
+      const nb = 1 + Math.floor(rng()*2);
+      for (let i = 0; i < nb; i++)
+        placeBlossom(rng, x2+(rng()-.5)*12, y2+(rng()-.5)*12, 4.5+rng()*2.8, depth+i*.1);
+      if (rng() > .5) placeBud(rng, x2+(rng()-.5)*10, y2+(rng()-.5)*10, 1.8+rng());
+      return;
+    }
+    if (depth >= 2 && rng() > .55) {
+      const t = .55+rng()*.3;
+      placeBud(rng, (1-t)*(1-t)*x1+2*(1-t)*t*qx+t*t*x2, (1-t)*(1-t)*y1+2*(1-t)*t*qy+t*t*y2, 1.6+rng());
+    }
+    const nk = depth < 1 ? 2 : (rng() > .22 ? 2 : 3);
+    for (let i = 0; i < nk; i++) {
+      const half = (nk-1)/2;
+      addBranch(rng, x2, y2, angle+(i-half)*(.32+rng()*.22)+(rng()-.5)*.12, len*(.62+rng()*.16), depth+1);
+    }
+  }
+
+  function applyState(it, on) {
+    if (it.type === 'root') {
+      it.el.style.transition = on ? 'stroke-dashoffset .6s cubic-bezier(.4,0,.2,1)' : 'none';
+      it.el.style.strokeDashoffset = on ? '0' : it.tl;
+    } else if (it.type === 'branch') {
+      it.el.style.transition = on ? 'opacity .42s ease, transform .5s cubic-bezier(.34,1.2,.64,1)' : 'none';
+      it.el.style.opacity = on ? '1' : '0';
+      it.el.style.transform = on ? 'scale(1)' : 'scale(.72)';
+    } else if (it.type === 'leaf') {
+      it.el.style.transition = on ? 'opacity .48s ease, transform .60s cubic-bezier(.34,1.28,.64,1)' : 'none';
+      it.el.style.opacity = on ? '1' : '0';
+      it.el.style.transform = on ? 'scale(1)' : 'scale(0)';
+    } else {
+      const dur = it.type === 'bloss' ? '.62s' : '.45s';
+      it.el.style.transition = on ? `opacity ${dur} ease, transform ${dur} cubic-bezier(.34,1.5,.55,1)` : 'none';
+      it.el.style.opacity = on ? '1' : '0';
+      it.el.style.transform = on ? 'scale(1)' : 'scale(0)';
+    }
+  }
+
+  function revealN(n) {
+    n = Math.max(0, Math.min(n, items.length));
+    if (n === lastN) return;
+    const lo = Math.min(n,lastN), hi = Math.max(n,lastN), on = n > lastN;
+    for (let i = lo; i < hi; i++) applyState(items[i], on);
+    lastN = n;
+  }
+
+  function buildTree() {
+    [...svg.querySelectorAll(':scope > g, :scope > path')].forEach(n => n.remove());
+    items = []; lastN = 0;
+    const rng = makePrng(1337);
+    addBranch(rng, W/2, H-2, (rng()-.5)*.12, 72, 0);
+    items.sort((a,b) => a.depth - b.depth);
+  }
+
+  function spawnPetals() {
+    const wrap = document.getElementById('banyan-wrap');
+    wrap.querySelectorAll('.mai-petal').forEach(p => p.remove());
+    for (let i = 0; i < 5; i++) {
+      const p = document.createElement('div');
+      p.className = 'mai-petal';
+      p.style.left = (28 + Math.random()*120) + 'px';
+      p.style.animation = `petalfall ${5.5+Math.random()*3}s linear ${Math.random()*6}s infinite`;
+      wrap.appendChild(p);
+    }
+  }
+
+  buildTree();
+  spawnPetals();
+
+  let _t = false;
+  window.addEventListener('scroll', () => {
+    if (_t) return; _t = true;
+    requestAnimationFrame(() => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      revealN(Math.round((max > 0 ? window.scrollY/max : 0) * items.length));
+      _t = false;
+    });
+  }, { passive: true });
+
+  /* Gentle intro bloom on load */
+  let n = 0;
+  const ap = setInterval(() => { revealN(++n); if (n >= items.length) clearInterval(ap); }, 52);
 })();
 </script>
 </body>
