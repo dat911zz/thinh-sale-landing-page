@@ -818,7 +818,7 @@ fetch('pricing.json')
   if (!svg) return;
   const ns = 'http://www.w3.org/2000/svg';
   const W = 180, H = 290;
-  let items = [], lastN = 0;
+  let items = [];
 
   function makePrng(seed) {
     let s = seed >>> 0;
@@ -1008,17 +1008,26 @@ fetch('pricing.json')
     }
   }
 
-  function revealN(n) {
-    n = Math.max(0, Math.min(n, items.length));
-    if (n === lastN) return;
-    const lo = Math.min(n,lastN), hi = Math.max(n,lastN), on = n > lastN;
+  /* Smooth growth: max 5 items/frame so fast scroll never causes jank */
+  let displayN = 0, targetN = 0, growRaf = null;
+  function growTick() {
+    if (displayN === targetN) { growRaf = null; return; }
+    const step = Math.min(5, Math.abs(targetN - displayN));
+    const next = displayN < targetN ? displayN + step : displayN - step;
+    const lo = Math.min(next, displayN), hi = Math.max(next, displayN), on = next > displayN;
     for (let i = lo; i < hi; i++) applyState(items[i], on);
-    lastN = n;
+    displayN = next;
+    growRaf = requestAnimationFrame(growTick);
+  }
+  function revealN(n) {
+    targetN = Math.max(0, Math.min(n, items.length));
+    if (!growRaf) growRaf = requestAnimationFrame(growTick);
   }
 
   function buildTree() {
     [...svg.querySelectorAll(':scope > g, :scope > path')].forEach(n => n.remove());
-    items = []; lastN = 0;
+    items = []; displayN = 0; targetN = 0;
+    if (growRaf) { cancelAnimationFrame(growRaf); growRaf = null; }
     const rng = makePrng(1337);
     addBranch(rng, W/2, H-2, (rng()-.5)*.12, 72, 0);
     items.sort((a,b) => a.depth - b.depth);
