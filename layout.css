@@ -1381,10 +1381,10 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
   animation: petalrain var(--dur) linear var(--delay) infinite;
 }
 @keyframes petalrain {
-  0%   { opacity: 0;    transform: translateX(0)             translateY(-14px) rotate(0deg); }
-  8%   { opacity: .55; }
-  90%  { opacity: .32; }
-  100% { opacity: 0;    transform: translateX(var(--drift))   translateY(105vh) rotate(var(--spin)); }
+  0%   { opacity: 0;    transform: translateX(0)           translateY(-14px) rotate(0deg); }
+  8%   { opacity: .18; }
+  90%  { opacity: .12; }
+  100% { opacity: 0;    transform: translateX(var(--drift)) translateY(105vh) rotate(var(--spin)); }
 }
 
 /* ── Cây Mai Vàng ── */
