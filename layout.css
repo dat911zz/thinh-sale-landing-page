@@ -1368,21 +1368,32 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 @media (max-width: 900px) { .scroll-rail { display: none; } }
 
 /* ── Bamboo plant ─────────────────────────────── */
-.bamboo-wrap {
-  position: fixed; bottom: 20px; right: 20px;
-  z-index: 10; pointer-events: none; opacity: .5;
-  filter: drop-shadow(0 0 8px rgba(201,162,39,.18));
+/* ── Cây Mai Vàng ── */
+.banyan-wrap {
+  position: fixed; bottom: 12px; right: 14px;
+  z-index: 10; pointer-events: none; opacity: .92;
+  filter: drop-shadow(0 2px 5px rgba(201,162,39,.14));
+  width: 200px; height: 300px;
 }
-.bam-part {
-  fill: none; stroke-linecap: round;
-  transition: stroke-dashoffset .75s cubic-bezier(.4,0,.2,1);
+.mb-branch { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(.72); }
+.mb-root   { fill: none; stroke-linecap: round; }
+.mb-bloss  { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(0); }
+.mb-bud    { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(0); }
+.mb-leaf   { opacity: 0; transform-box: fill-box; transform-origin: center top; transform: scale(0); }
+.mai-petal {
+  position: absolute; width: 9px; height: 11px; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 30%, #f7d94a 0%, #c9a227 80%);
+  border-radius: 60% 60% 60% 60% / 70% 70% 40% 40%;
+  opacity: 0; top: 18%;
 }
-.bam-stem  { stroke: var(--gold);          stroke-width: 3; }
-.bam-joint { stroke: rgba(201,162,39,.55); stroke-width: 5; stroke-linecap: square; }
-.bam-leaf  { stroke: var(--gold2);         stroke-width: 1.5; opacity: .75; }
+@keyframes petalfall {
+  0%   { opacity: 0;   transform: translate(0,0)        rotate(0deg)   scale(.9); }
+  12%  { opacity: .75; }
+  100% { opacity: 0;   transform: translate(-46px,210px) rotate(300deg) scale(.7); }
+}
 @media (max-width: 768px) {
-  .bamboo-wrap {
-    bottom: 72px; right: 8px; opacity: .28;
-    transform: scale(.65); transform-origin: bottom right;
+  .banyan-wrap {
+    bottom: 72px; right: 6px; opacity: .55;
+    transform: scale(.6); transform-origin: bottom right;
   }
 }
