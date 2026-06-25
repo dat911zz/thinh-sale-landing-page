@@ -1048,18 +1048,24 @@ fetch('pricing.json')
   buildTree();
   spawnPetals();
 
-  /* Mưa lá mai toàn màn hình — 10 cánh, chỉ transform+opacity */
+  /* Mưa lá mai toàn màn hình — 15 cánh rải đều, chỉ transform+opacity */
   (function spawnPetalRain() {
     const rain = document.getElementById('petal-rain');
     if (!rain) return;
-    for (let i = 0; i < 10; i++) {
+    const COUNT = 15;
+    for (let i = 0; i < COUNT; i++) {
       const p = document.createElement('div');
       p.className = 'rain-petal';
-      p.style.left = (Math.random() * 100) + 'vw';
-      p.style.setProperty('--dur',   (6 + Math.random() * 6) + 's');
-      p.style.setProperty('--delay', (Math.random() * 12) + 's');
-      p.style.setProperty('--drift', ((Math.random() - .5) * 90) + 'px');
-      p.style.setProperty('--spin',  (160 + Math.random() * 200) + 'deg');
+      /* Stratified: chia đều 15 slot ngang, random trong từng slot */
+      p.style.left = ((i / COUNT + Math.random() / COUNT) * 100) + 'vw';
+      /* Size variation nhẹ cho tự nhiên */
+      const sz = 0.7 + Math.random() * 0.65;
+      p.style.width  = (8  * sz).toFixed(1) + 'px';
+      p.style.height = (10 * sz).toFixed(1) + 'px';
+      p.style.setProperty('--dur',   (7  + Math.random() * 7)  + 's');
+      p.style.setProperty('--delay', (Math.random() * 14)       + 's');
+      p.style.setProperty('--drift', ((Math.random() - .5) * 80) + 'px');
+      p.style.setProperty('--spin',  (150 + Math.random() * 220) + 'deg');
       rain.appendChild(p);
     }
   })();
