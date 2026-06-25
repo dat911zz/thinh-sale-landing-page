@@ -1393,7 +1393,7 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 }
 @media (max-width: 768px) {
   .banyan-wrap {
-    bottom: 72px; right: 6px; opacity: .55;
+    bottom: 16px; right: 8px; opacity: .55;
     transform: scale(.6); transform-origin: bottom right;
   }
 }
