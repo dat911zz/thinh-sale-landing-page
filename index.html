@@ -1046,9 +1046,6 @@ fetch('pricing.json')
     });
   }, { passive: true });
 
-  /* Gentle intro bloom on load */
-  let n = 0;
-  const ap = setInterval(() => { revealN(++n); if (n >= items.length) clearInterval(ap); }, 52);
 })();
 </script>
 </body>
