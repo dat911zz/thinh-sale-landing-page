@@ -48,13 +48,15 @@ function ppCarouselHTML(cardsHTML, count, key) {
 }
 
 function ppInitCarousel(el, delay) {
-  delay = delay || 6000;
+  delay = delay || 8000;
   const track = el.querySelector('.plan-track');
   const fill  = el.querySelector('.plan-fill');
   const dots  = el.querySelectorAll('.plan-dot');
   const cards = track.querySelectorAll('.pricing-card');
   const total = cards.length;
-  let current = 0, timer = null;
+  /* Người dùng đã tương tác → tắt hẳn auto-lật */
+  var noAuto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0, timer = null, userStopped = noAuto;
 
   cards.forEach(function(c) { c.classList.add('visible'); });
 
@@ -71,9 +73,12 @@ function ppInitCarousel(el, delay) {
     track.style.transform = 'translateX(-' + (n * cards[0].offsetWidth) + 'px)';
     dots.forEach(function(d, i) { d.classList.toggle('plan-dot--active', i === n); });
     clearInterval(timer);
+    if (userStopped) { stopAuto(); return; }
     triggerFill();
     timer = setInterval(function() { goTo(current + 1); }, delay);
   }
+
+  function userGoTo(n) { userStopped = true; goTo(n); }
 
   function stopAuto() {
     clearInterval(timer);
@@ -90,26 +95,26 @@ function ppInitCarousel(el, delay) {
     timer = setInterval(function() { goTo(current + 1); }, delay);
   }
 
-  dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function() { userGoTo(i); }); });
   var prev = el.querySelector('.plan-arrow--prev');
   var next = el.querySelector('.plan-arrow--next');
-  if (prev) prev.addEventListener('click', function() { goTo(current - 1); });
-  if (next) next.addEventListener('click', function() { goTo(current + 1); });
+  if (prev) prev.addEventListener('click', function() { userGoTo(current - 1); });
+  if (next) next.addEventListener('click', function() { userGoTo(current + 1); });
 
   el.addEventListener('mouseenter', stopAuto);
-  el.addEventListener('mouseleave', startAuto);
+  el.addEventListener('mouseleave', function() { if (!userStopped) startAuto(); });
 
   var touchX = 0;
-  el.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; stopAuto(); userStopped = true; }, { passive: true });
   el.addEventListener('touchend', function(e) {
     var dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 50) goTo(current + (dx > 0 ? -1 : 1));
+    if (Math.abs(dx) > 50) userGoTo(current + (dx > 0 ? -1 : 1));
   }, { passive: true });
 
   el.setAttribute('tabindex', '0');
   el.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); userGoTo(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); userGoTo(current + 1); }
   });
 
   window.addEventListener('resize', function() {
@@ -118,8 +123,10 @@ function ppInitCarousel(el, delay) {
     requestAnimationFrame(function() { track.style.transition = ''; });
   }, { passive: true });
 
-  triggerFill();
-  timer = setInterval(function() { goTo(current + 1); }, delay);
+  if (!userStopped) {
+    triggerFill();
+    timer = setInterval(function() { goTo(current + 1); }, delay);
+  }
 }
 
 function ppSetYear(yr, tabEl) {

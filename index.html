@@ -86,10 +86,10 @@
   <a href="easydocs.html" onclick="closeMenu()" class="mobile-product-link"><img src="logos/easydocs.png" alt="" class="mobile-product-icon"><span>EasyDocs</span></a>
   
   <div class="mobile-menu-divider"></div>
-  <a href="#contact" class="mobile-menu-cta" onclick="closeMenu()">📞 Liên hệ ngay</a>
+  <a href="tel:0986633426" class="mobile-menu-cta" onclick="closeMenu()">📞 Gọi 0986 633 426</a>
 
   <div class="mobile-menu-socials">
-    <a href="#" class="mobile-social-link" aria-label="Zalo">💬</a>
+    <a href="https://zalo.me/0986633426" target="_blank" rel="noopener" class="mobile-social-link" aria-label="Zalo">💬</a>
     <a href="tel:0986633426" class="mobile-social-link" aria-label="Gọi điện">📞</a>
     <a href="mailto:info@thinhvuongluat.vn" class="mobile-social-link" aria-label="Email">📧</a>
   </div>
@@ -129,7 +129,7 @@
     </li>
     <li><a href="index.html#easyinvoice">Bảng giá</a></li>
     <li><a href="index.html#ecosystem">Hệ sinh thái</a></li>
-    <li><a href="index.html#contact" class="nav-cta">Liên hệ ngay</a></li>
+    <li><a href="tel:0986633426" class="nav-cta">📞 0986 633 426</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()"
           aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -440,6 +440,11 @@
         © <strong>Thịnh Vượng Luật</strong> · Đại lý dịch vụ SDS chính thức
       </div>
     </div>
+    <div class="footer-contact" id="footer-contact">
+      📞 <a href="tel:0986633426"><strong>0986 633 426</strong></a>
+      · ✉️ <a href="mailto:info@thinhvuongluat.vn">info@thinhvuongluat.vn</a>
+      · T2 – T7: 8:00 – 17:30
+    </div>
     <div class="footer-sds" id="footer-sds">
       Powered by <a href="https://softdreams.vn" target="_blank" rel="noopener noreferrer">SDS Vietnam</a>
     </div>
@@ -742,7 +747,11 @@ function render(data) {
 
   /* Footer */
   document.getElementById('footer-text').innerHTML =
-    `© ${meta.footerYear} <strong>${meta.siteName}</strong> · ${meta.tagline}`;
+    `© ${new Date().getFullYear()} <strong>${meta.siteName}</strong> · ${meta.tagline}`;
+  document.getElementById('footer-contact').innerHTML =
+    `📞 <a href="${meta.contact.hotline.href}"><strong>${meta.contact.hotline.display}</strong></a>
+     · ✉️ <a href="${meta.contact.email.href}">${meta.contact.email.display}</a>
+     · ${meta.contact.hours}`;
   document.getElementById('footer-sds').innerHTML =
     `Powered by <a href="https://softdreams.vn" target="_blank" rel="noopener noreferrer">SDS Vietnam</a>
      · Hotline: <a href="${meta.sdsHotline.href}">${meta.sdsHotline.display}</a>`;
@@ -751,13 +760,15 @@ function render(data) {
 }
 
 /* ── PLAN CARD CAROUSEL ──────────────────────── */
-function initPlanCarousel(el, delay = 5000) {
+function initPlanCarousel(el, delay = 8000) {
   const track = el.querySelector('.plan-track');
   const fill  = el.querySelector('.plan-fill');
   const dots  = el.querySelectorAll('.plan-dot');
   const cards = track.querySelectorAll('.pricing-card');
   const total = cards.length;
-  let current = 0, timer = null;
+  /* Người dùng đã tương tác → tắt hẳn auto-lật, không giật bảng giá khi đang đọc */
+  const noAuto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0, timer = null, userStopped = noAuto;
 
   /* Ensure all cards are visible inside overflow:hidden */
   cards.forEach(c => c.classList.add('visible'));
@@ -775,9 +786,12 @@ function initPlanCarousel(el, delay = 5000) {
     track.style.transform = `translateX(-${n * cards[0].offsetWidth}px)`;
     dots.forEach((d, i) => d.classList.toggle('plan-dot--active', i === n));
     clearInterval(timer);
+    if (userStopped) { stopAuto(); return; }
     triggerFill();
     timer = setInterval(() => goTo(current + 1), delay);
   }
+
+  function userGoTo(n) { userStopped = true; goTo(n); }
 
   function stopAuto() {
     clearInterval(timer);
@@ -794,24 +808,24 @@ function initPlanCarousel(el, delay = 5000) {
     timer = setInterval(() => goTo(current + 1), delay);
   }
 
-  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
-  el.querySelector('.plan-arrow--prev')?.addEventListener('click', () => goTo(current - 1));
-  el.querySelector('.plan-arrow--next')?.addEventListener('click', () => goTo(current + 1));
+  dots.forEach((d, i) => d.addEventListener('click', () => userGoTo(i)));
+  el.querySelector('.plan-arrow--prev')?.addEventListener('click', () => userGoTo(current - 1));
+  el.querySelector('.plan-arrow--next')?.addEventListener('click', () => userGoTo(current + 1));
 
   el.addEventListener('mouseenter', stopAuto);
-  el.addEventListener('mouseleave', startAuto);
+  el.addEventListener('mouseleave', () => { if (!userStopped) startAuto(); });
 
   let touchX = 0;
-  el.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; stopAuto(); userStopped = true; }, { passive: true });
   el.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 50) goTo(current + (dx > 0 ? -1 : 1));
+    if (Math.abs(dx) > 50) userGoTo(current + (dx > 0 ? -1 : 1));
   }, { passive: true });
 
   el.setAttribute('tabindex', '0');
   el.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); userGoTo(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); userGoTo(current + 1); }
   });
 
   window.addEventListener('resize', () => {
@@ -820,8 +834,10 @@ function initPlanCarousel(el, delay = 5000) {
     requestAnimationFrame(() => { track.style.transition = ''; });
   }, { passive: true });
 
-  triggerFill();
-  timer = setInterval(() => goTo(current + 1), delay);
+  if (!userStopped) {
+    triggerFill();
+    timer = setInterval(() => goTo(current + 1), delay);
+  }
 }
 
 /* ── FORM SUBMIT ──────────────────────────────── */
@@ -1137,6 +1153,7 @@ fetch('pricing.json')
   }
 
   function spawnPetals() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const wrap = document.getElementById('banyan-wrap');
     wrap.querySelectorAll('.mai-petal').forEach(p => p.remove());
     for (let i = 0; i < 5; i++) {
@@ -1154,7 +1171,7 @@ fetch('pricing.json')
   /* Mưa lá mai toàn màn hình — 15 cánh rải đều, chỉ transform+opacity */
   (function spawnPetalRain() {
     const rain = document.getElementById('petal-rain');
-    if (!rain) return;
+    if (!rain || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const COUNT = 15;
     for (let i = 0; i < COUNT; i++) {
       const p = document.createElement('div');

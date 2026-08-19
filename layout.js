@@ -81,3 +81,6 @@ function observeFadeUps() {
 }
 
 observeFadeUps();
+
+/* Footer year — always current */
+document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());

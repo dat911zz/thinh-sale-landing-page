@@ -14,7 +14,7 @@
     ],
     "contact": {
       "hotline": { "display": "0986 633 426", "href": "tel:0986633426" },
-      "zalo":    { "display": "Nhắn Zalo ngay", "href": "#" },
+      "zalo":    { "display": "Nhắn Zalo ngay", "href": "https://zalo.me/0986633426" },
       "email":   { "display": "info@thinhvuongluat.vn", "href": "mailto:info@thinhvuongluat.vn" },
       "hours":   "T2 – T7: 8:00 – 17:30"
     },
