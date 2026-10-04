@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="layout.css?v=2026100401" />
+  <link rel="stylesheet" href="layout.css?v=2026100402" />
 
   <!-- ── JSON-LD ────────────────────────────────────── -->
   <script type="application/ld+json">
@@ -371,7 +371,7 @@
 <!-- ══ SCROLL TO TOP ══════════════════════════════ -->
 <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
 
-<script src="layout.js?v=2026100401"></script>
+<script src="layout.js?v=2026100402"></script>
 <script>
 
 /* ── STICKY CTA ────────────────────────────────── */
@@ -395,8 +395,8 @@
 function onLogoError(el, emoji, name) {
   el.parentNode.innerHTML = '<div class="product-logo-fallback"><span>' + emoji + '</span><strong>' + name + '</strong></div>';
 }
-function onEcoLogoError(el, emoji) {
-  el.parentNode.innerHTML = '<span class="eco-logo-fallback">' + emoji + '</span>';
+function onEcoLogoError(el) {
+  el.parentNode.remove();
 }
 
 /* ── RENDER HELPERS ───────────────────────────── */
@@ -409,9 +409,9 @@ function logoImg(logo, name, fallbackEmoji) {
 
 function ecoLogoImg(logo, name, fallbackEmoji) {
   if (logo) {
-    return '<div class="eco-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" loading="lazy" onerror="onEcoLogoError(this,\'' + fallbackEmoji + '\')"></div>';
+    return '<div class="eco-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" loading="lazy" onerror="onEcoLogoError(this)"></div>';
   }
-  return '<div class="eco-logo-wrap"><span class="eco-logo-fallback">' + fallbackEmoji + '</span></div>';
+  return '';  /* no usable logo: the card's name line carries it */
 }
 
 function setupFeeHTML(tag, data) {
