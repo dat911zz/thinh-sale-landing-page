@@ -7,10 +7,9 @@
     "heroSpan": "Giải pháp số cho doanh nghiệp",
     "heroDesc": "Đại lý ủy quyền phần mềm SDS – hóa đơn điện tử, chữ ký số, kế toán và cả hệ sinh thái quản trị doanh nghiệp. Tư vấn miễn phí, hỗ trợ trọn đời.",
     "stats": [
-      { "num": "350K+", "label": "Doanh nghiệp tin dùng SDS" },
-      { "num": "13+",   "label": "Năm kinh nghiệm SDS" },
-      { "num": "12+",   "label": "Sản phẩm hệ sinh thái" },
-      { "num": "24/7",  "label": "Hỗ trợ kỹ thuật" }
+      { "num": "350K+",     "label": "Doanh nghiệp dùng phần mềm SDS" },
+      { "num": "13+",       "label": "Năm SDS trên thị trường" },
+      { "num": "Trong ngày", "label": "Kích hoạt sau khi ký hợp đồng" }
     ],
     "contact": {
       "hotline": { "display": "0986 633 426", "href": "tel:0986633426" },
@@ -32,7 +31,7 @@
   ],
 
   "easyinvoice": {
-    "eyebrow": "🧾 EasyInvoice",
+    "eyebrow": "EasyInvoice",
     "title": "Bảng giá Hóa đơn điện tử",
     "desc": "Phần mềm hóa đơn điện tử tuân thủ Thông tư 78, kết nối cơ quan thuế, ký số HSM.",
     "setupFee": "500.000đ",
@@ -80,7 +79,7 @@
   },
 
   "easyca": {
-    "eyebrow": "🔏 EasyCA",
+    "eyebrow": "EasyCA",
     "title": "Bảng giá Chữ ký số",
     "desc": "Chữ ký số cá nhân & tổ chức – USB Token vật lý hoặc ký số từ xa qua điện toán đám mây.",
     "yearOptions": [1, 2, 3],
@@ -136,7 +135,7 @@
   },
 
   "easybooks": {
-    "eyebrow": "📊 EasyBooks",
+    "eyebrow": "EasyBooks",
     "title": "Bảng giá Phần mềm Kế toán",
     "desc": "Kế toán online không giới hạn user, không giới hạn chứng từ – cập nhật tự động theo thông tư mới nhất.",
     "setupFee": "1.000.000đ",
