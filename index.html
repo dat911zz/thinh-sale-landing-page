@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="layout.css" />
+  <link rel="stylesheet" href="layout.css?v=2026100401" />
 
   <!-- ── JSON-LD ────────────────────────────────────── -->
   <script type="application/ld+json">
@@ -371,7 +371,7 @@
 <!-- ══ SCROLL TO TOP ══════════════════════════════ -->
 <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
 
-<script src="layout.js"></script>
+<script src="layout.js?v=2026100401"></script>
 <script>
 
 /* ── STICKY CTA ────────────────────────────────── */
@@ -569,7 +569,7 @@ function handleSubmit(e) {
 }
 
 /* ── BOOTSTRAP ────────────────────────────────── */
-fetch('pricing.json')
+fetch('pricing.json?v=' + ASSET_VERSION)
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(render)
   .catch(err => console.error('Không thể tải pricing.json:', err));

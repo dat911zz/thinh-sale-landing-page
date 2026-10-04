@@ -2,7 +2,7 @@
    Requires: <body data-product="easyinvoice|easyca|easybooks|easyhrm|easypos|easydocs">
    and layout.js (planTableHTML, setYear) loaded first. */
 
-fetch('pricing.json')
+fetch('pricing.json?v=' + ASSET_VERSION)
   .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(function(data) {
     var slug = document.body.dataset.product;

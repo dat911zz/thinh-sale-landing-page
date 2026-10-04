@@ -1,4 +1,9 @@
 /* Shared layout behaviour — nav, scroll-to-top, fade-up observer */
+
+/* Cache-busting token. Bump it (here AND in the ?v= of every <link>/<script>
+   tag in the HTML pages) on each deploy, so browsers never mix a fresh page
+   with stale CSS/JS/pricing data. */
+const ASSET_VERSION = '2026100401';
 const _hamburger  = document.getElementById('nav-hamburger');
 const _mobileMenu = document.getElementById('mobile-menu');
 const _mainNav    = document.getElementById('main-nav');
