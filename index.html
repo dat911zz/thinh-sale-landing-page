@@ -30,7 +30,7 @@
   <!-- ── FONTS ──────────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="layout.css" />
 
   <!-- ── JSON-LD ────────────────────────────────────── -->
@@ -72,7 +72,7 @@
   </ul>
   <div class="mobile-menu-divider"></div>
   <div class="mobile-menu-section-label"><a href="#products" onclick="closeMenu()" style="color:inherit;text-decoration:none">Sản phẩm</a></div>
-  <div class="mobile-dd-group">Hoá đơn điện tử</div>
+  <div class="mobile-dd-group">Hóa đơn điện tử</div>
   <a href="easyinvoice.html" onclick="closeMenu()" class="mobile-product-link"><img src="logos/easyinvoice.png" alt="" class="mobile-product-icon"><span>EasyInvoice</span></a>
   <div class="mobile-dd-group">Chữ ký số</div>
   <a href="easyca.html" onclick="closeMenu()" class="mobile-product-link"><img src="logos/easyca.png" alt="" class="mobile-product-icon"><span>EasyCA</span></a>
@@ -108,7 +108,7 @@
     <li class="nav-dropdown">
       <a href="index.html#products" aria-haspopup="true">Sản phẩm ▾</a>
       <ul class="nav-dropdown-menu" role="menu">
-        <li class="nav-dd-group">Hoá đơn điện tử</li>
+        <li class="nav-dd-group">Hóa đơn điện tử</li>
         <li><a href="easyinvoice.html" class="nav-dd-logo-link"><img src="logos/easyinvoice.png" alt="" class="nav-dd-logo"><span class="nav-dd-name">EasyInvoice</span></a></li>
         <li class="nav-dropdown-divider" role="separator"></li>
         <li class="nav-dd-group">Chữ ký số</li>
@@ -145,12 +145,12 @@
     <div class="hero-content" id="hero-content">
       <div class="hero-badge" id="hero-badge">
         <div class="hero-badge-dot"></div>
-        Đại lý uỷ quyền chính thức · SDS Vietnam
+        Đại lý ủy quyền chính thức · SDS Vietnam
       </div>
-      <h1 id="hero-title">Hoá đơn điện&nbsp;tử &amp; chữ&nbsp;ký&nbsp;số <em>kích hoạt trong ngày, giá&nbsp;đại&nbsp;lý</em></h1>
-      <p class="hero-sub" id="hero-desc">Chữ ký số EasyCA từ 486.000đ/năm, kế toán EasyBooks từ 1.000.000đ/năm. Gọi hoặc nhắn Zalo để nhận báo giá hoá đơn điện tử theo đúng số lượng hoá đơn bạn dùng.</p>
+      <h1 id="hero-title">Hóa đơn điện&nbsp;tử &amp; chữ&nbsp;ký&nbsp;số <em>kích hoạt trong ngày, giá&nbsp;đại&nbsp;lý</em></h1>
+      <p class="hero-sub" id="hero-desc">Chữ ký số EasyCA từ 486.000đ/năm, kế toán EasyBooks từ 1.000.000đ/năm. Gọi hoặc nhắn Zalo để nhận báo giá hóa đơn điện tử theo đúng số lượng hóa đơn bạn dùng.</p>
       <div class="hero-btns">
-        <a href="https://zalo.me/0986633426" target="_blank" rel="noopener" class="btn-primary">Nhắn Zalo báo giá</a>
+        <a href="https://zalo.me/0986633426" target="_blank" rel="noopener" class="btn-zalo">Nhắn Zalo báo giá</a>
         <a href="tel:0986633426" class="btn-ghost">Gọi 0986 633 426</a>
       </div>
       <div class="hero-stats" id="hero-stats"><!-- from JSON --></div>
@@ -158,8 +158,8 @@
 
     <figure class="hero-visual">
       <img src="images/easyinvoice-interface.jpg" width="713" height="339"
-           alt="Màn hình quản lý hoá đơn của phần mềm EasyInvoice" />
-      <figcaption>Giao diện EasyInvoice thực tế – màn hình tra cứu và chuyển đổi hoá đơn.</figcaption>
+           alt="Màn hình quản lý hóa đơn của phần mềm EasyInvoice" />
+      <figcaption>Giao diện EasyInvoice thực tế – màn hình tra cứu và chuyển đổi hóa đơn.</figcaption>
     </figure>
   </div>
 
@@ -191,7 +191,7 @@
       </svg>
       <span></span>
     </div>
-    <div id="invoice-grid"><!-- plan carousel --></div>
+    <div id="invoice-grid"><!-- plan table --></div>
     <p id="invoice-disclaimer" style="font-size:.82rem;color:var(--muted);margin-top:16px;text-align:center"></p>
   </div>
 </section>
@@ -205,7 +205,7 @@
       <p class="section-desc" id="ca-desc"></p>
     </div>
     <div class="year-tabs" id="ca-year-tabs" role="tablist" aria-label="Chọn kỳ hạn"></div>
-    <div id="ca-grid"><!-- plan carousel --></div>
+    <div id="ca-grid"><!-- plan table --></div>
   </div>
 </section>
 
@@ -223,7 +223,7 @@
       </svg>
       <span></span>
     </div>
-    <div id="books-grid"><!-- plan carousel --></div>
+    <div id="books-grid"><!-- plan table --></div>
   </div>
 </section>
 
@@ -304,20 +304,21 @@
     <div class="section-header">
       <div class="section-eyebrow">Liên hệ ngay</div>
       <h2 class="section-title" id="contact-title">Nhận tư vấn & báo giá miễn phí</h2>
-      <p class="section-desc">Đội ngũ chuyên gia sẽ phản hồi trong vòng 2 giờ làm việc.</p>
+      <p class="section-desc">Bên em gọi lại trong giờ làm việc (T2 – T7, 8:00 – 17:30). Cần nhanh hơn, anh/chị gọi thẳng hoặc nhắn Zalo.</p>
     </div>
     <div class="contact-cards" id="contact-cards"><!-- from JSON --></div>
     <div class="contact-form-wrap">
-      <div class="contact-form-title">Để lại thông tin – Chúng tôi gọi lại ngay</div>
-      <form onsubmit="handleSubmit(event)" novalidate>
+      <div class="contact-form-title">Để lại số điện thoại, bên em gọi lại</div>
+      <form id="contact-form" onsubmit="handleSubmit(event)" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="f-name">Họ và tên *</label>
-            <input id="f-name" class="form-input" type="text" placeholder="Nguyễn Văn A" required autocomplete="name" />
+            <label class="form-label" for="f-name">Họ và tên</label>
+            <input id="f-name" class="form-input" type="text" placeholder="Nguyễn Văn A" autocomplete="name" />
           </div>
           <div class="form-group">
             <label class="form-label" for="f-phone">Số điện thoại *</label>
-            <input id="f-phone" class="form-input" type="tel" placeholder="0912 345 678" required autocomplete="tel" />
+            <input id="f-phone" class="form-input" type="tel" inputmode="tel" placeholder="0912 345 678" required autocomplete="tel" aria-describedby="f-phone-error" />
+            <div class="form-error" id="f-phone-error" role="alert" hidden>Số điện thoại cần đủ 10 số, bắt đầu bằng 0.</div>
           </div>
         </div>
         <div class="form-group">
@@ -325,7 +326,7 @@
           <input id="f-company" class="form-input" type="text" placeholder="Công ty TNHH ..." autocomplete="organization" />
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-service">Dịch vụ quan tâm</label>
+          <label class="form-label" for="contact-service-select">Dịch vụ quan tâm</label>
           <select id="contact-service-select" class="form-select">
             <option value="">Chọn sản phẩm...</option>
           </select>
@@ -334,7 +335,8 @@
           <label class="form-label" for="f-note">Ghi chú thêm</label>
           <textarea id="f-note" class="form-textarea" placeholder="Mô tả nhu cầu, quy mô doanh nghiệp..."></textarea>
         </div>
-        <button type="submit" class="btn-submit">Gửi yêu cầu tư vấn →</button>
+        <button type="submit" class="btn-submit">Gửi yêu cầu tư vấn</button>
+        <p class="form-status" id="form-status" role="status" hidden></p>
       </form>
     </div>
   </div>
@@ -376,35 +378,18 @@
 (function () {
   const bar = document.getElementById('sticky-cta');
   if (!bar) return;
-  const hero   = document.querySelector('.hero-section') || document.querySelector('section');
+  const hero    = document.querySelector('.hero');
   const contact = document.getElementById('contact');
+  /* Show the bar only while neither the hero nor the contact block is on screen */
+  const onScreen = new Set();
   function update(entries) {
-    entries.forEach(e => {
-      if (e.target === hero)    bar.classList.toggle('visible', !e.isIntersecting);
-      if (e.target === contact) { if (e.isIntersecting) bar.classList.remove('visible'); }
-    });
+    entries.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target));
+    bar.classList.toggle('visible', onScreen.size === 0);
   }
   const io = new IntersectionObserver(update, { threshold: .1 });
   if (hero)    io.observe(hero);
   if (contact) io.observe(contact);
 })();
-
-/* ── EASYCA YEAR TABS ─────────────────────────── */
-function setYear(yr, tabEl) {
-  document.querySelectorAll('.year-tab').forEach(t => {
-    t.classList.remove('active');
-    t.setAttribute('aria-selected', 'false');
-  });
-  tabEl.classList.add('active');
-  tabEl.setAttribute('aria-selected', 'true');
-
-  document.querySelectorAll('[data-prices]').forEach(el => {
-    el.textContent = JSON.parse(el.dataset.prices)[yr - 1];
-  });
-  document.querySelectorAll('.ca-unit').forEach(el => {
-    el.textContent = `/ ${yr} năm`;
-  });
-}
 
 /* ── LOGO ERROR HANDLERS ──────────────────────── */
 function onLogoError(el, emoji, name) {
@@ -429,57 +414,9 @@ function ecoLogoImg(logo, name, fallbackEmoji) {
   return '<div class="eco-logo-wrap"><span class="eco-logo-fallback">' + fallbackEmoji + '</span></div>';
 }
 
-function featuresHTML(features) {
-  return features.map(f => `
-    <li class="pricing-feature">
-      <span class="pricing-feature-icon check" aria-hidden="true"></span>
-      <span>${f}</span>
-    </li>`).join('');
-}
-
-function pricingCardHTML(plan, isCA = false, yearIdx = 0) {
-  const cls   = plan.variant ? ` ${plan.variant}` : '';
-  const price = isCA ? plan.prices[yearIdx] : plan.price;
-  const unit  = isCA ? `/ ${yearIdx + 1} năm` : (plan.unit || '');
-  const priceAttr = isCA ? `data-prices='${JSON.stringify(plan.prices)}'` : '';
-  const badge = plan.variant === 'featured'
-    ? '<div class="plan-featured-badge">Phổ biến nhất</div>'
-    : '';
-
-  return `
-    <article class="pricing-card${cls} fade-up" aria-label="${plan.label} – ${plan.planName}">
-      ${badge}
-      <div class="pricing-plan-name">${plan.planName}</div>
-      <div class="pricing-plan-label">${plan.label}</div>
-      <div class="pricing-price">
-        <span class="pricing-price-amount" ${priceAttr}>${price}</span>
-        ${unit ? `<span class="pricing-price-unit${isCA ? ' ca-unit' : ''}">${unit}</span>` : ''}
-      </div>
-      <div class="pricing-note">${plan.note}</div>
-      <ul class="pricing-features">${featuresHTML(plan.features)}</ul>
-      <a href="#contact" class="btn-plan btn-plan-${plan.cta.style}">${plan.cta.text}</a>
-    </article>`;
-}
-
 function setupFeeHTML(tag, data) {
   tag.querySelector('span').innerHTML =
     `${data.setupFeeLabel}: <strong>${data.setupFee} ${data.setupFeeSuffix}</strong>`;
-}
-
-function buildPlanCarouselHTML(cardsHTML, count, key) {
-  const dots = Array.from({length: count}, (_, i) =>
-    `<button class="plan-dot${i === 0 ? ' plan-dot--active' : ''}" data-idx="${i}" aria-label="Gói ${i + 1}"></button>`
-  ).join('');
-  return `
-    <div class="plan-body">
-      <button class="plan-arrow plan-arrow--prev" aria-label="Gói trước">&#8249;</button>
-      <div class="plan-outer">
-        <div class="plan-track" id="plan-track-${key}">${cardsHTML}</div>
-      </div>
-      <button class="plan-arrow plan-arrow--next" aria-label="Gói sau">&#8250;</button>
-    </div>
-    <div class="plan-dots">${dots}</div>
-    <div class="plan-bar" aria-hidden="true"><div class="plan-fill" id="plan-fill-${key}"></div></div>`;
 }
 
 /* ── MAIN RENDER ──────────────────────────────── */
@@ -515,13 +452,7 @@ function render(data) {
   document.getElementById('invoice-desc').textContent       = easyinvoice.desc;
   document.getElementById('invoice-disclaimer').textContent = easyinvoice.disclaimer;
   setupFeeHTML(document.getElementById('invoice-setup-fee'), easyinvoice);
-  const invoiceGrid = document.getElementById('invoice-grid');
-  invoiceGrid.className = 'plan-carousel';
-  invoiceGrid.innerHTML = buildPlanCarouselHTML(
-    easyinvoice.plans.map(p => pricingCardHTML(p)).join(''),
-    easyinvoice.plans.length, 'invoice'
-  );
-  initPlanCarousel(invoiceGrid);
+  document.getElementById('invoice-grid').innerHTML = planTableHTML(easyinvoice.plans, false);
 
   /* EasyCA */
   document.getElementById('ca-eyebrow').textContent = easyca.eyebrow;
@@ -529,29 +460,17 @@ function render(data) {
   document.getElementById('ca-desc').textContent    = easyca.desc;
   document.getElementById('ca-year-tabs').innerHTML =
     easyca.yearOptions.map((yr, i) => `
-      <div class="year-tab${i === 0 ? ' active' : ''}"
+      <button type="button" class="year-tab${i === 0 ? ' active' : ''}"
            role="tab" aria-selected="${i === 0}"
-           onclick="setYear(${yr}, this)">${yr} năm</div>`).join('');
-  const caGrid = document.getElementById('ca-grid');
-  caGrid.className = 'plan-carousel';
-  caGrid.innerHTML = buildPlanCarouselHTML(
-    easyca.plans.map(p => pricingCardHTML(p, true, 0)).join(''),
-    easyca.plans.length, 'ca'
-  );
-  initPlanCarousel(caGrid);
+           onclick="setYear(${yr}, this)">${yr} năm</button>`).join('');
+  document.getElementById('ca-grid').innerHTML = planTableHTML(easyca.plans, true);
 
   /* EasyBooks */
   document.getElementById('books-eyebrow').textContent = easybooks.eyebrow;
   document.getElementById('books-title').textContent   = easybooks.title;
   document.getElementById('books-desc').textContent    = easybooks.desc;
   setupFeeHTML(document.getElementById('books-setup-fee'), easybooks);
-  const booksGrid = document.getElementById('books-grid');
-  booksGrid.className = 'plan-carousel';
-  booksGrid.innerHTML = buildPlanCarouselHTML(
-    easybooks.plans.map(p => pricingCardHTML(p)).join(''),
-    easybooks.plans.length, 'books'
-  );
-  initPlanCarousel(booksGrid);
+  document.getElementById('books-grid').innerHTML = planTableHTML(easybooks.plans, false);
 
   /* Ecosystem */
   document.getElementById('ecosystem-grid').innerHTML =
@@ -614,95 +533,39 @@ function render(data) {
   observeFadeUps();
 }
 
-/* ── PLAN CARD CAROUSEL ──────────────────────── */
-function initPlanCarousel(el, delay = 8000) {
-  const track = el.querySelector('.plan-track');
-  const fill  = el.querySelector('.plan-fill');
-  const dots  = el.querySelectorAll('.plan-dot');
-  const cards = track.querySelectorAll('.pricing-card');
-  const total = cards.length;
-  /* Người dùng đã tương tác → tắt hẳn auto-lật, không giật bảng giá khi đang đọc */
-  const noAuto = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let current = 0, timer = null, userStopped = noAuto;
-
-  /* Ensure all cards are visible inside overflow:hidden */
-  cards.forEach(c => c.classList.add('visible'));
-
-  function triggerFill() {
-    if (!fill) return;
-    fill.style.animation = 'none';
-    fill.offsetHeight;
-    fill.style.animation = `planFill ${delay}ms linear forwards`;
-  }
-
-  function goTo(n) {
-    n = ((n % total) + total) % total;
-    current = n;
-    track.style.transform = `translateX(-${n * cards[0].offsetWidth}px)`;
-    dots.forEach((d, i) => d.classList.toggle('plan-dot--active', i === n));
-    clearInterval(timer);
-    if (userStopped) { stopAuto(); return; }
-    triggerFill();
-    timer = setInterval(() => goTo(current + 1), delay);
-  }
-
-  function userGoTo(n) { userStopped = true; goTo(n); }
-
-  function stopAuto() {
-    clearInterval(timer);
-    timer = null;
-    if (fill) {
-      const w = getComputedStyle(fill).width;
-      fill.style.animation = 'none';
-      fill.style.width = w;
-    }
-  }
-
-  function startAuto() {
-    triggerFill();
-    timer = setInterval(() => goTo(current + 1), delay);
-  }
-
-  dots.forEach((d, i) => d.addEventListener('click', () => userGoTo(i)));
-  el.querySelector('.plan-arrow--prev')?.addEventListener('click', () => userGoTo(current - 1));
-  el.querySelector('.plan-arrow--next')?.addEventListener('click', () => userGoTo(current + 1));
-
-  el.addEventListener('mouseenter', stopAuto);
-  el.addEventListener('mouseleave', () => { if (!userStopped) startAuto(); });
-
-  let touchX = 0;
-  el.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; stopAuto(); userStopped = true; }, { passive: true });
-  el.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 50) userGoTo(current + (dx > 0 ? -1 : 1));
-  }, { passive: true });
-
-  el.setAttribute('tabindex', '0');
-  el.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); userGoTo(current - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); userGoTo(current + 1); }
-  });
-
-  window.addEventListener('resize', () => {
-    track.style.transition = 'none';
-    track.style.transform = `translateX(-${current * cards[0].offsetWidth}px)`;
-    requestAnimationFrame(() => { track.style.transition = ''; });
-  }, { passive: true });
-
-  if (!userStopped) {
-    triggerFill();
-    timer = setInterval(() => goTo(current + 1), delay);
-  }
-}
-
 /* ── FORM SUBMIT ──────────────────────────────── */
+/* No backend yet: hand the request to the visitor's mail app, addressed to
+   the shop inbox. Swap for a real endpoint (Sheet / Telegram) once chosen. */
+const LEAD_EMAIL = 'info@thinhvuongluat.vn';
+
 function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.btn-submit');
-  btn.textContent = '✓ Đã gửi! Chúng tôi sẽ liên hệ sớm nhất.';
-  btn.style.background = 'rgba(34,197,94,.85)';
-  btn.style.color = '#fff';
-  btn.disabled = true;
+  const val = id => document.getElementById(id).value.trim();
+  const phone = val('f-phone').replace(/[\s.\-]/g, '');
+  const phoneErr = document.getElementById('f-phone-error');
+  if (!/^0\d{9}$/.test(phone)) {
+    phoneErr.hidden = false;
+    document.getElementById('f-phone').focus();
+    return;
+  }
+  phoneErr.hidden = true;
+
+  const lines = [
+    'Họ tên: ' + (val('f-name') || '(không ghi)'),
+    'Số điện thoại: ' + phone,
+    'Doanh nghiệp: ' + (val('f-company') || '(không ghi)'),
+    'Dịch vụ quan tâm: ' + (val('contact-service-select') || '(chưa chọn)'),
+    'Ghi chú: ' + (val('f-note') || '(không có)'),
+  ];
+  window.location.href = 'mailto:' + LEAD_EMAIL +
+    '?subject=' + encodeURIComponent('Yêu cầu tư vấn – ' + phone) +
+    '&body=' + encodeURIComponent(lines.join('\n'));
+
+  const status = document.getElementById('form-status');
+  status.hidden = false;
+  status.innerHTML = 'Máy đã mở ứng dụng email với nội dung soạn sẵn – anh/chị bấm Gửi là xong. ' +
+    'Không thấy email mở ra? Gọi <a href="tel:0986633426">0986 633 426</a> hoặc ' +
+    '<a href="https://zalo.me/0986633426" target="_blank" rel="noopener">nhắn Zalo</a>.';
 }
 
 /* ── BOOTSTRAP ────────────────────────────────── */
