@@ -3,7 +3,7 @@
 /* Cache-busting token. Bump it (here AND in the ?v= of every <link>/<script>
    tag in the HTML pages) on each deploy, so browsers never mix a fresh page
    with stale CSS/JS/pricing data. */
-const ASSET_VERSION = '2026100510';
+const ASSET_VERSION = '2026100511';
 const _hamburger  = document.getElementById('nav-hamburger');
 const _mobileMenu = document.getElementById('mobile-menu');
 const _mainNav    = document.getElementById('main-nav');
@@ -96,3 +96,18 @@ function setYear(yr, tabEl) {
   });
   document.querySelectorAll('.ca-unit').forEach(el => { el.textContent = `/ ${yr} năm`; });
 }
+
+/* ── STICKY ZALO / CALL BAR (mobile) ──────────────
+   Shown while neither the hero nor a contact/CTA block is on screen. */
+(function () {
+  const bar = document.getElementById('sticky-cta');
+  if (!bar) return;
+  const watch = [document.querySelector('.hero'), document.getElementById('contact'),
+                 document.querySelector('.pricing-cta-section')].filter(Boolean);
+  const onScreen = new Set();
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target));
+    bar.classList.toggle('visible', onScreen.size === 0);
+  }, { threshold: .1 });
+  watch.forEach(el => io.observe(el));
+})();

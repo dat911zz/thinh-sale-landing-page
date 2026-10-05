@@ -1371,3 +1371,54 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 @media (max-width: 768px) {
   .pos-modes-section, .legal-section, .workflow-section { padding-left: 16px; padding-right: 16px; }
 }
+
+/* ── Mobile QA pass ── */
+.showcase-checks li, .pch-item { align-items: flex-start; }
+.sc-check, .pch-check { margin-top: 2px; flex: none; }
+.eco-logo-wrap { height: 32px; }
+.hrm-module-item { border: 0; border-top: 1px solid var(--border); border-radius: 0; background: none; padding: 14px 0; align-items: flex-start; text-wrap: balance; }
+.wf-step:not(:last-child)::after { top: 92px; height: calc(100% - 64px); background: var(--border); }
+.footer-contact a[href^="mailto"] { overflow-wrap: anywhere; }
+
+@media (max-width: 900px) {
+  .contact-body { grid-template-columns: minmax(0, 1fr); }
+  .contact-form-wrap { min-width: 0; }
+}
+@media (max-width: 768px) {
+  .steps-section, .showcase-section, .integration-section, .hrm-modules-section,
+  .contact-section, .pricing-cta-section, footer { padding-left: 16px; padding-right: 16px; }
+  /* the dark footer reaches the bottom; room for the sticky bar + scroll button */
+  body:has(.sticky-cta) { padding-bottom: 0; }
+  body:has(.sticky-cta) footer { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  html { background: var(--navy); }
+  body { background: var(--white); }
+  .footer-inner, .footer-logo, .footer-contact, .footer-sds { justify-content: center; text-align: center; }
+  .footer-contact .sep { display: none; }
+  .footer-contact { flex-direction: column; gap: 0; }
+  .contact-card:nth-child(n+3) { grid-column: 1 / -1; }
+  /* the sticky Zalo/Call bar is the mobile shortcut; the ↑ button only covered footer text */
+  .scroll-top-btn { display: none; }
+  .footer-logo { flex-direction: column; gap: 6px; }
+  .product-card { padding: 20px 16px; }
+  .product-desc, .product-card--flagship .product-desc { max-width: none; }
+  .mobile-nav-links li { text-align: left; }
+  .mobile-nav-links a { text-align: left; padding-left: 8px; }
+}
+@media (max-width: 600px) {
+  section, .pricing-section-wrap { padding-top: 56px; padding-bottom: 56px; }
+  .hero { padding-bottom: 40px; }
+  .pos-modes-grid .pos-mode-card:last-child, .why-grid .why-card:last-child,
+  .feat-grid .feat-card:last-child, .legal-grid .legal-card:last-child { padding-bottom: 0; }
+}
+@media (max-width: 520px) {
+  .eco-badge { white-space: nowrap; padding: 6px 10px; }
+  .hero-badge { line-height: 1.35; padding: 8px 14px; }
+  .hero-badge-dot { flex: none; }
+}
+@media (max-width: 480px) {
+  .hero-btns { align-items: stretch; }
+  .btn-primary, .btn-ghost, .btn-zalo { max-width: none; width: 100%; }
+  .btn-submit { width: 100%; }
+  .pricing-cta-btns { flex-direction: column; }
+  .pricing-cta-btns a { width: 100%; text-align: center; }
+}

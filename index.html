@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="layout.css?v=2026100510" />
+  <link rel="stylesheet" href="layout.css?v=2026100511" />
 
   <!-- ── JSON-LD ────────────────────────────────────── -->
   <script type="application/ld+json">
@@ -367,8 +367,8 @@
     </div>
     <div class="footer-contact" id="footer-contact">
       <a href="tel:0986633426"><strong>0986 633 426</strong></a>
-      · <a href="mailto:info@thinhvuongluat.vn">info@thinhvuongluat.vn</a>
-      · T2 – T7: 8:00 – 17:30
+      <span class="sep">·</span> <a href="mailto:info@thinhvuongluat.vn">info@thinhvuongluat.vn</a>
+      <span class="sep">·</span> T2 – T7: 8:00 – 17:30
     </div>
     <div class="footer-sds" id="footer-sds">
       Powered by <a href="https://softdreams.vn" target="_blank" rel="noopener noreferrer">SDS Vietnam</a>
@@ -379,25 +379,8 @@
 <!-- ══ SCROLL TO TOP ══════════════════════════════ -->
 <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
 
-<script src="layout.js?v=2026100510"></script>
+<script src="layout.js?v=2026100511"></script>
 <script>
-
-/* ── STICKY CTA ────────────────────────────────── */
-(function () {
-  const bar = document.getElementById('sticky-cta');
-  if (!bar) return;
-  const hero    = document.querySelector('.hero');
-  const contact = document.getElementById('contact');
-  /* Show the bar only while neither the hero nor the contact block is on screen */
-  const onScreen = new Set();
-  function update(entries) {
-    entries.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target));
-    bar.classList.toggle('visible', onScreen.size === 0);
-  }
-  const io = new IntersectionObserver(update, { threshold: .1 });
-  if (hero)    io.observe(hero);
-  if (contact) io.observe(contact);
-})();
 
 /* ── LOGO ERROR HANDLERS ──────────────────────── */
 function onLogoError(el, emoji, name) {
@@ -549,8 +532,8 @@ function render(data) {
     `© ${new Date().getFullYear()} <strong>${meta.siteName}</strong> · ${meta.tagline}`;
   document.getElementById('footer-contact').innerHTML =
     `<a href="${meta.contact.hotline.href}"><strong>${meta.contact.hotline.display}</strong></a>
-     · <a href="${meta.contact.email.href}">${meta.contact.email.display}</a>
-     · ${meta.contact.hours}`;
+     <span class="sep">·</span> <a href="${meta.contact.email.href}">${meta.contact.email.display}</a>
+     <span class="sep">·</span> ${meta.contact.hours}`;
   document.getElementById('footer-sds').innerHTML =
     `Powered by <a href="https://softdreams.vn" target="_blank" rel="noopener noreferrer">SDS Vietnam</a>
      · Hotline: <a href="${meta.sdsHotline.href}">${meta.sdsHotline.display}</a>`;
