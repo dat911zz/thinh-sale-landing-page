@@ -1142,7 +1142,7 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 }
 
 /* EasyPOS – modes grid */
-.pos-modes-section { padding: 80px 0; background: var(--off); }
+.pos-modes-section { padding: 80px 24px; background: var(--off); }
 .pos-modes-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px; margin-top: 48px;
@@ -1164,7 +1164,7 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 }
 
 /* EasyDocs – legal compliance grid */
-.legal-section { padding: 80px 0; background: var(--off); }
+.legal-section { padding: 80px 24px; background: var(--off); }
 .legal-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px; margin-top: 48px;
@@ -1191,7 +1191,7 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 }
 
 /* EasyDocs – contract workflow timeline */
-.workflow-section { padding: 80px 0; background: var(--white); }
+.workflow-section { padding: 80px 24px; background: var(--white); }
 .workflow-steps {
   display: flex; flex-direction: column; gap: 0;
   margin: 48px auto 0; max-width: 780px;
@@ -1368,3 +1368,6 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 .hero-inner .hero-stats + .hero-btns { margin-top: 32px; }
 .integration-logos { justify-content: flex-start; }
 .workflow-steps { margin-left: 0; }
+@media (max-width: 768px) {
+  .pos-modes-section, .legal-section, .workflow-section { padding-left: 16px; padding-right: 16px; }
+}
