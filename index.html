@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="layout.css?v=2026100503" />
+  <link rel="stylesheet" href="layout.css?v=2026100504" />
 
   <!-- ── JSON-LD ────────────────────────────────────── -->
   <script type="application/ld+json">
@@ -378,7 +378,7 @@
 <!-- ══ SCROLL TO TOP ══════════════════════════════ -->
 <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Lên đầu trang" title="Lên đầu trang">↑</button>
 
-<script src="layout.js?v=2026100503"></script>
+<script src="layout.js?v=2026100504"></script>
 <script>
 
 /* ── STICKY CTA ────────────────────────────────── */
@@ -421,6 +421,23 @@ function ecoLogoImg(logo, name, fallbackEmoji) {
   return '';  /* no usable logo: the card's name line carries it */
 }
 
+/* Flagship product: text + key points on the left, real screenshot on the right */
+function flagshipCardHTML(p, href) {
+  const points = (p.highlights || []).map(h => `<li>${h}</li>`).join('');
+  return `
+      <a href="${href || '#'}" class="product-card product-card--flagship fade-up">
+        <div class="flagship-text">
+          <span class="product-flagship-badge">Sản phẩm chủ lực</span>
+          ${logoImg(p.logo, p.name, p.icon)}
+          <p class="product-desc">${p.desc}</p>
+          ${points ? `<ul class="flagship-points">${points}</ul>` : ''}
+          ${p.priceNote ? `<p class="flagship-price">${p.priceNote}</p>` : ''}
+          <span class="product-card-cta">Xem bảng giá &amp; tính năng →</span>
+        </div>
+        ${p.image ? `<img class="flagship-shot" src="${p.image}" alt="Giao diện lập hóa đơn của ${p.name}" width="1176" height="706" loading="lazy">` : ''}
+      </a>`;
+}
+
 function setupFeeHTML(tag, data) {
   tag.querySelector('span').innerHTML =
     `${data.setupFeeLabel}: <strong>${data.setupFee} ${data.setupFeeSuffix}</strong>`;
@@ -445,9 +462,9 @@ function render(data) {
     'EasyPOS': 'easypos.html', 'EasyDocs': 'easydocs.html'
   };
   document.getElementById('products-grid').innerHTML =
-    products.map((p, i) => `
-      <a href="${productLinks[p.name] || '#'}" class="product-card fade-up${i === 0 ? ' product-card--flagship' : ''}">
-        ${i === 0 ? '<span class="product-flagship-badge">Sản phẩm chủ lực</span>' : ''}
+    products.map((p, i) =>
+      i === 0 ? flagshipCardHTML(p, productLinks[p.name]) : `
+      <a href="${productLinks[p.name] || '#'}" class="product-card fade-up">
         ${logoImg(p.logo, p.name, p.icon)}
         <p class="product-desc">${p.desc}</p>
         <span class="product-card-cta">Tìm hiểu thêm →</span>
