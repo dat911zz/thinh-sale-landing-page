@@ -334,10 +334,10 @@ nav.scrolled { background: var(--white); box-shadow: 0 2px 12px rgba(30,41,59,.0
 .product-shot--cutout img { border: none; border-radius: 0; box-shadow: none; }
 
 /* Contact: form + photo side by side on desktop */
-.contact-body { display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 1fr); gap: 40px; align-items: end; margin-top: 48px; }
+.contact-body { display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 1fr); gap: 40px; align-items: stretch; margin-top: 48px; }
 .contact-body .contact-form-wrap { margin-top: 0; }
-.contact-photo { margin: 0; }
-.contact-photo img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.contact-photo { margin: 0; display: flex; flex-direction: column; }
+.contact-photo img { display: block; width: 100%; flex: 1; min-height: 0; object-fit: cover; object-position: 70% center; border-radius: 14px; }
 .contact-photo figcaption { margin-top: 8px; font-size: .8rem; color: rgba(255,255,255,.6); }
 @media (max-width: 900px) { .contact-body { grid-template-columns: 1fr; } .contact-photo { display: none; } }
 
@@ -790,7 +790,7 @@ section { padding: 88px 24px; }
 .ecosystem-section { background: var(--white); }
 .ecosystem-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 900px) { .ecosystem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .ecosystem-grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .ecosystem-grid { gap: 10px; } .eco-card { padding: 14px 12px; } .eco-logo-wrap { width: 100%; max-width: 120px; } }
 
 .eco-card {
   border: 1px solid var(--border); border-radius: 14px; padding: 20px 18px;
@@ -804,6 +804,8 @@ section { padding: 88px 24px; }
 .eco-logo-fallback { font-size: 22px; }
 
 .eco-name  { font-size: .9rem; font-weight: 700; color: var(--navy); }
+/* logo already shows the name: keep it for screen readers / search only */
+.eco-logo-wrap + .eco-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .eco-label { font-size: .85rem; color: var(--muted); line-height: 1.45; }
 .eco-badge { display: inline-flex; font-size: .8rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; margin-top: auto; }
 .eco-badge.contact { background: rgba(30,77,140,.07); color: var(--mid); }
@@ -845,6 +847,7 @@ section { padding: 88px 24px; }
 .contact-card-value { font-size: 1.1rem; font-weight: 700; color: var(--white); }
 .contact-card-value a { color: var(--on-dark); text-decoration: none; display: inline-block; padding: 8px 0; }
 .contact-card-value a:hover { text-decoration: underline; }
+.contact-card-value a.zalo-link { color: #6aa8ff; }
 
 .contact-form-wrap {
   margin-top: 48px; background: rgba(255,255,255,.06);
@@ -1053,11 +1056,14 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
   .hero-orb-3 { display: none; }
   .contact-form-wrap { padding: 24px 18px; }
   .form-row { flex-direction: column; }
-  .contact-cards { flex-direction: column; }
+  .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .contact-card { min-width: 0; padding: 16px; }
+  .contact-card-value { font-size: .95rem; overflow-wrap: anywhere; }
   .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
 
-  .pricing-cta-inner { flex-direction: column; gap: 32px; }
-  .pricing-cta-highlights { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .pricing-cta-inner { flex-direction: column; align-items: stretch; gap: 32px; }
+  .pricing-cta-content, .pricing-cta-highlights { flex: none; }
+  .pricing-cta-highlights { flex-direction: column; gap: 12px; }
   .steps-grid::after { display: none; }
   .stats-row { gap: 24px; }
 }
@@ -1071,7 +1077,7 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 @media (max-width: 480px) {
   .hero h1 { font-size: 2rem; }
   .hero-btns { flex-direction: column; align-items: center; }
-  .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
+  .btn-primary, .btn-ghost, .btn-zalo { width: 100%; max-width: 320px; text-align: center; }
   .hero-float-card { left: 0; bottom: 0; max-width: 200px; }
   .pricing-cta-section { padding: 64px 16px; }
   .pricing-cta-inner { flex-direction: column; gap: 24px; }

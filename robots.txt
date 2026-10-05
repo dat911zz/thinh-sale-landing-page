@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /banyan-mock.html
+Disallow: /plant-mock.html
+
+Sitemap: https://dat911zz.github.io/thinh-sale-landing-page/sitemap.xml
