@@ -757,6 +757,14 @@ section { padding: 88px 24px; }
   padding: 0 12px; white-space: nowrap;
 }
 .plan-col-cta:hover { background: var(--zalo); color: var(--white); }
+@media (max-width: 1000px) { .hrm-modules-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); } }
+
+/* Product pages centre their pricing section: keep every block on the same axis */
+#pricing .plan-table--2 { margin-inline: auto; }
+#pricing .year-tabs,
+#pricing .setup-fee-tag { display: flex; width: fit-content; max-width: 100%; margin-inline: auto; }
+#pricing .plan-table + .setup-fee-tag,
+#pp-grid + .setup-fee-tag { margin-top: 20px; }
 @media (max-width: 760px) {
   .plan-table { grid-template-columns: 1fr; }
   .plan-col + .plan-col { border-left: none; border-top: 1px solid var(--border); }
@@ -766,7 +774,9 @@ section { padding: 88px 24px; }
    ECOSYSTEM (index.html)
 ══════════════════════════════════════════ */
 .ecosystem-section { background: var(--white); }
-.ecosystem-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.ecosystem-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .ecosystem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .ecosystem-grid { grid-template-columns: 1fr; } }
 
 .eco-card {
   border: 1px solid var(--border); border-radius: 14px; padding: 20px 18px;
@@ -969,7 +979,7 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
   position: relative; z-index: 1;
   display: flex; gap: 64px; align-items: center; flex-wrap: wrap;
 }
-.pricing-cta-content { flex: 1; min-width: 280px; }
+.pricing-cta-content { flex: 1 1 380px; min-width: 0; }
 .pricing-cta-content .section-title { color: var(--white); }
 .pricing-cta-content .section-eyebrow { color: var(--on-dark); }
 .pricing-cta-content .section-eyebrow::after { background: var(--gold2); }
@@ -977,7 +987,7 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 .pricing-cta-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
 .pricing-cta-btns .btn-ghost { color: var(--white); border-color: rgba(255,255,255,.45); }
 .pricing-cta-btns .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
-.pricing-cta-highlights { flex: 1 1 280px; min-width: 0; max-width: 100%; display: flex; flex-direction: column; gap: 16px; }
+.pricing-cta-highlights { flex: 0 1 440px; min-width: 0; max-width: 100%; display: flex; flex-direction: column; gap: 16px; }
 .pch-item {
   display: flex; align-items: center; gap: 12px;
   font-size: .95rem; color: rgba(255,255,255,.8); font-weight: 500;
@@ -1097,7 +1107,7 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
 /* EasyHRM – module chip grid */
 .hrm-modules-section { padding: 80px 24px; background: var(--off); }
 .hrm-modules-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px; margin-top: 36px;
 }
 .hrm-module-item {
