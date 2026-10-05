@@ -330,6 +330,16 @@ nav.scrolled { background: var(--white); box-shadow: 0 2px 12px rgba(30,41,59,.0
 }
 .product-shot figcaption { margin-top: 10px; font-size: .85rem; color: var(--muted); }
 .showcase-grid--single { grid-template-columns: 1fr !important; max-width: 760px; }
+/* Transparent SDS mockups: no frame, they already carry their own shape */
+.product-shot--cutout img { border: none; border-radius: 0; box-shadow: none; }
+
+/* Contact: form + photo side by side on desktop */
+.contact-body { display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 1fr); gap: 40px; align-items: end; margin-top: 48px; }
+.contact-body .contact-form-wrap { margin-top: 0; }
+.contact-photo { margin: 0; }
+.contact-photo img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.contact-photo figcaption { margin-top: 8px; font-size: .8rem; color: rgba(255,255,255,.6); }
+@media (max-width: 900px) { .contact-body { grid-template-columns: 1fr; } .contact-photo { display: none; } }
 
 .btn-zalo {
   background: var(--zalo); color: var(--white); font-weight: 700; padding: 14px 32px; border-radius: 12px;
@@ -339,10 +349,7 @@ nav.scrolled { background: var(--white); box-shadow: 0 2px 12px rgba(30,41,59,.0
 
 /* Hero product screenshot (index) */
 .hero-visual { position: relative; z-index: 2; margin: 0; }
-.hero-visual img {
-  display: block; width: 100%; height: auto;
-  border-radius: 10px; box-shadow: 0 10px 30px rgba(30,41,59,.12);
-}
+.hero-visual img { display: block; width: 100%; height: auto; }
 .hero-visual figcaption { margin-top: 12px; font-size: .82rem; color: var(--muted); }
 .hero-visual .app-window-wrap {
   transform: perspective(1500px) rotateY(-10deg) rotateX(3deg);
