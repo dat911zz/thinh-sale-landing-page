@@ -1301,3 +1301,70 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
     animation: none !important;
   }
 }
+
+/* ══════════════════════════════════════════
+   EDITORIAL LAYOUT
+   Less "template": left-aligned headings without kicker labels,
+   feature lists as ruled columns instead of boxed cards with icon
+   chips, one step style, small radii, no hover lifts.
+══════════════════════════════════════════ */
+:root { --radius: 10px; }
+
+/* Section headings */
+.section-eyebrow { display: none; }
+.section-header, .section-header.center { text-align: left; max-width: 760px; margin-bottom: 40px; }
+.section-header.center .section-desc { margin: 0; }
+.section-title { font-size: clamp(1.6rem, 2.8vw, 2.3rem); letter-spacing: -.01em; }
+.section-desc { font-size: 1.05rem; max-width: 640px; }
+
+/* Pricing follows the same left axis as its heading */
+#pricing .plan-table--2 { margin-inline: 0; }
+#pricing .year-tabs, #pricing .setup-fee-tag { margin-inline: 0; }
+#pp-disclaimer, #invoice-disclaimer { text-align: left !important; }
+
+/* Feature-style lists: ruled columns, no boxes */
+.feat-grid, .legal-grid, .pos-modes-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; }
+.why-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 32px; }
+.feat-card, .feat-section.light .feat-card, .why-card, .legal-card, .pos-mode-card {
+  background: none; border: 0; border-top: 1px solid var(--border); border-radius: 0;
+  box-shadow: none; padding: 24px 0 36px; text-align: left;
+}
+.feat-card:hover, .why-card:hover, .legal-card:hover, .pos-mode-card:hover { transform: none; box-shadow: none; border-color: var(--border); border-top-color: var(--gold); }
+.feat-icon, .why-icon, .pos-mode-icon {
+  width: auto; height: auto; margin: 0 0 12px; padding: 0; border-radius: 0;
+  background: none; color: var(--gold); justify-content: flex-start;
+}
+.legal-card::before { display: none; }
+.pos-highlight { margin-left: 0; }
+
+/* Steps: one style everywhere — orange number over a hairline */
+.steps-grid::before, .steps-grid::after { display: none; }
+.step, .step-card {
+  text-align: left; background: none; border: 0; border-top: 1px solid var(--border);
+  border-radius: 0; box-shadow: none; padding: 24px 0 0;
+}
+.step-icon {
+  width: auto; height: auto; margin: 0 0 10px; border-radius: 0; box-shadow: none;
+  background: none; color: var(--gold); font-size: 1.6rem; justify-content: flex-start;
+}
+.step-card .step-num { font-size: 1.6rem; }
+.wf-num { background: none; border: 1.5px solid var(--gold); color: var(--gold); }
+
+/* Cards that stay cards: calm hover */
+.product-card:hover, .eco-card:hover { transform: none; box-shadow: none; border-color: var(--gold); }
+
+/* Hero: content height, not a full empty screen */
+.hero { min-height: auto; padding-top: calc(var(--nav-h) + 64px); padding-bottom: 72px; }
+.hero-inner .hero-content { text-align: left; }
+
+@media (max-width: 900px) {
+  .feat-grid, .legal-grid, .pos-modes-grid, .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .feat-grid, .legal-grid, .pos-modes-grid, .why-grid { grid-template-columns: 1fr; }
+  .feat-card, .why-card, .legal-card, .pos-mode-card { padding: 20px 0 24px; }
+}
+.nowrap { white-space: nowrap; }
+.hero-inner .hero-stats + .hero-btns { margin-top: 32px; }
+.integration-logos { justify-content: flex-start; }
+.workflow-steps { margin-left: 0; }
