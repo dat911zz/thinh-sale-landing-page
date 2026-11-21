@@ -1,0 +1,289 @@
+<!doctype html>
+<!-- Mock: hướng thiết kế lại trang chủ, dựng theo taste-skill 2.5 (kind service). Không phải trang thật. -->
+<html lang="vi" data-type="service" data-radius="soft" data-buttons="block" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thịnh Vượng Luật: đại lý hóa đơn điện tử, chữ ký số SDS</title>
+<meta name="description" content="Đăng ký, cài đặt và hướng dẫn dùng EasyInvoice, EasyCA, EasyBooks cho hộ kinh doanh và doanh nghiệp. Chữ ký số từ 147.273đ/năm.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="site-kind" content="other"><meta name="page-type" content="service">
+<meta name="theme-color" content="#fbf8f5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Thịnh Vượng Luật: đại lý hóa đơn điện tử, chữ ký số SDS">
+<meta property="og:description" content="Đăng ký, cài đặt và hướng dẫn dùng phần mềm SDS. Chữ ký số từ 147.273đ/năm, kế toán từ 1.000.000đ/năm.">
+<meta property="og:image" content="share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- <link rel="canonical" href="https://[tên miền của Thịnh Vượng Luật]/"> -->
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Hanken+Grotesk:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<style>
+:root {
+  --p-bg: #fbf8f5; --p-surface: #f3ece4; --p-ink: #1e293b; --p-muted: #526072;
+  --p-accent: #c2410c; --p-accent-ink: #fbf8f5; --p-action: #c2410c; --p-action-ink: #fbf8f5;
+  --p-inv-bg: #1e293b; --p-inv-surface: #2b3547; --p-inv-ink: #fbf8f5; --p-inv-muted: #9fa3aa;
+  --p-inv-accent: #fbf8f5; --p-inv-accent-ink: #1e293b; --p-inv-action: #fbf8f5; --p-inv-action-ink: #1e293b;
+  --font-display: "Newsreader", Georgia, serif;
+  --font-text: "Hanken Grotesk", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.018em;
+  --display-tracking-xl: -0.025em;
+  --ly-scale: 1.06;
+}
+/* inside visuals only: SDS's own product images are cut-outs, so they sit whole on a surface panel */
+.frame--cut { background: var(--g-alt); }
+.frame--cut > .frame__img { object-fit: contain; padding: var(--s-6); }
+.hero__media.frame--cut { background: var(--p-surface); }
+.rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); }
+/* picture-develops: the section's one photograph, on the split's right column, as tall as the text beside it */
+.develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: var(--ly-fit); }
+.develop > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
+@media (max-width: 639px) { .develop { aspect-ratio: 16 / 9; margin-top: var(--s-6); } }
+.price-photo { margin: 0; aspect-ratio: 4 / 3; }
+@media (max-width: 1023px) { .price-photo { margin-top: var(--s-7); } }
+@media (min-width: 640px) and (max-width: 1023px) { #phan-mem, #bang-gia, #quy-trinh, #hoi-dap { --h: 2 } }
+@media (max-width: 639px) { #phan-mem .frame { aspect-ratio: 4 / 5; height: auto; flex: none; } }
+@media (max-width: 359px) { #phan-mem .frame { aspect-ratio: 4 / 3; } }
+@media (max-width: 639px) { #phan-mem .grid.fill { flex: 0 0 auto; } }
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js"><link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
+</head>
+<body>
+<!-- deal: hero split (re-dealt from photo) · nav-mega · footer-dark · close-type · dark-band · buttons block ·
+     wordmark · moment picture-develops · brand colours (navy, TV orange) · Newsreader / Hanken Grotesk · soft -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Đến nội dung chính</a>
+    <a class="nav__logo" href="#top">Thịnh Vượng Luật</a>
+    <nav class="nav__links" aria-label="Chính">
+      <div class="nav__item">
+        <a class="nav__link" href="#phan-mem">Phần mềm <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-3">
+              <p class="t-label">Hóa đơn và ký số</p>
+              <a href="../easyinvoice.html">EasyInvoice<span>Hóa đơn điện tử</span></a>
+              <a href="../easyca.html">EasyCA<span>Chữ ký số USB Token, ký từ xa</span></a>
+              <a href="../easydocs.html">EasyDocs<span>Hợp đồng điện tử</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">Quản trị</p>
+              <a href="../easybooks.html">EasyBooks<span>Kế toán online</span></a>
+              <a href="../easyhrm.html">EasyHRM<span>Nhân sự, chấm công, tính lương</span></a>
+              <a href="../easypos.html">EasyPOS<span>Bán hàng tại quầy</span></a>
+            </div>
+            <a class="menu-card span-3 start-10" href="#bang-gia">
+              <div class="panel"><img width="700" height="525" loading="lazy" class="frame__img" src="img/easyca-token.webp" alt="Hộp và USB Token chữ ký số EasyCA trên bàn gỗ" data-source="supplier" data-subject="EasyCA USB Token"></div>
+              <span class="t-card">Bảng giá chữ ký số</span>
+              <span class="t-small muted">USB Token và ký số từ xa, 1 đến 3 năm</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="#bang-gia">Bảng giá</a></div>
+      <div class="nav__item"><a class="nav__link" href="#quy-trinh">Quy trình</a></div>
+      <div class="nav__item"><a class="nav__link" href="#ho-tro">Hỗ trợ</a></div>
+      <div class="nav__item"><a class="nav__link" href="#hoi-dap">Hỏi đáp</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--primary" href="https://zalo.me/0986633426" rel="noopener">Nhắn Zalo báo giá</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Mở menu"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero hero--split" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text grid hero__grid">
+      <div class="hero__text span-5">
+        <p class="hero__kicker"><span class="dot" aria-hidden="true"></span>Đại lý ủy quyền của SDS Vietnam</p>
+        <h1 id="hero-h">Đại lý hóa đơn điện tử, chữ ký số SDS</h1>
+        <p class="hero__lead">Bên em đăng ký, cài đặt và hướng dẫn dùng phần mềm SDS cho hộ kinh doanh và doanh nghiệp. Chữ ký số từ 147.273đ/năm, kế toán từ 1.000.000đ/năm.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="https://zalo.me/0986633426" rel="noopener">Nhắn Zalo báo giá</a><a class="btn btn--secondary" href="tel:0986633426">Gọi 0986 633 426</a></div>
+      </div>
+      <div class="hero__media frame--cut span-6 start-7">
+        <img src="img/easyinvoice-hero.webp" style="--ly-pos: 44% 50%" alt="Nhân viên văn phòng cầm laptop bên màn hình EasyInvoice: biểu đồ hóa đơn theo tháng và menu xử lý hóa đơn" width="1400" height="804" fetchpriority="high" data-source="supplier" data-subject="EasyInvoice">
+        <div class="ly-float">
+          <div class="ly-float__row"><span>Kích hoạt</span><span>Sau khi ký hợp đồng</span></div>
+          <div class="ly-float__title">Trong ngày làm việc</div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section" id="phan-mem" style="--hm: 2" aria-labelledby="pm-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="pm-h">Sáu phần mềm SDS bên em cài đặt</h2><p>Chọn từng phần mềm để xem màn hình thật của nó.</p></div>
+      <div class="grid grid--top fill" data-peek>
+        <div class="span-6 stack-5">
+        <ul class="rows">
+          <li data-peek-to="invoice" tabindex="0"><span class="rows__name">EasyInvoice</span><p>Hóa đơn điện tử theo Nghị định 254/2026, lưu trữ 10 năm.</p><span class="rows__value">Theo số hóa đơn</span></li>
+          <li data-peek-to="ca" tabindex="0"><span class="rows__name">EasyCA</span><p>Chữ ký số USB Token hoặc ký từ xa, giá theo năm.</p><span class="rows__value">từ 147.273đ</span></li>
+          <li data-peek-to="books" tabindex="0"><span class="rows__name">EasyBooks</span><p>Kế toán online theo Thông tư 99, 133, 152, giá theo năm.</p><span class="rows__value">từ 1.000.000đ</span></li>
+          <li data-peek-to="hrm" tabindex="0"><span class="rows__name">EasyHRM</span><p>Chấm công, tính lương và hồ sơ nhân sự.</p><span class="rows__value">Theo quy mô</span></li>
+          <li data-peek-to="pos" tabindex="0"><span class="rows__name">EasyPOS</span><p>Bán hàng tại quầy, xuất hóa đơn điện tử khi thanh toán.</p><span class="rows__value">Theo quy mô</span></li>
+          <li data-peek-to="docs" tabindex="0"><span class="rows__name">EasyDocs</span><p>Hợp đồng điện tử ký số, lưu trữ và tra cứu.</p><span class="rows__value">Theo quy mô</span></li>
+        </ul>
+        <p><a class="link" href="#bang-gia">Xem bảng giá</a></p>
+        </div>
+        <div class="frame frame--photo frame--fill frame--cut span-6 start-7">
+          <img width="1176" height="706" class="frame__img" data-peek-for="invoice" src="img/easyinvoice-create.webp" alt="Màn hình lập hóa đơn của EasyInvoice với danh sách khách hàng và hàng hóa" data-source="supplier" data-subject="EasyInvoice">
+          <img width="1200" height="761" class="frame__img" data-peek-for="ca" src="img/easyca-remote.webp" alt="Ký số từ xa EasyCA trên điện thoại, kèm chữ ký trên hợp đồng" data-source="supplier" data-subject="EasyCA" hidden>
+          <img width="1162" height="1000" class="frame__img" data-peek-for="books" src="img/easybooks-imac.webp" alt="Bảng điều khiển kế toán EasyBooks trên màn hình máy tính" data-source="supplier" data-subject="EasyBooks" hidden>
+          <img width="1176" height="759" class="frame__img" data-peek-for="hrm" src="img/easyhrm-dashboard.webp" alt="Bảng tổng quan nhân sự của EasyHRM với biểu đồ chấm công" data-source="supplier" data-subject="EasyHRM" hidden>
+          <img width="1200" height="697" class="frame__img" data-peek-for="pos" src="img/easypos-hero.webp" alt="Màn hình bán hàng và doanh thu của EasyPOS trên máy tính và điện thoại" data-source="supplier" data-subject="EasyPOS" hidden>
+          <img width="1176" height="800" class="frame__img" data-peek-for="docs" src="img/easydocs-list.webp" alt="Danh sách hợp đồng lao động trên EasyDocs với trạng thái ký" data-source="supplier" data-subject="EasyDocs" hidden>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="bang-gia" style="--hm: 2" aria-labelledby="bg-h">
+    <div class="wrap grid grid--top">
+      <div class="span-6 stack-6">
+        <div class="section-head"><h2 id="bg-h">Bảng giá chữ ký số và kế toán</h2><p>EasyBooks có thêm phí khởi tạo và bản quyền 1.000.000đ một lần, tặng 6 tháng dùng và 300 hóa đơn.</p></div>
+        <div class="stack-2">
+          <p class="t-label">Chữ ký số EasyCA, giá 1 năm</p>
+          <ul class="rows">
+            <li><span class="rows__name">USB Token cơ bản<small>2 năm 810.000đ, 3 năm 885.600đ</small></span><span class="rows__value">486.000đ</span></li>
+            <li><span class="rows__name">USB Token nâng cao<small>2 năm 1.209.600đ, 3 năm 1.533.600đ</small></span><span class="rows__value">777.600đ</span></li>
+            <li><span class="rows__name">Ký số từ xa<small>2 năm 265.092đ, 3 năm 373.092đ</small></span><span class="rows__value">147.273đ</span></li>
+          </ul>
+        </div>
+        <div class="stack-2">
+          <p class="t-label">Kế toán EasyBooks, giá 1 năm</p>
+          <ul class="rows">
+            <li><span class="rows__name">Hộ kinh doanh<small>Thông tư 152, không giới hạn chứng từ</small></span><span class="rows__value">1.000.000đ</span></li>
+            <li><span class="rows__name">Starter<small>Thông tư 99, 133, dưới 5.000 chứng từ</small></span><span class="rows__value">2.000.000đ</span></li>
+            <li><span class="rows__name">PRO<small>Thông tư 99, 133, không giới hạn chứng từ</small></span><span class="rows__value">2.500.000đ</span></li>
+          </ul>
+        </div>
+      </div>
+      <figure class="frame frame--photo span-6 start-7 price-photo"><img class="frame__img" src="img/easyca-token.webp" alt="Hộp và USB Token chữ ký số EasyCA trên bàn gỗ" width="700" height="525" loading="lazy" data-source="supplier" data-subject="EasyCA USB Token"></figure>
+    </div>
+  </section>
+
+  <section class="section ground-inverse" id="quy-trinh" style="--hm: 2" aria-labelledby="qt-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="qt-h">Dùng phần mềm SDS qua bên em trong 3 bước</h2></div>
+      <div class="grid">
+        <article class="card card--row span-4">
+          <span class="step-num">1</span>
+          <h3>Gửi nhu cầu, nhận báo giá</h3>
+          <p>Anh/chị cho biết loại hình kinh doanh và số hóa đơn mỗi năm. Bên em gửi báo giá qua Zalo.</p>
+          <div class="panel frame--cut"><img width="1177" height="736" class="frame__img" src="img/easyinvoice-mobile.webp" alt="EasyInvoice trên điện thoại và máy tính" loading="lazy" data-source="supplier" data-subject="EasyInvoice"></div>
+        </article>
+        <article class="card card--row span-4">
+          <span class="step-num">2</span>
+          <h3>Ký hợp đồng điện tử</h3>
+          <p>Bên em gửi hợp đồng và hướng dẫn thanh toán. Anh/chị ký số ngay trên máy.</p>
+          <div class="panel frame--cut"><img width="1400" height="707" class="frame__img" src="img/easydocs-hero.webp" alt="Hợp đồng lao động được ký số trên EasyDocs" loading="lazy" data-source="supplier" data-subject="EasyDocs"></div>
+        </article>
+        <article class="card card--row span-4">
+          <span class="step-num">3</span>
+          <h3>Kích hoạt và dùng ngay</h3>
+          <p>Tài khoản kích hoạt trong ngày làm việc. Bên em hướng dẫn cài USB Token hoặc ký số từ xa.</p>
+          <div class="panel frame--cut"><img width="1220" height="753" class="frame__img" src="img/easybooks-devices.webp" alt="EasyBooks chạy trên laptop và điện thoại" loading="lazy" data-source="supplier" data-subject="EasyBooks"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ho-tro" aria-labelledby="ht-h">
+    <div class="wrap grid grid--top">
+      <div class="span-6">
+        <div class="section-head">
+          <h2 id="ht-h">Giờ hỗ trợ và xử lý sự cố</h2>
+          <p>Tư vấn miễn phí trong suốt thời gian anh/chị dùng phần mềm.</p>
+        </div>
+        <ul class="rows">
+          <li><span class="rows__name">Giờ hỗ trợ</span><span class="rows__value">T2 – T7, 8:00 – 17:30</span></li>
+          <li><span class="rows__name">Xử lý sự cố</span><span class="rows__value">Trong 4 giờ làm việc</span></li>
+          <li><span class="rows__name">Ngoài giờ<small>Tổng đài của SDS Vietnam</small></span><span class="rows__value"><a class="link" href="tel:19003369">1900 33 69</a></span></li>
+        </ul>
+      </div>
+      <figure class="develop span-6 start-7" data-moment="picture-develops"><img src="img/tu-van.webp" alt="Nhân viên tư vấn nghe điện thoại bên bàn làm việc" width="900" height="600" loading="lazy" data-source="stand-in" data-subject="tư vấn qua điện thoại"></figure>
+    </div>
+  </section>
+
+  <section class="section" id="hoi-dap" style="--hm: 2" aria-labelledby="hd-h">
+    <div class="wrap grid grid--top">
+      <div class="span-5 stack-6" id="lien-he">
+        <div class="section-head">
+          <h2 id="hd-h">Hỏi đáp về giá và cài đặt</h2>
+          <p>Chưa có câu của anh/chị? Để lại số, bên em gọi lại trong giờ làm việc.</p>
+        </div>
+        <div class="visit visit--card">
+          <form class="form" action="mailto:info@thinhvuongluat.vn" method="post" enctype="text/plain" data-endpoint="" data-sent="Yêu cầu gọi lại đã gửi. Bên em gọi trong giờ làm việc." novalidate>
+          <div class="field"><label for="f-name">Họ và tên</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+            <p class="field__error" id="f-name-err" hidden>Ghi tên để bên em xưng hô khi gọi.</p></div>
+          <div class="field"><label for="f-phone">Số điện thoại</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="f-phone-err">
+            <p class="field__error" id="f-phone-err" hidden>Ghi số điện thoại 10 số, bắt đầu bằng 0.</p></div>
+          <div class="field field--full"><label for="f-product">Phần mềm cần báo giá</label>
+            <input id="f-product" name="product" type="text" autocomplete="off" aria-describedby="f-product-err">
+            <p class="field__error" id="f-product-err" hidden>Ghi tên phần mềm, ví dụ EasyInvoice.</p></div>
+          <div class="btn-row"><button class="btn btn--secondary" type="submit">Yêu cầu gọi lại</button></div>
+          <p class="form__status" role="status" data-form-status></p>
+        </form>
+        </div>
+      </div>
+      <div class="faq span-6 start-7">
+        <div class="faq__item"><h3>Hóa đơn điện tử EasyInvoice giá bao nhiêu?</h3><p>Phí khởi tạo 500.000đ một lần. Gói Gold tặng 100 hóa đơn đầu, gói Diamond 300 hóa đơn mỗi năm kèm ký số HSM; giá gói theo số hóa đơn anh/chị dùng.</p></div>
+        <div class="faq__item"><h3>EasyInvoice có theo quy định mới không?</h3><p>Có. Theo công bố của SDS, EasyInvoice đáp ứng Nghị định 254/2026/NĐ-CP và Thông tư 91/2026/TT-BTC, hiệu lực từ 01/7/2026.</p></div>
+        <div class="faq__item"><h3>Nên chọn USB Token hay ký số từ xa?</h3><p>USB Token cắm vào máy tính khi ký. Ký số từ xa chạy trên đám mây, xác thực bằng OTP, không cần thiết bị.</p></div>
+        <div class="faq__item"><h3>Hộ kinh doanh dùng gói kế toán nào?</h3><p>Gói Hộ kinh doanh theo Thông tư 152, 1.000.000đ/năm, không giới hạn người dùng và chứng từ.</p></div>
+        <div class="faq__item"><h3>Bên em có cài đặt giúp không?</h3><p>Có. Bên em cài đặt từ xa và hướng dẫn đến khi anh/chị lập được hóa đơn đầu tiên.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer closing footer--dark ground-inverse" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Nhắn Zalo để nhận báo giá</h2>
+        <p>Báo giá hóa đơn điện tử theo đúng số hóa đơn anh/chị dùng mỗi năm.</p>
+      </div>
+      <a class="btn btn--primary btn--xl btn--wide" href="https://zalo.me/0986633426" rel="noopener">Nhắn Zalo báo giá<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top">Thịnh Vượng Luật</a>
+          <p class="footer__lede">Đại lý ủy quyền phần mềm SDS Vietnam.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Phần mềm</h3><ul><li><a href="../easyinvoice.html">EasyInvoice</a></li><li><a href="../easyca.html">EasyCA</a></li><li><a href="../easybooks.html">EasyBooks</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Giá</h3><ul><li><a href="#bang-gia">Bảng giá</a></li><li><a href="#quy-trinh">Quy trình</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Hỗ trợ</h3><ul><li><a href="#ho-tro">Giờ hỗ trợ</a></li><li><a href="#hoi-dap">Hỏi đáp</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Liên hệ</h3><ul><li><a href="tel:0986633426">0986 633 426</a></li><li><a href="mailto:info@thinhvuongluat.vn">info@thinhvuongluat.vn</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Thịnh Vượng Luật</span>
+        <span>Tên và logo sản phẩm thuộc SDS Vietnam</span>
+        <span class="credits">Ảnh: SDS Vietnam, Pexels</span>
+      </div>
+    </div>
+  </div>
+</footer>
+<nav class="actionbar" aria-label="Thao tác nhanh">
+  <a class="btn btn--primary" href="https://zalo.me/0986633426" rel="noopener">Nhắn Zalo báo giá</a>
+</nav>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+</body>
+</html>
