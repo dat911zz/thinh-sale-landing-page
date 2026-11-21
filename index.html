@@ -61,7 +61,7 @@
 
 <!-- ══ MOBILE MENU ════════════════════════════════ -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu điều hướng">
-  <a href="#" class="mobile-menu-logo" onclick="closeMenu()">
+  <a href="#top" class="mobile-menu-logo" onclick="closeMenu()">
     <div class="mobile-menu-logo-icon">TV</div>
     <div class="mobile-menu-logo-text">Thịnh Vượng Luật</div>
   </a>
@@ -99,7 +99,7 @@
 
 <!-- ══ NAV ═══════════════════════════════════════ -->
 <nav id="main-nav" role="navigation" aria-label="Điều hướng chính">
-  <a href="#" class="nav-logo" aria-label="Thịnh Vượng Luật – Trang chủ">
+  <a href="#top" class="nav-logo" aria-label="Thịnh Vượng Luật – Trang chủ">
     <div class="nav-logo-icon" aria-hidden="true">TV</div>
     <div>
       <div class="nav-logo-text">Thịnh Vượng Luật</div>
@@ -160,6 +160,8 @@
 
     <figure class="hero-visual">
       <img src="images/sds/easyinvoice-hero.webp" width="1400" height="804" fetchpriority="high"
+           srcset="images/sds/easyinvoice-hero-720.webp 720w, images/sds/easyinvoice-hero.webp 1400w"
+           sizes="(max-width: 920px) min(460px, calc(100vw - 48px)), 540px"
            alt="Nhân viên văn phòng cùng các màn hình thật của EasyInvoice: biểu đồ hóa đơn theo tháng và menu xử lý hóa đơn" />
     </figure>
   </div>
@@ -393,16 +395,21 @@ function onEcoLogoError(el) {
 /* ── RENDER HELPERS ───────────────────────────── */
 function logoImg(logo, name, fallbackEmoji) {
   if (logo) {
-    return '<div class="product-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" loading="lazy" onerror="onLogoError(this,\'' + fallbackEmoji + '\',\'' + name + '\')"></div>';
+    return '<div class="product-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" ' + logoSize(logo) + ' loading="lazy" onerror="onLogoError(this,\'' + fallbackEmoji + '\',\'' + name + '\')"></div>';
   }
   return '<div class="product-logo-wrap"><div class="product-logo-fallback"><span>' + fallbackEmoji + '</span><strong>' + name + '</strong></div></div>';
 }
 
 function ecoLogoImg(logo, name, fallbackEmoji) {
   if (logo) {
-    return '<div class="eco-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" loading="lazy" onerror="onEcoLogoError(this)"></div>';
+    return '<div class="eco-logo-wrap"><img src="' + logo + '" alt="' + name + ' logo" ' + logoSize(logo) + ' loading="lazy" onerror="onEcoLogoError(this)"></div>';
   }
   return '';  /* no usable logo: the card's name line carries it */
+}
+
+/* Intrinsic size of the wordmark files (400px wide; EasyDocs is taller) */
+function logoSize(logo) {
+  return /easydocs/.test(logo) ? 'width="400" height="182"' : 'width="400" height="112"';
 }
 
 /* Flagship product: text + key points on the left, real screenshot on the right */
@@ -418,7 +425,7 @@ function flagshipCardHTML(p, href) {
           ${p.priceNote ? `<p class="flagship-price">${p.priceNote}</p>` : ''}
           <span class="product-card-cta">Xem bảng giá &amp; tính năng →</span>
         </div>
-        ${p.image ? `<img class="flagship-shot" src="${p.image}" alt="Giao diện lập hóa đơn của ${p.name}" width="1176" height="706" loading="lazy">` : ''}
+        ${p.image ? `<img class="flagship-shot" src="${p.image}"${p.imageSmall ? ` srcset="${p.imageSmall} 640w, ${p.image} 1176w" sizes="(max-width: 760px) min(420px, calc(100vw - 64px)), 420px"` : ''} alt="Giao diện lập hóa đơn của ${p.name}" width="1176" height="706" loading="lazy">` : ''}
       </a>`;
 }
 

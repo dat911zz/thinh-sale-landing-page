@@ -12,7 +12,7 @@ p, .hero-sub, .section-desc { text-wrap: pretty; }
   --blue:      #334155;
   --mid:       #c2410c;
   --gold:      #c2410c;
-  --gold2:     #e8590c;
+  --gold2:     #c2410c; /* CTA fill: white text needs 4.5:1, #e8590c only gave 3.58:1 */
   --cta-ink:   #ffffff;
   --accent-soft: #fff1e6;
   --on-dark:   #fdba74;
@@ -28,7 +28,7 @@ p, .hero-sub, .section-desc { text-wrap: pretty; }
   --nav-h:     64px;
 }
 
-html { scroll-behavior: smooth; font-size: 17px; }
+html { scroll-behavior: smooth; font-size: 17px; scroll-padding-top: calc(var(--nav-h) + 16px); }
 
 body {
   font-family: 'Be Vietnam Pro', sans-serif;
@@ -313,7 +313,7 @@ nav.scrolled { background: var(--white); box-shadow: 0 2px 12px rgba(30,41,59,.0
   color: var(--cta-ink); font-weight: 700; padding: 14px 32px; border-radius: 12px;
   text-decoration: none; font-size: .95rem; transition: all .25s;
 }
-.btn-primary:hover { background: #cf4f0b; }
+.btn-primary:hover { background: #9a3412; }
 .btn-ghost {
   border: 1px solid #cbd5e1; color: var(--navy); font-weight: 600;
   padding: 14px 32px; border-radius: 12px; text-decoration: none; font-size: .95rem; transition: all .25s;
@@ -425,7 +425,7 @@ section { padding: 88px 24px; }
 .product-card {
   background: var(--white); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 28px;
-  transition: all .3s cubic-bezier(.4,0,.2,1);
+  transition: border-color .3s, box-shadow .3s, transform .3s cubic-bezier(.4,0,.2,1);
   display: flex; flex-direction: column; gap: 0;
   text-decoration: none; color: inherit;
 }
@@ -1421,4 +1421,15 @@ footer { background: var(--navy); padding: 36px 24px; border-top: 1px solid rgba
   .btn-submit { width: 100%; }
   .pricing-cta-btns { flex-direction: column; }
   .pricing-cta-btns a { width: 100%; text-align: center; }
+}
+
+/* ══════════════════════════════════════════
+   KEYBOARD FOCUS
+   One visible ring for every link, button and field reached by Tab.
+══════════════════════════════════════════ */
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.contact-section :focus-visible, footer :focus-visible, .sticky-cta :focus-visible,
+.pricing-cta-section :focus-visible { outline-color: var(--on-dark); }
+.form-input:focus-visible, .form-select:focus-visible, .form-textarea:focus-visible {
+  outline: 2px solid var(--on-dark); outline-offset: 2px;
 }
