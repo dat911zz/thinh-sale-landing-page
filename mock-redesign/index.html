@@ -38,7 +38,10 @@
 /* inside visuals only: SDS's own product images are cut-outs, so they sit whole on a surface panel */
 .frame--cut { background: var(--g-alt); }
 .frame--cut > .frame__img { object-fit: contain; padding: var(--s-6); }
-.hero__media.frame--cut { background: var(--p-surface); }
+.hero__media.frame--cut { background: color-mix(in oklab, var(--p-accent) 16%, var(--p-bg)); }
+/* the brand band: TV orange darkened until its light text passes 7:1 (backgrounds.md) */
+#quy-trinh { --p-accent: #923110; --muted: var(--p-accent-ink); }
+#quy-trinh .card { --c-text: var(--p-accent-ink); }
 .rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); }
 /* picture-develops: the section's one photograph, on the split's right column, as tall as the text beside it */
 .develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: var(--ly-fit); }
@@ -172,23 +175,23 @@
     </div>
   </section>
 
-  <section class="section ground-inverse" id="quy-trinh" style="--hm: 2" aria-labelledby="qt-h">
+  <section class="section ground-brand" id="quy-trinh" style="--hm: 2" aria-labelledby="qt-h">
     <div class="wrap">
       <div class="section-head"><h2 id="qt-h">Dùng phần mềm SDS qua bên em trong 3 bước</h2></div>
       <div class="grid">
-        <article class="card card--row span-4">
+        <article class="card card--row card--open span-4">
           <span class="step-num">1</span>
           <h3>Gửi nhu cầu, nhận báo giá</h3>
           <p>Anh/chị cho biết loại hình kinh doanh và số hóa đơn mỗi năm. Bên em gửi báo giá qua Zalo.</p>
           <div class="panel frame--cut"><img width="1177" height="736" class="frame__img" src="img/easyinvoice-mobile.webp" alt="EasyInvoice trên điện thoại và máy tính" loading="lazy" data-source="supplier" data-subject="EasyInvoice"></div>
         </article>
-        <article class="card card--row span-4">
+        <article class="card card--row card--open span-4">
           <span class="step-num">2</span>
           <h3>Ký hợp đồng điện tử</h3>
           <p>Bên em gửi hợp đồng và hướng dẫn thanh toán. Anh/chị ký số ngay trên máy.</p>
           <div class="panel frame--cut"><img width="1400" height="707" class="frame__img" src="img/easydocs-hero.webp" alt="Hợp đồng lao động được ký số trên EasyDocs" loading="lazy" data-source="supplier" data-subject="EasyDocs"></div>
         </article>
-        <article class="card card--row span-4">
+        <article class="card card--row card--open span-4">
           <span class="step-num">3</span>
           <h3>Kích hoạt và dùng ngay</h3>
           <p>Tài khoản kích hoạt trong ngày làm việc. Bên em hướng dẫn cài USB Token hoặc ký số từ xa.</p>
